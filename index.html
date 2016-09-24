@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-24T10:03:57+08:00" content="2016-09-24">
               2016-09-24
             </time>
@@ -422,6 +422,33 @@ private:
     stack&lt;int&gt; s1;
     stack&lt;int&gt; s2;
 };
+</code></pre><h3 id="剑指OFFER-面试题6：旋转数组的最小值（二分法）"><a href="#剑指OFFER-面试题6：旋转数组的最小值（二分法）" class="headerlink" title="剑指OFFER 面试题6：旋转数组的最小值（二分法）"></a>剑指OFFER 面试题6：旋转数组的最小值（二分法）</h3><h4 id="题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。"><a href="#题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。" class="headerlink" title="题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。"></a>题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。</h4><pre><code>class Solution {
+public:
+    int minNumberInRotateArray(vector&lt;int&gt; array) {
+        int n = array.size();
+        if(n == 0) return 0;
+        int i = 0, j = n-1;
+        int mid = 0;
+        while(array[i]&gt;=array[j]){
+            if(j-i == 1){
+                mid = j;
+                break;
+            }
+            mid = (i+j)/2;
+            if(array[mid] == array[i] &amp;&amp; array[mid]==array[j]) return minInOrder(array);
+            if(array[mid]&gt;=array[i]) i = mid;
+            if(array[mid]&lt;=array[j]) j = mid;
+        }
+        return array[mid];
+    }
+    int minInOrder(vector&lt;int&gt; array){
+        int min = array[0];
+        for(int i = 0; i&lt;array.size(); i++){
+            min = min&lt;array[i]?min:array[i];
+        }
+        return min;
+    }
+};
 </code></pre>
           
         
@@ -484,7 +511,7 @@ private:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-23T13:28:11+08:00" content="2016-09-23">
               2016-09-23
             </time>
@@ -582,7 +609,7 @@ private:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:19:43+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -684,7 +711,7 @@ private:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -731,7 +758,7 @@ private:
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
