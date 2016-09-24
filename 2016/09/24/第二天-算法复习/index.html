@@ -96,7 +96,7 @@ Business Formal看到宣讲会要求Business Formal的着装，我还不知道�
 其他的事我就管不了啦现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。
 Business Formal看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。
 废话少说，复习一下本周的算法剑指OF">
-<meta property="og:updated_time" content="2016-09-24T03:21:53.441Z">
+<meta property="og:updated_time" content="2016-09-24T08:01:18.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二天-算法复习">
 <meta name="twitter:description" content="起码写好了英文简历花了一个小时，写好了英文简历，一咬牙就去提交了。好伤心，每次到写简历的时候就发现自己的经历好少好少。
@@ -308,7 +308,72 @@ public:
     }
 };
 </code></pre><p>这段代码的while循环的判断条件还是会搞不清楚，但是基本的思路是有的了。</p>
-<h3 id="剑指OFFER"><a href="#剑指OFFER" class="headerlink" title="剑指OFFER"></a>剑指OFFER</h3>
+<h3 id="剑指OFFER-面试题2：替换空格"><a href="#剑指OFFER-面试题2：替换空格" class="headerlink" title="剑指OFFER 面试题2：替换空格"></a>剑指OFFER 面试题2：替换空格</h3><h4 id="题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><a href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。" class="headerlink" title="题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。"></a>题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</h4><pre><code>//length为牛客系统规定字符串输出的最大长度，固定为一个常数
+class Solution {
+public:
+    void replaceSpace(char *str,int length) {
+        if(str == NULL || length&lt;0) return;
+        int len = 0;
+        int spaceNum = 0;
+        int i = 0;
+        while(str[i]!=&apos;\0&apos;){
+            len++;
+            if(str[i]==&apos; &apos;) spaceNum++;
+            i++;
+        }
+        int len2 = len + spaceNum * 2;
+        if(len2 &gt; length) return;
+        while(len&gt;=0 &amp;&amp; len2&gt;len){
+            if(str[len] == &apos; &apos;){
+                str[len2--] = &apos;0&apos;;
+                str[len2--] = &apos;2&apos;;
+                str[len2--] = &apos;%&apos;;
+            }else{
+                str[len2--] = str[len];
+            }
+            len--;
+        }
+    }
+};
+</code></pre><h3 id="剑指OFFER-面试题3：从尾到头打印链表"><a href="#剑指OFFER-面试题3：从尾到头打印链表" class="headerlink" title="剑指OFFER 面试题3：从尾到头打印链表"></a>剑指OFFER 面试题3：从尾到头打印链表</h3><h4 id="题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><a href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。" class="headerlink" title="题目描述：输入一个链表，从尾到头打印链表每个节点的值。"></a>题目描述：输入一个链表，从尾到头打印链表每个节点的值。</h4><h5 id="非递归算法："><a href="#非递归算法：" class="headerlink" title="非递归算法："></a>非递归算法：</h5><pre><code>/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/
+class Solution {
+public:
+    vector&lt;int&gt; printListFromTailToHead(struct ListNode* head) {
+        vector&lt;int&gt; res;
+        if(head == NULL) return res;
+        stack&lt;int&gt; s;
+        ListNode* p = head;
+        while(p != NULL){
+            s.push(p-&gt;val);
+            p = p-&gt;next;
+        }
+        while(!s.empty()){
+            res.push_back(s.top());
+            s.pop();
+        }
+        return res;
+    }
+};
+</code></pre><h5 id="递归算法："><a href="#递归算法：" class="headerlink" title="递归算法："></a>递归算法：</h5><pre><code>class Solution {
+private:
+    vector&lt;int&gt; res;
+public:
+    vector&lt;int&gt; printListFromTailToHead(struct ListNode* head) {
+        if(head==NULL) return res;
+        printListFromTailToHead(head-&gt;next);
+        res.push_back(head-&gt;val);
+        return res;
+    }
+};
+</code></pre>
       
     </div>
 
@@ -439,7 +504,7 @@ public:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起码写好了英文简历"><span class="nav-number">1.</span> <span class="nav-text">起码写好了英文简历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的事我就管不了啦"><span class="nav-number">2.</span> <span class="nav-text">其他的事我就管不了啦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Business-Formal"><span class="nav-number">3.</span> <span class="nav-text">Business Formal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#废话少说，复习一下本周的算法"><span class="nav-number">4.</span> <span class="nav-text">废话少说，复习一下本周的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题1-二维数组中的查找"><span class="nav-number">4.1.</span> <span class="nav-text">剑指OFFER 面试题1 二维数组中的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><span class="nav-number">4.1.1.</span> <span class="nav-text">题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER"><span class="nav-number">4.2.</span> <span class="nav-text">剑指OFFER</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起码写好了英文简历"><span class="nav-number">1.</span> <span class="nav-text">起码写好了英文简历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的事我就管不了啦"><span class="nav-number">2.</span> <span class="nav-text">其他的事我就管不了啦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Business-Formal"><span class="nav-number">3.</span> <span class="nav-text">Business Formal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#废话少说，复习一下本周的算法"><span class="nav-number">4.</span> <span class="nav-text">废话少说，复习一下本周的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题1-二维数组中的查找"><span class="nav-number">4.1.</span> <span class="nav-text">剑指OFFER 面试题1 二维数组中的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><span class="nav-number">4.1.1.</span> <span class="nav-text">题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题2：替换空格"><span class="nav-number">4.2.</span> <span class="nav-text">剑指OFFER 面试题2：替换空格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><span class="nav-number">4.2.1.</span> <span class="nav-text">题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题3：从尾到头打印链表"><span class="nav-number">4.3.</span> <span class="nav-text">剑指OFFER 面试题3：从尾到头打印链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><span class="nav-number">4.3.1.</span> <span class="nav-text">题目描述：输入一个链表，从尾到头打印链表每个节点的值。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#非递归算法："><span class="nav-number">4.3.1.1.</span> <span class="nav-text">非递归算法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#递归算法："><span class="nav-number">4.3.1.2.</span> <span class="nav-text">递归算法：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

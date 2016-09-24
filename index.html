@@ -302,7 +302,72 @@ public:
     }
 };
 </code></pre><p>这段代码的while循环的判断条件还是会搞不清楚，但是基本的思路是有的了。</p>
-<h3 id="剑指OFFER"><a href="#剑指OFFER" class="headerlink" title="剑指OFFER"></a>剑指OFFER</h3>
+<h3 id="剑指OFFER-面试题2：替换空格"><a href="#剑指OFFER-面试题2：替换空格" class="headerlink" title="剑指OFFER 面试题2：替换空格"></a>剑指OFFER 面试题2：替换空格</h3><h4 id="题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><a href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。" class="headerlink" title="题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。"></a>题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</h4><pre><code>//length为牛客系统规定字符串输出的最大长度，固定为一个常数
+class Solution {
+public:
+    void replaceSpace(char *str,int length) {
+        if(str == NULL || length&lt;0) return;
+        int len = 0;
+        int spaceNum = 0;
+        int i = 0;
+        while(str[i]!=&apos;\0&apos;){
+            len++;
+            if(str[i]==&apos; &apos;) spaceNum++;
+            i++;
+        }
+        int len2 = len + spaceNum * 2;
+        if(len2 &gt; length) return;
+        while(len&gt;=0 &amp;&amp; len2&gt;len){
+            if(str[len] == &apos; &apos;){
+                str[len2--] = &apos;0&apos;;
+                str[len2--] = &apos;2&apos;;
+                str[len2--] = &apos;%&apos;;
+            }else{
+                str[len2--] = str[len];
+            }
+            len--;
+        }
+    }
+};
+</code></pre><h3 id="剑指OFFER-面试题3：从尾到头打印链表"><a href="#剑指OFFER-面试题3：从尾到头打印链表" class="headerlink" title="剑指OFFER 面试题3：从尾到头打印链表"></a>剑指OFFER 面试题3：从尾到头打印链表</h3><h4 id="题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><a href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。" class="headerlink" title="题目描述：输入一个链表，从尾到头打印链表每个节点的值。"></a>题目描述：输入一个链表，从尾到头打印链表每个节点的值。</h4><h5 id="非递归算法："><a href="#非递归算法：" class="headerlink" title="非递归算法："></a>非递归算法：</h5><pre><code>/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/
+class Solution {
+public:
+    vector&lt;int&gt; printListFromTailToHead(struct ListNode* head) {
+        vector&lt;int&gt; res;
+        if(head == NULL) return res;
+        stack&lt;int&gt; s;
+        ListNode* p = head;
+        while(p != NULL){
+            s.push(p-&gt;val);
+            p = p-&gt;next;
+        }
+        while(!s.empty()){
+            res.push_back(s.top());
+            s.pop();
+        }
+        return res;
+    }
+};
+</code></pre><h5 id="递归算法："><a href="#递归算法：" class="headerlink" title="递归算法："></a>递归算法：</h5><pre><code>class Solution {
+private:
+    vector&lt;int&gt; res;
+public:
+    vector&lt;int&gt; printListFromTailToHead(struct ListNode* head) {
+        if(head==NULL) return res;
+        printListFromTailToHead(head-&gt;next);
+        res.push_back(head-&gt;val);
+        return res;
+    }
+};
+</code></pre>
           
         
       
