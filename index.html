@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-24T10:03:57+08:00" content="2016-09-24">
               2016-09-24
             </time>
@@ -367,6 +367,61 @@ public:
         return res;
     }
 };
+</code></pre><h3 id="剑指OFFER-面试题4：重建二叉树"><a href="#剑指OFFER-面试题4：重建二叉树" class="headerlink" title="剑指OFFER 面试题4：重建二叉树"></a>剑指OFFER 面试题4：重建二叉树</h3><h4 id="题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。"><a href="#题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。" class="headerlink" title="题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。"></a>题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</h4><pre><code>/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    struct TreeNode* reConstructBinaryTree(vector&lt;int&gt; pre,vector&lt;int&gt; in) {
+        if(pre.size() == 0 || in.size() == 0) return NULL;
+        TreeNode* root = reConstructBinaryTree(pre, in, 0, pre.size()-1, 0, in.size()-1);
+        return root;
+    }
+    TreeNode* reConstructBinaryTree(vector&lt;int&gt; pre, vector&lt;int&gt; in, int preS, 
+                                    int preE, int inS, int inE){
+        if(preS&gt;preE || inS&gt;inE) return NULL;
+        TreeNode* root = new TreeNode(pre[preS]);
+        root-&gt;left = root-&gt;right = NULL;
+        for(int i = inS; i&lt;=inE; i++){
+            if(in[i] == pre[preS]){
+                root-&gt;left = reConstructBinaryTree(pre, in, preS+1, preS+i-inS, inS, i-1);
+                root-&gt;right = reConstructBinaryTree(pre, in, preS+i-inS+1, preE, i+1, inE);
+                break;
+            }
+        }
+        return root;
+    }
+
+};
+</code></pre><h3 id="剑指OFFER-面试题5：用两个栈实现队列"><a href="#剑指OFFER-面试题5：用两个栈实现队列" class="headerlink" title="剑指OFFER 面试题5：用两个栈实现队列"></a>剑指OFFER 面试题5：用两个栈实现队列</h3><h4 id="题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。"><a href="#题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。" class="headerlink" title="题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。"></a>题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</h4><pre><code>class Solution
+{
+public:
+    void push(int node) {
+        s1.push(node);
+    }
+
+    int pop() {
+        if(s2.empty()){
+            while(!s1.empty()){
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+        int res = s2.top();
+        s2.pop();
+        return res;
+    }
+
+private:
+    stack&lt;int&gt; s1;
+    stack&lt;int&gt; s2;
+};
 </code></pre>
           
         
@@ -429,7 +484,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-23T13:28:11+08:00" content="2016-09-23">
               2016-09-23
             </time>
@@ -527,7 +582,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:19:43+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -629,7 +684,7 @@ public:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -676,7 +731,7 @@ public:
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

@@ -96,7 +96,7 @@ Business Formal看到宣讲会要求Business Formal的着装，我还不知道�
 其他的事我就管不了啦现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。
 Business Formal看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。
 废话少说，复习一下本周的算法剑指OF">
-<meta property="og:updated_time" content="2016-09-24T08:01:18.317Z">
+<meta property="og:updated_time" content="2016-09-24T08:41:19.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二天-算法复习">
 <meta name="twitter:description" content="起码写好了英文简历花了一个小时，写好了英文简历，一咬牙就去提交了。好伤心，每次到写简历的时候就发现自己的经历好少好少。
@@ -183,7 +183,7 @@ Business Formal看到宣讲会要求Business Formal的着装，我还不知道�
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -193,7 +193,7 @@ Business Formal看到宣讲会要求Business Formal的着装，我还不知道�
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -256,7 +256,7 @@ Business Formal看到宣讲会要求Business Formal的着装，我还不知道�
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-24T10:03:57+08:00" content="2016-09-24">
               2016-09-24
             </time>
@@ -373,6 +373,61 @@ public:
         return res;
     }
 };
+</code></pre><h3 id="剑指OFFER-面试题4：重建二叉树"><a href="#剑指OFFER-面试题4：重建二叉树" class="headerlink" title="剑指OFFER 面试题4：重建二叉树"></a>剑指OFFER 面试题4：重建二叉树</h3><h4 id="题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。"><a href="#题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。" class="headerlink" title="题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。"></a>题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</h4><pre><code>/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    struct TreeNode* reConstructBinaryTree(vector&lt;int&gt; pre,vector&lt;int&gt; in) {
+        if(pre.size() == 0 || in.size() == 0) return NULL;
+        TreeNode* root = reConstructBinaryTree(pre, in, 0, pre.size()-1, 0, in.size()-1);
+        return root;
+    }
+    TreeNode* reConstructBinaryTree(vector&lt;int&gt; pre, vector&lt;int&gt; in, int preS, 
+                                    int preE, int inS, int inE){
+        if(preS&gt;preE || inS&gt;inE) return NULL;
+        TreeNode* root = new TreeNode(pre[preS]);
+        root-&gt;left = root-&gt;right = NULL;
+        for(int i = inS; i&lt;=inE; i++){
+            if(in[i] == pre[preS]){
+                root-&gt;left = reConstructBinaryTree(pre, in, preS+1, preS+i-inS, inS, i-1);
+                root-&gt;right = reConstructBinaryTree(pre, in, preS+i-inS+1, preE, i+1, inE);
+                break;
+            }
+        }
+        return root;
+    }
+
+};
+</code></pre><h3 id="剑指OFFER-面试题5：用两个栈实现队列"><a href="#剑指OFFER-面试题5：用两个栈实现队列" class="headerlink" title="剑指OFFER 面试题5：用两个栈实现队列"></a>剑指OFFER 面试题5：用两个栈实现队列</h3><h4 id="题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。"><a href="#题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。" class="headerlink" title="题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。"></a>题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</h4><pre><code>class Solution
+{
+public:
+    void push(int node) {
+        s1.push(node);
+    }
+
+    int pop() {
+        if(s2.empty()){
+            while(!s1.empty()){
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+        int res = s2.top();
+        s2.pop();
+        return res;
+    }
+
+private:
+    stack&lt;int&gt; s1;
+    stack&lt;int&gt; s2;
+};
 </code></pre>
       
     </div>
@@ -453,10 +508,10 @@ public:
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -473,7 +528,7 @@ public:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -504,7 +559,7 @@ public:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起码写好了英文简历"><span class="nav-number">1.</span> <span class="nav-text">起码写好了英文简历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的事我就管不了啦"><span class="nav-number">2.</span> <span class="nav-text">其他的事我就管不了啦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Business-Formal"><span class="nav-number">3.</span> <span class="nav-text">Business Formal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#废话少说，复习一下本周的算法"><span class="nav-number">4.</span> <span class="nav-text">废话少说，复习一下本周的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题1-二维数组中的查找"><span class="nav-number">4.1.</span> <span class="nav-text">剑指OFFER 面试题1 二维数组中的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><span class="nav-number">4.1.1.</span> <span class="nav-text">题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题2：替换空格"><span class="nav-number">4.2.</span> <span class="nav-text">剑指OFFER 面试题2：替换空格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><span class="nav-number">4.2.1.</span> <span class="nav-text">题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题3：从尾到头打印链表"><span class="nav-number">4.3.</span> <span class="nav-text">剑指OFFER 面试题3：从尾到头打印链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><span class="nav-number">4.3.1.</span> <span class="nav-text">题目描述：输入一个链表，从尾到头打印链表每个节点的值。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#非递归算法："><span class="nav-number">4.3.1.1.</span> <span class="nav-text">非递归算法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#递归算法："><span class="nav-number">4.3.1.2.</span> <span class="nav-text">递归算法：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起码写好了英文简历"><span class="nav-number">1.</span> <span class="nav-text">起码写好了英文简历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的事我就管不了啦"><span class="nav-number">2.</span> <span class="nav-text">其他的事我就管不了啦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Business-Formal"><span class="nav-number">3.</span> <span class="nav-text">Business Formal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#废话少说，复习一下本周的算法"><span class="nav-number">4.</span> <span class="nav-text">废话少说，复习一下本周的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题1-二维数组中的查找"><span class="nav-number">4.1.</span> <span class="nav-text">剑指OFFER 面试题1 二维数组中的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><span class="nav-number">4.1.1.</span> <span class="nav-text">题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题2：替换空格"><span class="nav-number">4.2.</span> <span class="nav-text">剑指OFFER 面试题2：替换空格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><span class="nav-number">4.2.1.</span> <span class="nav-text">题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题3：从尾到头打印链表"><span class="nav-number">4.3.</span> <span class="nav-text">剑指OFFER 面试题3：从尾到头打印链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><span class="nav-number">4.3.1.</span> <span class="nav-text">题目描述：输入一个链表，从尾到头打印链表每个节点的值。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#非递归算法："><span class="nav-number">4.3.1.1.</span> <span class="nav-text">非递归算法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#递归算法："><span class="nav-number">4.3.1.2.</span> <span class="nav-text">递归算法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题4：重建二叉树"><span class="nav-number">4.4.</span> <span class="nav-text">剑指OFFER 面试题4：重建二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。"><span class="nav-number">4.4.1.</span> <span class="nav-text">题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题5：用两个栈实现队列"><span class="nav-number">4.5.</span> <span class="nav-text">剑指OFFER 面试题5：用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。"><span class="nav-number">4.5.1.</span> <span class="nav-text">题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -531,7 +586,7 @@ public:
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
