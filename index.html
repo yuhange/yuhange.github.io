@@ -235,6 +235,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/25/第三天/" itemprop="url">
+                  第三天
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-09-25T09:23:07+08:00" content="2016-09-25">
+              2016-09-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="打算报名托福来着，万一有用呢。"><a href="#打算报名托福来着，万一有用呢。" class="headerlink" title="打算报名托福来着，万一有用呢。"></a>打算报名托福来着，万一有用呢。</h2><p>这玩意，不怕一万，就怕万一。但是太贵了，只好让老妈付账了。</p>
+<h2 id="面试中常出现的字符串问题"><a href="#面试中常出现的字符串问题" class="headerlink" title="面试中常出现的字符串问题"></a>面试中常出现的字符串问题</h2><h3 id="反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I-am-a-student-”，则输出“student-a-am-I”。"><a href="#反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I-am-a-student-”，则输出“student-a-am-I”。" class="headerlink" title="反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I am a student.”，则输出“student. a am I”。"></a>反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I am a student.”，则输出“student. a am I”。</h3><h3 id="第一个只出现一次的字符-例如abcaccd-输出b"><a href="#第一个只出现一次的字符-例如abcaccd-输出b" class="headerlink" title="第一个只出现一次的字符 例如abcaccd 输出b"></a>第一个只出现一次的字符 例如abcaccd 输出b</h3><h3 id="把字符串转化为数字"><a href="#把字符串转化为数字" class="headerlink" title="把字符串转化为数字"></a>把字符串转化为数字</h3><h3 id="旋转字符串-给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为-O-n-，空间复杂度为-O-1-。"><a href="#旋转字符串-给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为-O-n-，空间复杂度为-O-1-。" class="headerlink" title="旋转字符串 给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度为 O(1)。"></a>旋转字符串 给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度为 O(1)。</h3><h4 id="解法一：-暴力解"><a href="#解法一：-暴力解" class="headerlink" title="解法一： 暴力解"></a>解法一： 暴力解</h4><p>初看此题，可能最先想到的方法是按照题目所要求的，把需要移动的字符一个一个地移动到字符串的尾部，如此我们可以实现一个函数LeftShiftOne(char* s, int n) ，以完成移动一个字符到字符串尾部的功能，代码如下所示：</p>
+<pre><code>void LeftShiftOne(char* s, int n)
+{    char t = s[0];  //保存第一个字符
+    for (int i = 1; i &lt; n; i++)
+    {
+        s[i - 1] = s[i];
+    }
+    s[n - 1] = t;
+}
+</code></pre><p>因此，若要把字符串开头的m个字符移动到字符串的尾部，则可以如下操作：</p>
+<pre><code>void LeftRotateString(char* s, int n, int m)
+{    while (m--)
+    {        LeftShiftOne(s, n);
+    }
+}
+</code></pre><p>下面，我们来分析一下这种方法的时间复杂度和空间复杂度。</p>
+<p>针对长度为n的字符串来说，假设需要移动m个字符到字符串的尾部，那么总共需要 m<em>n 次操作，同时设立一个变量保存第一个字符，如此，时间复杂度为O(m </em> n)，空间复杂度为O(1)，空间复杂度符合题目要求，但时间复杂度不符合，所以，我们得需要寻找其他更好的办法来降低时间复杂度。</p>
+<h3 id="解法二：-三步旋转法"><a href="#解法二：-三步旋转法" class="headerlink" title="解法二： 三步旋转法"></a>解法二： 三步旋转法</h3><p>对于这个问题，换一个角度思考一下。</p>
+<p>将一个字符串分成X和Y两个部分，在每部分字符串上定义反转操作，如X^T，即把X的所有字符反转（如，X=”abc”，那么X^T=”cba”），那么就得到下面的结论：(X^TY^T)^T=YX，显然就解决了字符串的反转问题。</p>
+<p>例如，字符串 abcdef ，若要让def翻转到abc的前头，只要按照下述3个步骤操作即可：</p>
+<p>1.首先将原字符串分为两个部分，即X:abc，Y:def；</p>
+<p>2.将X反转，X-&gt;X^T，即得：abc-&gt;cba；将Y反转，Y-&gt;Y^T，即得：def-&gt;fed。</p>
+<p>3.反转上述步骤得到的结果字符串X^TY^T，即反转字符串cbafed的两部分（cba和fed）给予反转，cbafed得到defabc，形式化表示为(X^TY^T)^T=YX，这就实现了整个反转。</p>
+<p>代码则可以这么写：</p>
+<pre><code>void ReverseString(char* s,int from,int to)
+{    while (from &lt; to)
+    {        char t = s[from];
+        s[from++] = s[to];
+        s[to--] = t;
+    }
+}void LeftRotateString(char* s,int n,int m)
+{
+    m %= n;               //若要左移动大于n位，那么和%n 是等价的
+    ReverseString(s, 0, m - 1); //反转[0..m - 1]，套用到上面举的例子中，就是X-&gt;X^T，即 abc-&gt;cba
+    ReverseString(s, m, n - 1); //反转[m..n - 1]，例如Y-&gt;Y^T，即 def-&gt;fed
+    ReverseString(s, 0, n - 1); //反转[0..n - 1]，即如整个反转，(X^TY^T)^T=YX，即 cbafed-&gt;defabc。
+}
+</code></pre><p>这就是把字符串分为两个部分，先各自反转再整体反转的方法，时间复杂度为O(n)，空间复杂度为O(1)，达到了题目的要求。</p>
+<h3 id="在字符串中删除特定的字符-输入They-are-students-”和”aeiou”，则删除之后的第一个字符串变成”Thy-r-stdnts-”。"><a href="#在字符串中删除特定的字符-输入They-are-students-”和”aeiou”，则删除之后的第一个字符串变成”Thy-r-stdnts-”。" class="headerlink" title="在字符串中删除特定的字符.输入They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。"></a>在字符串中删除特定的字符.输入They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。</h3><h3 id="对称子字符串的最大长度-题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。-比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。"><a href="#对称子字符串的最大长度-题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。-比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。" class="headerlink" title="对称子字符串的最大长度  题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。 比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。"></a>对称子字符串的最大长度  题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。 比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/24/第二天-算法复习/" itemprop="url">
                   第二天-算法复习
                 </a>
@@ -282,6 +414,44 @@
             <h2 id="起码写好了英文简历"><a href="#起码写好了英文简历" class="headerlink" title="起码写好了英文简历"></a>起码写好了英文简历</h2><p>花了一个小时，写好了英文简历，一咬牙就去提交了。<br>好伤心，每次到写简历的时候就发现自己的经历好少好少。</p>
 <h2 id="其他的事我就管不了啦"><a href="#其他的事我就管不了啦" class="headerlink" title="其他的事我就管不了啦"></a>其他的事我就管不了啦</h2><p>现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。</p>
 <h2 id="Business-Formal"><a href="#Business-Formal" class="headerlink" title="Business Formal"></a>Business Formal</h2><p>看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。</p>
+<h2 id="学习算法———约瑟夫问题"><a href="#学习算法———约瑟夫问题" class="headerlink" title="学习算法———约瑟夫问题"></a>学习算法———约瑟夫问题</h2><p>问题本身很简单，就不贴描述了。大致有三种数据结构可以解决约瑟夫算法：</p>
+<ol>
+<li>数组<br>对于数组，有两种比较常见的解法，一种是直接计算，利用数学公式直接得到结果；另一种是模拟现实场景，一步步来。</li>
+</ol>
+<ul>
+<li>方法一：</li>
+</ul>
+<pre><code>int Joseph(int n, int m){
+    int J[100] = {-1};
+    for(int i = 1; i&lt;=n;i++){
+        J[i] = i;
+    }
+    int in = n;
+    int count = 0;
+    while(in&gt;0){
+        for(int i = 1; i&lt;=n; i++){
+            if(J[i]!=-1){
+                count++;
+                if(count == m){
+                    J[i] = -1;
+                    count = 0;
+                }
+            }
+
+        }
+    }
+    for(int i = 1 ; i&lt;= n; i++){
+        if(J[i] != -1) return i;
+    }
+    return 0;
+}
+</code></pre><ul>
+<li>方法二：</li>
+</ul>
+<ol>
+<li>循环列表</li>
+<li>循环队列</li>
+</ol>
 <h2 id="废话少说，复习一下本周的算法"><a href="#废话少说，复习一下本周的算法" class="headerlink" title="废话少说，复习一下本周的算法"></a>废话少说，复习一下本周的算法</h2><h3 id="剑指OFFER-面试题1-二维数组中的查找"><a href="#剑指OFFER-面试题1-二维数组中的查找" class="headerlink" title="剑指OFFER 面试题1 二维数组中的查找"></a>剑指OFFER 面试题1 二维数组中的查找</h3><h4 id="题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><a href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。" class="headerlink" title="题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"></a>题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</h4><pre><code>class Solution {
 public:
     bool Find(vector&lt;vector&lt;int&gt; &gt; array,int target) {
@@ -710,7 +880,7 @@ public:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>

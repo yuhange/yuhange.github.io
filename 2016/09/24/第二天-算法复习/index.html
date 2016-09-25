@@ -87,7 +87,7 @@
 <meta name="description" content="起码写好了英文简历花了一个小时，写好了英文简历，一咬牙就去提交了。好伤心，每次到写简历的时候就发现自己的经历好少好少。
 其他的事我就管不了啦现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。
 Business Formal看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。
-废话少说，复习一下本周的算法剑指OF">
+学习算法———约瑟夫问题问题本身很简">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第二天-算法复习">
 <meta property="og:url" content="http://yoursite.com/2016/09/24/第二天-算法复习/index.html">
@@ -95,14 +95,14 @@ Business Formal看到宣讲会要求Business Formal的着装，我还不知道�
 <meta property="og:description" content="起码写好了英文简历花了一个小时，写好了英文简历，一咬牙就去提交了。好伤心，每次到写简历的时候就发现自己的经历好少好少。
 其他的事我就管不了啦现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。
 Business Formal看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。
-废话少说，复习一下本周的算法剑指OF">
-<meta property="og:updated_time" content="2016-09-24T09:40:20.094Z">
+学习算法———约瑟夫问题问题本身很简">
+<meta property="og:updated_time" content="2016-09-25T01:24:05.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二天-算法复习">
 <meta name="twitter:description" content="起码写好了英文简历花了一个小时，写好了英文简历，一咬牙就去提交了。好伤心，每次到写简历的时候就发现自己的经历好少好少。
 其他的事我就管不了啦现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。
 Business Formal看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。
-废话少说，复习一下本周的算法剑指OF">
+学习算法———约瑟夫问题问题本身很简">
 
 
 
@@ -288,6 +288,44 @@ Business Formal看到宣讲会要求Business Formal的着装，我还不知道�
         <h2 id="起码写好了英文简历"><a href="#起码写好了英文简历" class="headerlink" title="起码写好了英文简历"></a>起码写好了英文简历</h2><p>花了一个小时，写好了英文简历，一咬牙就去提交了。<br>好伤心，每次到写简历的时候就发现自己的经历好少好少。</p>
 <h2 id="其他的事我就管不了啦"><a href="#其他的事我就管不了啦" class="headerlink" title="其他的事我就管不了啦"></a>其他的事我就管不了啦</h2><p>现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。</p>
 <h2 id="Business-Formal"><a href="#Business-Formal" class="headerlink" title="Business Formal"></a>Business Formal</h2><p>看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。</p>
+<h2 id="学习算法———约瑟夫问题"><a href="#学习算法———约瑟夫问题" class="headerlink" title="学习算法———约瑟夫问题"></a>学习算法———约瑟夫问题</h2><p>问题本身很简单，就不贴描述了。大致有三种数据结构可以解决约瑟夫算法：</p>
+<ol>
+<li>数组<br>对于数组，有两种比较常见的解法，一种是直接计算，利用数学公式直接得到结果；另一种是模拟现实场景，一步步来。</li>
+</ol>
+<ul>
+<li>方法一：</li>
+</ul>
+<pre><code>int Joseph(int n, int m){
+    int J[100] = {-1};
+    for(int i = 1; i&lt;=n;i++){
+        J[i] = i;
+    }
+    int in = n;
+    int count = 0;
+    while(in&gt;0){
+        for(int i = 1; i&lt;=n; i++){
+            if(J[i]!=-1){
+                count++;
+                if(count == m){
+                    J[i] = -1;
+                    count = 0;
+                }
+            }
+
+        }
+    }
+    for(int i = 1 ; i&lt;= n; i++){
+        if(J[i] != -1) return i;
+    }
+    return 0;
+}
+</code></pre><ul>
+<li>方法二：</li>
+</ul>
+<ol>
+<li>循环列表</li>
+<li>循环队列</li>
+</ol>
 <h2 id="废话少说，复习一下本周的算法"><a href="#废话少说，复习一下本周的算法" class="headerlink" title="废话少说，复习一下本周的算法"></a>废话少说，复习一下本周的算法</h2><h3 id="剑指OFFER-面试题1-二维数组中的查找"><a href="#剑指OFFER-面试题1-二维数组中的查找" class="headerlink" title="剑指OFFER 面试题1 二维数组中的查找"></a>剑指OFFER 面试题1 二维数组中的查找</h3><h4 id="题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><a href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。" class="headerlink" title="题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"></a>题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</h4><pre><code>class Solution {
 public:
     bool Find(vector&lt;vector&lt;int&gt; &gt; array,int target) {
@@ -488,6 +526,10 @@ public:
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/09/25/第三天/" rel="prev" title="第三天">
+                第三天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -554,7 +596,7 @@ public:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -586,7 +628,7 @@ public:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起码写好了英文简历"><span class="nav-number">1.</span> <span class="nav-text">起码写好了英文简历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的事我就管不了啦"><span class="nav-number">2.</span> <span class="nav-text">其他的事我就管不了啦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Business-Formal"><span class="nav-number">3.</span> <span class="nav-text">Business Formal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#废话少说，复习一下本周的算法"><span class="nav-number">4.</span> <span class="nav-text">废话少说，复习一下本周的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题1-二维数组中的查找"><span class="nav-number">4.1.</span> <span class="nav-text">剑指OFFER 面试题1 二维数组中的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><span class="nav-number">4.1.1.</span> <span class="nav-text">题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题2：替换空格"><span class="nav-number">4.2.</span> <span class="nav-text">剑指OFFER 面试题2：替换空格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><span class="nav-number">4.2.1.</span> <span class="nav-text">题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题3：从尾到头打印链表"><span class="nav-number">4.3.</span> <span class="nav-text">剑指OFFER 面试题3：从尾到头打印链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><span class="nav-number">4.3.1.</span> <span class="nav-text">题目描述：输入一个链表，从尾到头打印链表每个节点的值。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#非递归算法："><span class="nav-number">4.3.1.1.</span> <span class="nav-text">非递归算法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#递归算法："><span class="nav-number">4.3.1.2.</span> <span class="nav-text">递归算法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题4：重建二叉树"><span class="nav-number">4.4.</span> <span class="nav-text">剑指OFFER 面试题4：重建二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。"><span class="nav-number">4.4.1.</span> <span class="nav-text">题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题5：用两个栈实现队列"><span class="nav-number">4.5.</span> <span class="nav-text">剑指OFFER 面试题5：用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。"><span class="nav-number">4.5.1.</span> <span class="nav-text">题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题6：旋转数组的最小值（二分法）"><span class="nav-number">4.6.</span> <span class="nav-text">剑指OFFER 面试题6：旋转数组的最小值（二分法）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。"><span class="nav-number">4.6.1.</span> <span class="nav-text">题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起码写好了英文简历"><span class="nav-number">1.</span> <span class="nav-text">起码写好了英文简历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的事我就管不了啦"><span class="nav-number">2.</span> <span class="nav-text">其他的事我就管不了啦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Business-Formal"><span class="nav-number">3.</span> <span class="nav-text">Business Formal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习算法———约瑟夫问题"><span class="nav-number">4.</span> <span class="nav-text">学习算法———约瑟夫问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#废话少说，复习一下本周的算法"><span class="nav-number">5.</span> <span class="nav-text">废话少说，复习一下本周的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题1-二维数组中的查找"><span class="nav-number">5.1.</span> <span class="nav-text">剑指OFFER 面试题1 二维数组中的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><span class="nav-number">5.1.1.</span> <span class="nav-text">题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题2：替换空格"><span class="nav-number">5.2.</span> <span class="nav-text">剑指OFFER 面试题2：替换空格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><span class="nav-number">5.2.1.</span> <span class="nav-text">题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题3：从尾到头打印链表"><span class="nav-number">5.3.</span> <span class="nav-text">剑指OFFER 面试题3：从尾到头打印链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><span class="nav-number">5.3.1.</span> <span class="nav-text">题目描述：输入一个链表，从尾到头打印链表每个节点的值。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#非递归算法："><span class="nav-number">5.3.1.1.</span> <span class="nav-text">非递归算法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#递归算法："><span class="nav-number">5.3.1.2.</span> <span class="nav-text">递归算法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题4：重建二叉树"><span class="nav-number">5.4.</span> <span class="nav-text">剑指OFFER 面试题4：重建二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。"><span class="nav-number">5.4.1.</span> <span class="nav-text">题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题5：用两个栈实现队列"><span class="nav-number">5.5.</span> <span class="nav-text">剑指OFFER 面试题5：用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。"><span class="nav-number">5.5.1.</span> <span class="nav-text">题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剑指OFFER-面试题6：旋转数组的最小值（二分法）"><span class="nav-number">5.6.</span> <span class="nav-text">剑指OFFER 面试题6：旋转数组的最小值（二分法）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。"><span class="nav-number">5.6.1.</span> <span class="nav-text">题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
