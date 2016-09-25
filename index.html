@@ -355,7 +355,110 @@ public:
 <p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome. </p>
 <p>Note:<br> Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
 <p>For the purpose of this problem, we define empty string as valid palindrome. </p>
+<pre><code>class Solution {
+public:
+    bool isPalindrome(string s) {
+        int n = s.length();
+        if(n == 0 || n==1) return true;
+        int i =0, j=n-1;
+        while(i&lt;j){
+            if(isUpperCase(s[i])) s[i] = s[i]+32;
+            if(isUpperCase(s[j])) s[j] = s[j]+32;
+            if(!isLegal(s[i])) i++;
+            if(!isLegal(s[j])) j--;
+            if(isLegal(s[i])&amp;&amp;isLegal(s[j])){
+                if(s[i]!=s[j]) return false;
+                i++;
+                j--;
+            }
+        }
+        return true;
+    }
+    bool isUpperCase(char c){
+        if(c&lt;=&apos;Z&apos;&amp;&amp;c&gt;=&apos;A&apos;) return true;
+        return false;
+    }
+    bool isLegal(char c){
+        if(c&gt;=&apos;a&apos;&amp;&amp;c&lt;=&apos;z&apos; || c&gt;=&apos;0&apos;&amp;&amp;c&lt;=&apos;9&apos;) return true;
+        return false;
+    }
+};
+</code></pre><h2 id="58-Length-of-Last-Word"><a href="#58-Length-of-Last-Word" class="headerlink" title="58. Length of Last Word"></a>58. Length of Last Word</h2><p>Given a string s consists of upper/lower-case alphabets and empty space characters ‘ ‘, return the length of last word in the string.</p>
+<p>If the last word does not exist, return 0.</p>
+<p>Note: A word is defined as a character sequence consists of non-space characters only.</p>
+<p>For example,<br> Given s = “Hello World”,<br> return 5. </p>
+<pre><code>class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int n = s.length();
+        if(n == 0) return 0;
+        if(n == 1 &amp;&amp; s[n-1]==&apos; &apos;) return 0;
+        if(n == 1 &amp;&amp; s[n-1]!=&apos; &apos;) return 1;
+        int i = n-1;
+        int count = 0;
+        while(i&gt;=0&amp;&amp;s[i]==&apos; &apos;)
+            i--;
+        while(i&gt;=0&amp;&amp;s[i]!=&apos; &apos;){
+            i--;
+            count++;
+        }
 
+        return count;
+    }
+};
+</code></pre><h2 id="28-Implement-strStr"><a href="#28-Implement-strStr" class="headerlink" title="28. Implement strStr()"></a>28. Implement strStr()</h2><p>Implement strStr(). </p>
+<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. </p>
+<pre><code>class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int m = haystack.size();
+        int n = needle.size();
+        for(int i = 0; i &lt;= m-n; i ++)
+        {
+            int j;
+            for(j = 0; j &lt; n; j ++)
+            {
+                if(haystack[i+j] != needle[j])
+                    break;
+            }
+            if(j == n)
+                return i;
+        }
+        return -1;
+    }
+};
+</code></pre><h2 id="20-Valid-Parentheses"><a href="#20-Valid-Parentheses" class="headerlink" title="20. Valid Parentheses"></a>20. Valid Parentheses</h2><p>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.</p>
+<p>The brackets must close in the correct order, “()” and “()[]{}” are all valid but “(]” and “([)]” are not.</p>
+<pre><code>class Solution {
+public:
+    bool isValid(string s) {
+        int n = s.length();
+        if(n == 0 || n%2 ==1) return false;
+        stack&lt;char&gt; stack;
+        for(int i = 0; i&lt;n ; i++){
+            if(shouldPush(s[i])) stack.push(s[i]);
+            if(shouldPop(s[i])){
+                if(stack.empty()) return false;
+                if(shouldPop(stack.top(), s[i])) stack.pop();
+            }
+        }
+        if(stack.empty()) return true;
+        return false;
+    }
+    bool shouldPush(char c){
+        if(c==&apos;{&apos;||c==&apos;(&apos;||c==&apos;[&apos;) return true;
+        return false;
+    }
+    bool shouldPop(char out){
+        if(out==&apos;}&apos; ||out==&apos;]&apos; ||out==&apos;)&apos;) return true;
+        return false;
+    }
+    bool shouldPop(char in, char out){
+        if(in==&apos;{&apos;&amp;&amp;out==&apos;}&apos; ||in==&apos;[&apos;&amp;&amp;out==&apos;]&apos; ||in==&apos;(&apos;&amp;&amp;out==&apos;)&apos;) return true;
+        return false;
+    }
+};
+</code></pre>
           
         
       
