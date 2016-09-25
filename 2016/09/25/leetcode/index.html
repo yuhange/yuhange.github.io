@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/25/leetcode/index.html">
 <meta property="og:site_name" content="Future Seeking">
 <meta property="og:description" content="Leetcode–String383. Ransom Note Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom  note can be co">
-<meta property="og:updated_time" content="2016-09-25T08:43:07.976Z">
+<meta property="og:updated_time" content="2016-09-25T08:44:11.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="Leetcode–String383. Ransom Note Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom  note can be co">
@@ -174,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -184,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -247,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-25T11:06:16+08:00" content="2016-09-25">
               2016-09-25
             </time>
@@ -280,23 +280,8 @@
 <pre><code>canConstruct(&quot;a&quot;, &quot;b&quot;) -&gt; false
 canConstruct(&quot;aa&quot;, &quot;ab&quot;) -&gt; false
 canConstruct(&quot;aa&quot;, &quot;aab&quot;) -&gt; true 
-</code></pre><p>�������ж������ַ����Ƿ���Ϊ��λ�ʵĽⷨ����ͬ�ġ������ж�һ���ַ�������һ���ַ����е��ַ����Ƿ���ͬ������һ���ַ������ַ�������һ���ַ����ж�Ӧ���ַ����١�</p>
-<pre><code>class Solution {
-public:
-    bool canConstruct(string ransomNote, string magazine) {
-        int t[26] = {0};
-        for(int i = 0; i&lt;magazine.length(); i++){
-            int c_i = magazine[i]-&apos;a&apos;;
-            t[c_i]++;
-        }
-        for(int i = 0; i&lt;ransomNote.length(); i++){
-            int c_i = ransomNote[i]-&apos;a&apos;;
-            if(--t[c_i]&lt;0) return false;
-        }
-        return true;
-    }
-};
-</code></pre><h2 id="345-Reverse-Vowels-of-a-String"><a href="#345-Reverse-Vowels-of-a-String" class="headerlink" title="345. Reverse Vowels of a String"></a>345. Reverse Vowels of a String</h2><p>Write a function that takes a string as input and reverse only the vowels of a string.</p>
+</code></pre><p>   class Solution {<br>    public:<br>        bool canConstruct(string ransomNote, string magazine) {<br>            int t[26] = {0};<br>            for(int i = 0; i&lt;magazine.length(); i++){<br>                int c_i = magazine[i]-‘a’;<br>                t[c_i]++;<br>            }<br>            for(int i = 0; i&lt;ransomNote.length(); i++){<br>                int c_i = ransomNote[i]-‘a’;<br>                if(–t[c_i]&lt;0) return false;<br>            }<br>            return true;<br>        }<br>    };</p>
+<h2 id="345-Reverse-Vowels-of-a-String"><a href="#345-Reverse-Vowels-of-a-String" class="headerlink" title="345. Reverse Vowels of a String"></a>345. Reverse Vowels of a String</h2><p>Write a function that takes a string as input and reverse only the vowels of a string.</p>
 <p>Example 1:<br> Given s = “hello”, return “holle”. </p>
 <p>Example 2:<br> Given s = “leetcode”, return “leotcede”. </p>
 <p>Note:<br> The vowels does not include the letter “y”. </p>
@@ -535,10 +520,10 @@ public:
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -555,7 +540,7 @@ public:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">5</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -613,7 +598,7 @@ public:
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
