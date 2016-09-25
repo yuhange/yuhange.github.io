@@ -235,6 +235,175 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/25/leetcode/" itemprop="url">
+                  leetcode
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-09-25T11:06:16+08:00" content="2016-09-25">
+              2016-09-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Leetcode–String"><a href="#Leetcode–String" class="headerlink" title="Leetcode–String"></a>Leetcode–String</h1><h2 id="383-Ransom-Note"><a href="#383-Ransom-Note" class="headerlink" title="383. Ransom Note"></a>383. Ransom Note</h2><p> Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom  note can be constructed from the magazines ; otherwise, it will return false.  Each letter in the magazine string can only be used once in your ransom note.<br>Note:<br> You may assume that both strings contain only lowercase letters. </p>
+<pre><code>canConstruct(&quot;a&quot;, &quot;b&quot;) -&gt; false
+canConstruct(&quot;aa&quot;, &quot;ab&quot;) -&gt; false
+canConstruct(&quot;aa&quot;, &quot;aab&quot;) -&gt; true
+</code></pre><p>�������ж������ַ����Ƿ���Ϊ��λ�ʵĽⷨ����ͬ�ġ������ж�һ���ַ�������һ���ַ����е��ַ����Ƿ���ͬ������һ���ַ������ַ�������һ���ַ����ж�Ӧ���ַ����١�</p>
+<pre><code>class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        int t[26] = {0};
+        for(int i = 0; i&lt;magazine.length(); i++){
+            int c_i = magazine[i]-&apos;a&apos;;
+            t[c_i]++;
+        }
+        for(int i = 0; i&lt;ransomNote.length(); i++){
+            int c_i = ransomNote[i]-&apos;a&apos;;
+            if(--t[c_i]&lt;0) return false;
+        }
+        return true;
+    }
+};
+</code></pre><h2 id="345-Reverse-Vowels-of-a-String"><a href="#345-Reverse-Vowels-of-a-String" class="headerlink" title="345. Reverse Vowels of a String"></a>345. Reverse Vowels of a String</h2><p>Write a function that takes a string as input and reverse only the vowels of a string.</p>
+<p>Example 1:<br> Given s = “hello”, return “holle”. </p>
+<p>Example 2:<br> Given s = “leetcode”, return “leotcede”. </p>
+<p>Note:<br> The vowels does not include the letter “y”. </p>
+<p>˫ָ������</p>
+<pre><code>class Solution {
+public:
+    string reverseVowels(string s) {
+        int n = s.length();
+        if(n == 0 || n==1) return s;
+        int i = 0; 
+        int j = n-1;
+        while(i&lt;j){
+            if(!isVowel(s[i])) i++;
+            if(!isVowel(s[j])) j--;
+            if(isVowel(s[i]) &amp;&amp; isVowel(s[j])){
+                char t = s[i];
+                s[i] = s[j];
+                s[j] = t;
+                i++;
+                j--;
+            }
+        }
+        return s;
+    }
+    bool isVowel(char c){
+        if(c==&apos;a&apos; || c==&apos;e&apos; || c==&apos;o&apos; || c==&apos;i&apos;|| c==&apos;u&apos;|| c==&apos;A&apos; || c==&apos;E&apos; || c==&apos;O&apos; || c==&apos;I&apos;|| c==&apos;U&apos;){
+            return true;
+        }
+        return false;
+    }
+};
+</code></pre><h2 id="344-Reverse-String"><a href="#344-Reverse-String" class="headerlink" title="344. Reverse String"></a>344. Reverse String</h2><p>Write a function that takes a string as input and returns the string reversed.</p>
+<p>Example:<br> Given s = “hello”, return “olleh”. </p>
+<p>˫ָ������</p>
+<pre><code>class Solution {
+public:
+    string reverseString(string s) {
+        int n = s.length();
+        if(n == 0 || n==1) return s;
+        int i = 0; 
+        int j = n-1;
+        while(i&lt;j){
+            char t = s[i];
+            s[i] = s[j];
+            s[j] = t;
+            i++;
+            j--;
+        }
+        return s;
+    }
+};
+</code></pre><h2 id="125-Valid-Palindrome"><a href="#125-Valid-Palindrome" class="headerlink" title="125. Valid Palindrome"></a>125. Valid Palindrome</h2><p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases. </p>
+<p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome. </p>
+<p>Note:<br> Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
+<p>For the purpose of this problem, we define empty string as valid palindrome. </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/25/第三天/" itemprop="url">
                   第三天
                 </a>
@@ -1038,7 +1207,7 @@ public:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
