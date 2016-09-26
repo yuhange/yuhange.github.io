@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Home
           </a>
         </li>
       
@@ -235,6 +235,169 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/26/第四天/" itemprop="url">
+                  第四天
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-26T18:06:47+08:00" content="2016-09-26">
+              2016-09-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="两个链表的第一个公共结点"><a href="#两个链表的第一个公共结点" class="headerlink" title="两个链表的第一个公共结点"></a>两个链表的第一个公共结点</h3><pre><code>/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+            val(x), next(NULL) {
+    }
+};*/
+class Solution {
+public:
+    ListNode* FindFirstCommonNode( ListNode *pHead1, ListNode *pHead2) {
+        int len1 = getLength(pHead1);
+        int len2 = getLength(pHead2);
+        ListNode* pLong = len1&gt;len2?pHead1:pHead2;
+        ListNode* pShort = len1&gt;len2?pHead2:pHead1;
+        int diff = len1&gt;len2?(len1-len2):(len2-len1);
+        while(diff&gt;0) {pLong = pLong-&gt;next;diff--;}
+        bool ok = false;
+        while(pLong!=NULL &amp;&amp; pShort!=NULL){
+            if(pLong == pShort) {ok = true; break;}
+            pLong = pLong-&gt;next;
+            pShort = pShort-&gt;next;
+        }
+        if(ok) return pLong;
+        return NULL;
+    }
+    int getLength(ListNode* pHead){
+        int count = 0;
+        ListNode* p = pHead;
+        while(p!=NULL){
+            p = p-&gt;next;
+            count++;
+        }
+        return count;
+    }
+};
+</code></pre><h3 id="链表中环的入口结点-（剑指OFFER-leetcode）"><a href="#链表中环的入口结点-（剑指OFFER-leetcode）" class="headerlink" title="链表中环的入口结点 （剑指OFFER+leetcode）"></a>链表中环的入口结点 （剑指OFFER+leetcode）</h3><h4 id="一个链表中包含环，请找出该链表的环的入口结点。"><a href="#一个链表中包含环，请找出该链表的环的入口结点。" class="headerlink" title="一个链表中包含环，请找出该链表的环的入口结点。"></a>一个链表中包含环，请找出该链表的环的入口结点。</h4><pre><code>/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* EntryNodeOfLoop(ListNode* pHead)
+    {
+        //链表中包含环所以不用担心头结点为空的情况了。
+        ListNode* fast = pHead;
+        ListNode* slow = pHead;
+        while(fast!=NULL &amp;&amp; fast-&gt;next!=NULL){
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
+            if(fast == slow){
+                break;
+            }
+        }
+        if(fast!=NULL &amp;&amp; fast-&gt;next!=NULL){
+            slow = pHead;
+            while(slow!=fast){
+                slow = slow-&gt;next;
+                fast = fast-&gt;next;
+            }
+            return slow;
+        }
+        return NULL;
+    }
+};
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/25/leetcode/" itemprop="url">
                   leetcode
                 </a>
@@ -248,7 +411,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-25T11:06:16+08:00" content="2016-09-25">
               2016-09-25
             </time>
@@ -505,7 +668,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-25T09:23:07+08:00" content="2016-09-25">
               2016-09-25
             </time>
@@ -795,7 +958,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-24T10:03:57+08:00" content="2016-09-24">
               2016-09-24
             </time>
@@ -1096,7 +1259,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-23T13:28:11+08:00" content="2016-09-23">
               2016-09-23
             </time>
@@ -1194,7 +1357,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:19:43+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -1295,8 +1458,8 @@ public:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1347,7 +1510,7 @@ public:
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
