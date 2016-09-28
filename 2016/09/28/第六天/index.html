@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="主要是想用这个博客记一下未来这一年找工作的经历。觉得长了这么大，还是第一次要自己面对这么重大的选择，这种关系一生的选择，还是有很大的压力的。今天高盛发布了招募实习生的通知，觉得是一个很好的机会，毕竟一般人想去高盛参加面试都是很困难的。不管结果如何，只要参加过高盛的面试，将来都是一笔不小的财富了。">
+<meta name="description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。有很多种解法：
+解法一：排序vector&amp;lt;int&amp;gt; GetLeastNumbers_Solution(vector&amp;lt;int&amp;gt; input, int k) {
+        vector&amp;lt;int&amp;gt; res;
+        i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇博客">
-<meta property="og:url" content="http://yoursite.com/2016/09/22/第一篇博客/index.html">
+<meta property="og:title" content="第六天">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/第六天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:description" content="主要是想用这个博客记一下未来这一年找工作的经历。觉得长了这么大，还是第一次要自己面对这么重大的选择，这种关系一生的选择，还是有很大的压力的。今天高盛发布了招募实习生的通知，觉得是一个很好的机会，毕竟一般人想去高盛参加面试都是很困难的。不管结果如何，只要参加过高盛的面试，将来都是一笔不小的财富了。">
-<meta property="og:updated_time" content="2016-09-22T14:32:11.396Z">
+<meta property="og:description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。有很多种解法：
+解法一：排序vector&amp;lt;int&amp;gt; GetLeastNumbers_Solution(vector&amp;lt;int&amp;gt; input, int k) {
+        vector&amp;lt;int&amp;gt; res;
+        i">
+<meta property="og:updated_time" content="2016-09-28T03:01:56.069Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇博客">
-<meta name="twitter:description" content="主要是想用这个博客记一下未来这一年找工作的经历。觉得长了这么大，还是第一次要自己面对这么重大的选择，这种关系一生的选择，还是有很大的压力的。今天高盛发布了招募实习生的通知，觉得是一个很好的机会，毕竟一般人想去高盛参加面试都是很困难的。不管结果如何，只要参加过高盛的面试，将来都是一笔不小的财富了。">
+<meta name="twitter:title" content="第六天">
+<meta name="twitter:description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。有很多种解法：
+解法一：排序vector&amp;lt;int&amp;gt; GetLeastNumbers_Solution(vector&amp;lt;int&amp;gt; input, int k) {
+        vector&amp;lt;int&amp;gt; res;
+        i">
 
 
 
@@ -114,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/22/第一篇博客/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/28/第六天/"/>
 
-  <title> 第一篇博客 | Future Seeking </title>
+  <title> 第六天 | Future Seeking </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -236,7 +245,7 @@
             
             
               
-                第一篇博客
+                第六天
               
             
           </h1>
@@ -248,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T22:19:43+08:00" content="2016-09-22">
-              2016-09-22
+            <time itemprop="dateCreated" datetime="2016-09-28T10:57:23+08:00" content="2016-09-28">
+              2016-09-28
             </time>
           </span>
 
@@ -276,7 +285,115 @@
       
 
       
-        <p>主要是想用这个博客记一下未来这一年找工作的经历。<br>觉得长了这么大，还是第一次要自己面对这么重大的选择，这种关系一生的选择，还是有很大的压力的。<br>今天高盛发布了招募实习生的通知，觉得是一个很好的机会，毕竟一般人想去高盛参加面试都是很困难的。不管结果如何，只要参加过高盛的面试，将来都是一笔不小的财富了。</p>
+        <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="最小的K个数"><a href="#最小的K个数" class="headerlink" title="最小的K个数"></a>最小的K个数</h3><h4 id="输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><a href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。" class="headerlink" title="输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。"></a>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</h4><p>有很多种解法：</p>
+<h4 id="解法一：排序"><a href="#解法一：排序" class="headerlink" title="解法一：排序"></a>解法一：排序</h4><pre><code>vector&lt;int&gt; GetLeastNumbers_Solution(vector&lt;int&gt; input, int k) {
+        vector&lt;int&gt; res;
+        if(input.empty()||k&gt;input.size()) return res;
+
+        sort(input.begin(),input.end());
+
+        for(int i=0;i&lt;k;i++)
+            res.push_back(input[i]);
+
+        return res;
+    }
+</code></pre><h4 id="解法二：Partition"><a href="#解法二：Partition" class="headerlink" title="解法二：Partition"></a>解法二：Partition</h4><pre><code>class Solution {
+public:
+    int Partition(vector&lt;int&gt;&amp; input, int begin, int end)
+    {
+        int low=begin;
+        int high=end;
+
+        int pivot=input[low];
+        while(low&lt;high)
+        {
+            while(low&lt;high&amp;&amp;pivot&lt;=input[high])
+                high--;
+            input[low]=input[high];
+            while(low&lt;high&amp;&amp;pivot&gt;=input[low])
+                low++;
+            input[high]=input[low];
+        }
+        input[low]=pivot;
+        return low;
+    }
+
+    vector&lt;int&gt; GetLeastNumbers_Solution(vector&lt;int&gt; input, int k) {
+
+        int len=input.size();
+        if(len==0||k&gt;len) return vector&lt;int&gt;();
+        if(len==k) return input;
+
+        int start=0;
+        int end=len-1;
+        int index=Partition(input,start,end);
+        while(index!=(k-1))
+        {
+            if(index&gt;k-1)
+            {
+                end=index-1;
+                index=Partition(input,start,end);
+            }
+            else
+            {
+                start=index+1;
+                index=Partition(input,start,end);
+            }
+        }
+
+        vector&lt;int&gt; res(input.begin(), input.begin() + k);
+
+        return res;
+    }
+
+};
+</code></pre><h4 id="解法三：最小堆"><a href="#解法三：最小堆" class="headerlink" title="解法三：最小堆"></a>解法三：最小堆</h4><pre><code>class Solution {
+public:
+    vector&lt;int&gt; GetLeastNumbers_Solution(vector&lt;int&gt; input, int k) { 
+        int len=input.size();
+        if(len&lt;=0||k&gt;len) return vector&lt;int&gt;();
+
+        vector&lt;int&gt; res(input.begin(),input.begin()+k);
+        //建堆
+        make_heap(res.begin(),res.end());
+
+        for(int i=k;i&lt;len;i++)
+        {
+            if(input[i]&lt;res[0])
+            {
+                //先pop,然后在容器中删除
+                pop_heap(res.begin(),res.end());
+                res.pop_back();
+                //先在容器中加入，再push
+                res.push_back(input[i]);
+                push_heap(res.begin(),res.end());
+            }
+        }
+        //使其从小到大输出
+        sort_heap(res.begin(),res.end());
+
+        return res;
+
+    }
+};
+</code></pre><h4 id="解法四：冒泡排序的前k次"><a href="#解法四：冒泡排序的前k次" class="headerlink" title="解法四：冒泡排序的前k次"></a>解法四：冒泡排序的前k次</h4><pre><code>public ArrayList&lt;Integer&gt; GetLeastNumbers_Solution(int [] input, int k) {
+        ArrayList&lt;Integer&gt; al = new ArrayList&lt;Integer&gt;();
+        if (k &gt; input.length) {
+            return al;
+        }
+        for (int i = 0; i &lt; k; i++) {
+            for (int j = 0; j &lt; input.length - i - 1; j++) {
+                if (input[j] &lt; input[j + 1]) {
+                    int temp = input[j];
+                    input[j] = input[j + 1];
+                    input[j + 1] = temp;
+                }
+            }
+            al.add(input[input.length - i - 1]);
+        }
+        return al;
+    }
+</code></pre><h2 id="托福"><a href="#托福" class="headerlink" title="托福"></a>托福</h2><p>已经做了两天阅读了，情况不错，继续保持。</p>
 
       
     </div>
@@ -302,13 +419,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/26/第四天/" rel="next" title="第四天">
+                <i class="fa fa-chevron-left"></i> 第四天
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/23/准备第一天/" rel="prev" title="准备第一天">
-                准备第一天 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -408,7 +525,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小的K个数"><span class="nav-number">1.1.</span> <span class="nav-text">最小的K个数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><span class="nav-number">1.1.1.</span> <span class="nav-text">输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法一：排序"><span class="nav-number">1.1.2.</span> <span class="nav-text">解法一：排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法二：Partition"><span class="nav-number">1.1.3.</span> <span class="nav-text">解法二：Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法三：最小堆"><span class="nav-number">1.1.4.</span> <span class="nav-text">解法三：最小堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法四：冒泡排序的前k次"><span class="nav-number">1.1.5.</span> <span class="nav-text">解法四：冒泡排序的前k次</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#托福"><span class="nav-number">2.</span> <span class="nav-text">托福</span></a></li></ol></div>
             
           </div>
         </section>
