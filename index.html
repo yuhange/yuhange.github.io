@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-28T10:57:23+08:00" content="2016-09-28">
               2016-09-28
             </time>
@@ -281,7 +281,7 @@
           <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="最小的K个数"><a href="#最小的K个数" class="headerlink" title="最小的K个数"></a>最小的K个数</h3><h4 id="输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><a href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。" class="headerlink" title="输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。"></a>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/28/第六天/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -344,7 +344,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-26T18:06:47+08:00" content="2016-09-26">
               2016-09-26
             </time>
@@ -374,79 +374,12 @@
 
       
         
-          
-            <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="两个链表的第一个公共结点"><a href="#两个链表的第一个公共结点" class="headerlink" title="两个链表的第一个公共结点"></a>两个链表的第一个公共结点</h3><pre><code>/*
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-            val(x), next(NULL) {
-    }
-};*/
-class Solution {
-public:
-    ListNode* FindFirstCommonNode( ListNode *pHead1, ListNode *pHead2) {
-        int len1 = getLength(pHead1);
-        int len2 = getLength(pHead2);
-        ListNode* pLong = len1&gt;len2?pHead1:pHead2;
-        ListNode* pShort = len1&gt;len2?pHead2:pHead1;
-        int diff = len1&gt;len2?(len1-len2):(len2-len1);
-        while(diff&gt;0) {pLong = pLong-&gt;next;diff--;}
-        bool ok = false;
-        while(pLong!=NULL &amp;&amp; pShort!=NULL){
-            if(pLong == pShort) {ok = true; break;}
-            pLong = pLong-&gt;next;
-            pShort = pShort-&gt;next;
-        }
-        if(ok) return pLong;
-        return NULL;
-    }
-    int getLength(ListNode* pHead){
-        int count = 0;
-        ListNode* p = pHead;
-        while(p!=NULL){
-            p = p-&gt;next;
-            count++;
-        }
-        return count;
-    }
-};
-</code></pre><h3 id="链表中环的入口结点-（剑指OFFER-leetcode）"><a href="#链表中环的入口结点-（剑指OFFER-leetcode）" class="headerlink" title="链表中环的入口结点 （剑指OFFER+leetcode）"></a>链表中环的入口结点 （剑指OFFER+leetcode）</h3><h4 id="一个链表中包含环，请找出该链表的环的入口结点。"><a href="#一个链表中包含环，请找出该链表的环的入口结点。" class="headerlink" title="一个链表中包含环，请找出该链表的环的入口结点。"></a>一个链表中包含环，请找出该链表的环的入口结点。</h4><pre><code>/*
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-        val(x), next(NULL) {
-    }
-};
-*/
-class Solution {
-public:
-    ListNode* EntryNodeOfLoop(ListNode* pHead)
-    {
-        //链表中包含环所以不用担心头结点为空的情况了。
-        ListNode* fast = pHead;
-        ListNode* slow = pHead;
-        while(fast!=NULL &amp;&amp; fast-&gt;next!=NULL){
-            fast = fast-&gt;next-&gt;next;
-            slow = slow-&gt;next;
-            if(fast == slow){
-                break;
-            }
-        }
-        if(fast!=NULL &amp;&amp; fast-&gt;next!=NULL){
-            slow = pHead;
-            while(slow!=fast){
-                slow = slow-&gt;next;
-                fast = fast-&gt;next;
-            }
-            return slow;
-        }
-        return NULL;
-    }
-};
-</code></pre><h2 id="今儿跑了5KM-。感觉自己棒棒哒！！"><a href="#今儿跑了5KM-。感觉自己棒棒哒！！" class="headerlink" title="今儿跑了5KM+。感觉自己棒棒哒！！"></a>今儿跑了5KM+。感觉自己棒棒哒！！</h2>
-          
+          <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="两个链表的第一个公共结点"><a href="#两个链表的第一个公共结点" class="headerlink" title="两个链表的第一个公共结点"></a>两个链表的第一个公共结点</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/26/第四天/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -507,7 +440,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-25T11:06:16+08:00" content="2016-09-25">
               2016-09-25
             </time>
@@ -537,173 +470,12 @@ public:
 
       
         
-          
-            <h1 id="Leetcode–String"><a href="#Leetcode–String" class="headerlink" title="Leetcode–String"></a>Leetcode–String</h1><h2 id="383-Ransom-Note"><a href="#383-Ransom-Note" class="headerlink" title="383. Ransom Note"></a>383. Ransom Note</h2><p> Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom  note can be constructed from the magazines ; otherwise, it will return false.  Each letter in the magazine string can only be used once in your ransom note.<br>Note:<br> You may assume that both strings contain only lowercase letters. </p>
-<pre><code>canConstruct(&quot;a&quot;, &quot;b&quot;) -&gt; false
-canConstruct(&quot;aa&quot;, &quot;ab&quot;) -&gt; false
-canConstruct(&quot;aa&quot;, &quot;aab&quot;) -&gt; true 
-</code></pre><p>   class Solution {<br>    public:<br>        bool canConstruct(string ransomNote, string magazine) {<br>            int t[26] = {0};<br>            for(int i = 0; i&lt;magazine.length(); i++){<br>                int c_i = magazine[i]-‘a’;<br>                t[c_i]++;<br>            }<br>            for(int i = 0; i&lt;ransomNote.length(); i++){<br>                int c_i = ransomNote[i]-‘a’;<br>                if(–t[c_i]&lt;0) return false;<br>            }<br>            return true;<br>        }<br>    };</p>
-<h2 id="345-Reverse-Vowels-of-a-String"><a href="#345-Reverse-Vowels-of-a-String" class="headerlink" title="345. Reverse Vowels of a String"></a>345. Reverse Vowels of a String</h2><p>Write a function that takes a string as input and reverse only the vowels of a string.</p>
-<p>Example 1:<br> Given s = “hello”, return “holle”. </p>
-<p>Example 2:<br> Given s = “leetcode”, return “leotcede”. </p>
-<p>Note:<br> The vowels does not include the letter “y”. </p>
-<p>˫ָ������</p>
-<pre><code>class Solution {
-public:
-    string reverseVowels(string s) {
-        int n = s.length();
-        if(n == 0 || n==1) return s;
-        int i = 0; 
-        int j = n-1;
-        while(i&lt;j){
-            if(!isVowel(s[i])) i++;
-            if(!isVowel(s[j])) j--;
-            if(isVowel(s[i]) &amp;&amp; isVowel(s[j])){
-                char t = s[i];
-                s[i] = s[j];
-                s[j] = t;
-                i++;
-                j--;
-            }
-        }
-        return s;
-    }
-    bool isVowel(char c){
-        if(c==&apos;a&apos; || c==&apos;e&apos; || c==&apos;o&apos; || c==&apos;i&apos;|| c==&apos;u&apos;|| c==&apos;A&apos; || c==&apos;E&apos; || c==&apos;O&apos; || c==&apos;I&apos;|| c==&apos;U&apos;){
-            return true;
-        }
-        return false;
-    }
-};
-</code></pre><h2 id="344-Reverse-String"><a href="#344-Reverse-String" class="headerlink" title="344. Reverse String"></a>344. Reverse String</h2><p>Write a function that takes a string as input and returns the string reversed.</p>
-<p>Example:<br> Given s = “hello”, return “olleh”. </p>
-<p>˫ָ������</p>
-<pre><code>class Solution {
-public:
-    string reverseString(string s) {
-        int n = s.length();
-        if(n == 0 || n==1) return s;
-        int i = 0; 
-        int j = n-1;
-        while(i&lt;j){
-            char t = s[i];
-            s[i] = s[j];
-            s[j] = t;
-            i++;
-            j--;
-        }
-        return s;
-    }
-};
-</code></pre><h2 id="125-Valid-Palindrome"><a href="#125-Valid-Palindrome" class="headerlink" title="125. Valid Palindrome"></a>125. Valid Palindrome</h2><p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases. </p>
-<p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome. </p>
-<p>Note:<br> Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
-<p>For the purpose of this problem, we define empty string as valid palindrome. </p>
-<pre><code>class Solution {
-public:
-    bool isPalindrome(string s) {
-        int n = s.length();
-        if(n == 0 || n==1) return true;
-        int i =0, j=n-1;
-        while(i&lt;j){
-            if(isUpperCase(s[i])) s[i] = s[i]+32;
-            if(isUpperCase(s[j])) s[j] = s[j]+32;
-            if(!isLegal(s[i])) i++;
-            if(!isLegal(s[j])) j--;
-            if(isLegal(s[i])&amp;&amp;isLegal(s[j])){
-                if(s[i]!=s[j]) return false;
-                i++;
-                j--;
-            }
-        }
-        return true;
-    }
-    bool isUpperCase(char c){
-        if(c&lt;=&apos;Z&apos;&amp;&amp;c&gt;=&apos;A&apos;) return true;
-        return false;
-    }
-    bool isLegal(char c){
-        if(c&gt;=&apos;a&apos;&amp;&amp;c&lt;=&apos;z&apos; || c&gt;=&apos;0&apos;&amp;&amp;c&lt;=&apos;9&apos;) return true;
-        return false;
-    }
-};
-</code></pre><h2 id="58-Length-of-Last-Word"><a href="#58-Length-of-Last-Word" class="headerlink" title="58. Length of Last Word"></a>58. Length of Last Word</h2><p>Given a string s consists of upper/lower-case alphabets and empty space characters ‘ ‘, return the length of last word in the string.</p>
-<p>If the last word does not exist, return 0.</p>
-<p>Note: A word is defined as a character sequence consists of non-space characters only.</p>
-<p>For example,<br> Given s = “Hello World”,<br> return 5. </p>
-<pre><code>class Solution {
-public:
-    int lengthOfLastWord(string s) {
-        int n = s.length();
-        if(n == 0) return 0;
-        if(n == 1 &amp;&amp; s[n-1]==&apos; &apos;) return 0;
-        if(n == 1 &amp;&amp; s[n-1]!=&apos; &apos;) return 1;
-        int i = n-1;
-        int count = 0;
-        while(i&gt;=0&amp;&amp;s[i]==&apos; &apos;)
-            i--;
-        while(i&gt;=0&amp;&amp;s[i]!=&apos; &apos;){
-            i--;
-            count++;
-        }
-
-        return count;
-    }
-};
-</code></pre><h2 id="28-Implement-strStr"><a href="#28-Implement-strStr" class="headerlink" title="28. Implement strStr()"></a>28. Implement strStr()</h2><p>Implement strStr(). </p>
-<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. </p>
-<pre><code>class Solution {
-public:
-    int strStr(string haystack, string needle) {
-        int m = haystack.size();
-        int n = needle.size();
-        for(int i = 0; i &lt;= m-n; i ++)
-        {
-            int j;
-            for(j = 0; j &lt; n; j ++)
-            {
-                if(haystack[i+j] != needle[j])
-                    break;
-            }
-            if(j == n)
-                return i;
-        }
-        return -1;
-    }
-};
-</code></pre><h2 id="20-Valid-Parentheses"><a href="#20-Valid-Parentheses" class="headerlink" title="20. Valid Parentheses"></a>20. Valid Parentheses</h2><p>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.</p>
-<p>The brackets must close in the correct order, “()” and “()[]{}” are all valid but “(]” and “([)]” are not.</p>
-<pre><code>class Solution {
-public:
-    bool isValid(string s) {
-        int n = s.length();
-        if(n == 0 || n%2 ==1) return false;
-        stack&lt;char&gt; stack;
-        for(int i = 0; i&lt;n ; i++){
-            if(shouldPush(s[i])) stack.push(s[i]);
-            if(shouldPop(s[i])){
-                if(stack.empty()) return false;
-                if(shouldPop(stack.top(), s[i])) stack.pop();
-            }
-        }
-        if(stack.empty()) return true;
-        return false;
-    }
-    bool shouldPush(char c){
-        if(c==&apos;{&apos;||c==&apos;(&apos;||c==&apos;[&apos;) return true;
-        return false;
-    }
-    bool shouldPop(char out){
-        if(out==&apos;}&apos; ||out==&apos;]&apos; ||out==&apos;)&apos;) return true;
-        return false;
-    }
-    bool shouldPop(char in, char out){
-        if(in==&apos;{&apos;&amp;&amp;out==&apos;}&apos; ||in==&apos;[&apos;&amp;&amp;out==&apos;]&apos; ||in==&apos;(&apos;&amp;&amp;out==&apos;)&apos;) return true;
-        return false;
-    }
-};
-</code></pre>
-          
+          <h1 id="Leetcode–String"><a href="#Leetcode–String" class="headerlink" title="Leetcode–String"></a>Leetcode–String</h1><h2 id="383-Ransom-Note"><a href="#383-Ransom-Note" class="headerlink" title="383. Ransom Note"></a>383. Ransom Note</h2>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/25/leetcode/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -764,7 +536,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-25T09:23:07+08:00" content="2016-09-25">
               2016-09-25
             </time>
@@ -794,206 +566,12 @@ public:
 
       
         
-          
-            <h2 id="打算报名托福来着，万一有用呢。"><a href="#打算报名托福来着，万一有用呢。" class="headerlink" title="打算报名托福来着，万一有用呢。"></a>打算报名托福来着，万一有用呢。</h2><p>这玩意，不怕一万，就怕万一。但是太贵了，只好让老妈付账了。</p>
-<h2 id="面试中常出现的字符串问题"><a href="#面试中常出现的字符串问题" class="headerlink" title="面试中常出现的字符串问题"></a>面试中常出现的字符串问题</h2><h3 id="反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I-am-a-student-”，则输出“student-a-am-I”。"><a href="#反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I-am-a-student-”，则输出“student-a-am-I”。" class="headerlink" title="反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I am a student.”，则输出“student. a am I”。"></a>反转字符串中的单词的顺序，但是单词内的字母顺序不变。如输入“I am a student.”，则输出“student. a am I”。</h3><h3 id="第一个只出现一次的字符-例如abcaccd-输出b"><a href="#第一个只出现一次的字符-例如abcaccd-输出b" class="headerlink" title="第一个只出现一次的字符 例如abcaccd 输出b"></a>第一个只出现一次的字符 例如abcaccd 输出b</h3><h3 id="把字符串转化为数字"><a href="#把字符串转化为数字" class="headerlink" title="把字符串转化为数字"></a>把字符串转化为数字</h3><h3 id="旋转字符串"><a href="#旋转字符串" class="headerlink" title="旋转字符串"></a>旋转字符串</h3><h4 id="给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为-O-n-，空间复杂度为-O-1-。"><a href="#给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为-O-n-，空间复杂度为-O-1-。" class="headerlink" title="给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度为 O(1)。"></a>给定一个字符串，要求把字符串前面的若干个字符移动到字符串的尾部，如把字符串“abcdef”前面的2个字符’a’和’b’移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度为 O(1)。</h4><h4 id="解法一：-暴力解"><a href="#解法一：-暴力解" class="headerlink" title="解法一： 暴力解"></a>解法一： 暴力解</h4><p>初看此题，可能最先想到的方法是按照题目所要求的，把需要移动的字符一个一个地移动到字符串的尾部，如此我们可以实现一个函数LeftShiftOne(char* s, int n) ，以完成移动一个字符到字符串尾部的功能，代码如下所示：</p>
-<pre><code>void LeftShiftOne(char* s, int n)
-{    char t = s[0];  //保存第一个字符
-    for (int i = 1; i &lt; n; i++)
-    {
-        s[i - 1] = s[i];
-    }
-    s[n - 1] = t;
-}
-</code></pre><p>因此，若要把字符串开头的m个字符移动到字符串的尾部，则可以如下操作：</p>
-<pre><code>void LeftRotateString(char* s, int n, int m)
-{    while (m--)
-    {        LeftShiftOne(s, n);
-    }
-}
-</code></pre><p>下面，我们来分析一下这种方法的时间复杂度和空间复杂度。</p>
-<p>针对长度为n的字符串来说，假设需要移动m个字符到字符串的尾部，那么总共需要 m<em>n 次操作，同时设立一个变量保存第一个字符，如此，时间复杂度为O(m </em> n)，空间复杂度为O(1)，空间复杂度符合题目要求，但时间复杂度不符合，所以，我们得需要寻找其他更好的办法来降低时间复杂度。</p>
-<h3 id="解法二：-三步旋转法"><a href="#解法二：-三步旋转法" class="headerlink" title="解法二： 三步旋转法"></a>解法二： 三步旋转法</h3><p>对于这个问题，换一个角度思考一下。</p>
-<p>将一个字符串分成X和Y两个部分，在每部分字符串上定义反转操作，如X^T，即把X的所有字符反转（如，X=”abc”，那么X^T=”cba”），那么就得到下面的结论：(X^TY^T)^T=YX，显然就解决了字符串的反转问题。</p>
-<p>例如，字符串 abcdef ，若要让def翻转到abc的前头，只要按照下述3个步骤操作即可：</p>
-<p>1.首先将原字符串分为两个部分，即X:abc，Y:def；</p>
-<p>2.将X反转，X-&gt;X^T，即得：abc-&gt;cba；将Y反转，Y-&gt;Y^T，即得：def-&gt;fed。</p>
-<p>3.反转上述步骤得到的结果字符串X^TY^T，即反转字符串cbafed的两部分（cba和fed）给予反转，cbafed得到defabc，形式化表示为(X^TY^T)^T=YX，这就实现了整个反转。</p>
-<p>代码则可以这么写：</p>
-<pre><code>void ReverseString(char* s,int from,int to)
-{    while (from &lt; to)
-    {        char t = s[from];
-        s[from++] = s[to];
-        s[to--] = t;
-    }
-}void LeftRotateString(char* s,int n,int m)
-{
-    m %= n;               //若要左移动大于n位，那么和%n 是等价的
-    ReverseString(s, 0, m - 1); //反转[0..m - 1]，套用到上面举的例子中，就是X-&gt;X^T，即 abc-&gt;cba
-    ReverseString(s, m, n - 1); //反转[m..n - 1]，例如Y-&gt;Y^T，即 def-&gt;fed
-    ReverseString(s, 0, n - 1); //反转[0..n - 1]，即如整个反转，(X^TY^T)^T=YX，即 cbafed-&gt;defabc。
-}
-</code></pre><p>这就是把字符串分为两个部分，先各自反转再整体反转的方法，时间复杂度为O(n)，空间复杂度为O(1)，达到了题目的要求。</p>
-<h3 id="字符串包含"><a href="#字符串包含" class="headerlink" title="字符串包含"></a>字符串包含</h3><h4 id="给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？-为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool-StringContains-string-amp-A-string-amp-B-比如，如果是下面两个字符串：-String-1：ABCD-String-2：BAD-答案是true，即String2里的字母在String1里也都有，或者说String2是String1的真子集。-如果是下面两个字符串：-String-1：ABCD-String-2：BCE-答案是false，因为字符串String2里的E字母不在字符串String1里。同时，如果string1：ABCD，string-2：AA，同样返回true。"><a href="#给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？-为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool-StringContains-string-amp-A-string-amp-B-比如，如果是下面两个字符串：-String-1：ABCD-String-2：BAD-答案是true，即String2里的字母在String1里也都有，或者说String2是String1的真子集。-如果是下面两个字符串：-String-1：ABCD-String-2：BCE-答案是false，因为字符串String2里的E字母不在字符串String1里。同时，如果string1：ABCD，string-2：AA，同样返回true。" class="headerlink" title="给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？ 为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool StringContains(string &amp;A, string &amp;B) 比如，如果是下面两个字符串： String 1：ABCD String 2：BAD 答案是true，即String2里的字母在String1里也都有，或者说String2是String1的真子集。 如果是下面两个字符串： String 1：ABCD String 2：BCE 答案是false，因为字符串String2里的E字母不在字符串String1里。同时，如果string1：ABCD，string 2：AA，同样返回true。"></a>给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？ 为了简单起见，我们规定输入的字符串只包含大写英文字母，请实现函数bool StringContains(string &amp;A, string &amp;B) 比如，如果是下面两个字符串： String 1：ABCD String 2：BAD 答案是true，即String2里的字母在String1里也都有，或者说String2是String1的真子集。 如果是下面两个字符串： String 1：ABCD String 2：BCE 答案是false，因为字符串String2里的E字母不在字符串String1里。同时，如果string1：ABCD，string 2：AA，同样返回true。</h4><h4 id="解法一：暴力解"><a href="#解法一：暴力解" class="headerlink" title="解法一：暴力解"></a>解法一：暴力解</h4><p>判断string2中的字符是否在string1中?最直观也是最简单的思路是，针对string2中每一个字符，逐个与string1中每个字符比较，看它是否在String1中。</p>
-<p>代码可如下编写：</p>
-<pre><code>bool StringContain(string &amp;a,string &amp;b)
-{    for (int i = 0; i &lt; b.length(); ++i) {        int j;        for (j = 0; (j &lt; a.length()) &amp;&amp; (a[j] != b[i]); ++j)
-            ;        if (j &gt;= a.length())
-        {            return false;
-        }
-    }    return true;
-}
-</code></pre><p>假设n是字符串String1的长度，m是字符串String2的长度，那么此算法，需要O(n*m)次操作。显然，时间开销太大，应该找到一种更好的办法。</p>
-<h4 id="解法二：排序-轮询"><a href="#解法二：排序-轮询" class="headerlink" title="解法二：排序+轮询"></a>解法二：排序+轮询</h4><p>判断string2中的字符是否在string1中?最直观也是最简单的思路是，针对string2中每一个字符，逐个与string1中每个字符比较，看它是否在String1中。</p>
-<p>代码可如下编写：</p>
-<pre><code>bool StringContain(string &amp;a,string &amp;b)
-{    for (int i = 0; i &lt; b.length(); ++i) {        int j;        for (j = 0; (j &lt; a.length()) &amp;&amp; (a[j] != b[i]); ++j)
-            ;        if (j &gt;= a.length())
-        {            return false;
-        }
-    }    return true;
-}
-</code></pre><p>假设n是字符串String1的长度，m是字符串String2的长度，那么此算法，需要O(n*m)次操作。显然，时间开销太大，应该找到一种更好的办法。</p>
-<h4 id="解法三："><a href="#解法三：" class="headerlink" title="解法三："></a>解法三：</h4><p>有没有比快速排序更好的方法呢？</p>
-<p>我们换一种角度思考本问题：</p>
-<p>假设有一个仅由字母组成字串，让每个字母与一个素数对应，从2开始，往后类推，A对应2，B对应3，C对应5，……。遍历第一个字串，把每个字母对应素数相乘。最终会得到一个整数。</p>
-<p>利用上面字母和素数的对应关系，对应第二个字符串中的字母，然后轮询，用每个字母对应的素数除前面得到的整数。如果结果有余数，说明结果为false。如果整个过程中没有余数，则说明第二个字符串是第一个的子集了（判断是不是真子集，可以比较两个字符串对应的素数乘积，若相等则不是真子集）。</p>
-<p>思路总结如下：</p>
-<p>1.按照从小到大的顺序，用26个素数分别与字符’A’到’Z’一一对应。</p>
-<p>2.遍历长字符串，求得每个字符对应素数的乘积。</p>
-<p>3.遍历短字符串，判断乘积能否被短字符串中的字符对应的素数整除。</p>
-<p>4.输出结果。</p>
-<p>如前所述，算法的时间复杂度为O(m+n)的最好的情况为O(n)（遍历短的字符串的第一个数，与长字符串素数的乘积相除，即出现余数，便可退出程序，返回false），n为长字串的长度，空间复杂度为O(1)。</p>
-<pre><code>//此方法只有理论意义，因为整数乘积很大，有溢出风险bool StringContain(string &amp;a,string &amp;b)
-{    const int p[26] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,61, 67, 71, 73, 79, 83, 89, 97, 101};    int f = 1;    for (int i = 0; i &lt; a.length(); ++i)
-    {        int x = p[a[i] - &apos;A&apos;];        if (f % x)
-        {
-            f *= x;
-        }
-    }    for (int i = 0; i &lt; b.length(); ++i)
-    {        int x = p[b[i] - &apos;A&apos;];        if (f % x)
-        {            return false;
-        }
-    }    return true;
-}
-</code></pre><p>此种素数相乘的方法看似完美，但缺点是素数相乘的结果容易导致整数溢出。</p>
-<h4 id="解法四："><a href="#解法四：" class="headerlink" title="解法四："></a>解法四：</h4><p>事实上，可以先把长字符串a中的所有字符都放入一个Hashtable里，然后轮询短字符串b，看短字符串b的每个字符是否都在Hashtable里，如果都存在，说明长字符串a包含短字符串b，否则，说明不包含。</p>
-<p>再进一步，我们可以对字符串A，用位运算（26bit整数表示)计算出一个“签名”，再用B中的字符到A里面进行查找。</p>
-<pre><code>// “最好的方法”，时间复杂度O(n + m)，空间复杂度O(1)bool StringContain(string &amp;a,string &amp;b)
-{    int hash = 0;    for (int i = 0; i &lt; a.length(); ++i)
-    {
-        hash |= (1 &lt;&lt; (a[i] - &apos;A&apos;));
-    }    for (int i = 0; i &lt; b.length(); ++i)
-    {        if ((hash &amp; (1 &lt;&lt; (b[i] - &apos;A&apos;))) == 0)
-        {            return false;
-        }
-    }    return true;
-}
-</code></pre><p>这个方法的实质是用一个整数代替了hashtable，空间复杂度为O(1)，时间复杂度还是O(n + m)。</p>
-<h3 id="字符串转换成整数"><a href="#字符串转换成整数" class="headerlink" title="字符串转换成整数"></a>字符串转换成整数</h3><h4 id="输入一个由数字组成的字符串，把它转换成整数并输出。例如：输入字符串”123”，输出整数123。-给定函数原型int-StrToInt-const-char-str-，实现字符串转换成整数的功能，不能使用库函数atoi。"><a href="#输入一个由数字组成的字符串，把它转换成整数并输出。例如：输入字符串”123”，输出整数123。-给定函数原型int-StrToInt-const-char-str-，实现字符串转换成整数的功能，不能使用库函数atoi。" class="headerlink" title="输入一个由数字组成的字符串，把它转换成整数并输出。例如：输入字符串”123”，输出整数123。 给定函数原型int StrToInt(const char *str) ，实现字符串转换成整数的功能，不能使用库函数atoi。"></a>输入一个由数字组成的字符串，把它转换成整数并输出。例如：输入字符串”123”，输出整数123。 给定函数原型int StrToInt(const char *str) ，实现字符串转换成整数的功能，不能使用库函数atoi。</h4><p>本题考查的实际上就是字符串转换成整数的问题，或者说是要你自行实现atoi函数。那如何实现把表示整数的字符串正确地转换成整数呢？以”123”作为例子：</p>
-<ul>
-<li><p>当我们扫描到字符串的第一个字符’1’时，由于我们知道这是第一位，所以得到数字1。</p>
-</li>
-<li><p>当扫描到第二个数字’2’时，而之前我们知道前面有一个1，所以便在后面加上一个数字2，那前面的1相当于10，因此得到数字：1*10+2=12。</p>
-</li>
-<li><p>继续扫描到字符’3’，’3’的前面已经有了12，由于前面的12相当于120，加上后面扫描到的3，最终得到的数是：12*10+3=123。</p>
-</li>
-</ul>
-<p>因此，此题的基本思路便是：从左至右扫描字符串，把之前得到的数字乘以10，再加上当前字符表示的数字。</p>
-<p>思路有了，你可能不假思索，写下如下代码：</p>
-<pre><code>int StrToInt(const char *str)
-{    int n = 0;    while (*str != 0)
-    {        int c = *str - &apos;0&apos;;
-        n = n * 10 + c;
-        ++str;
-    }    return n;
-}
-</code></pre><p>显然，上述代码忽略了以下细节：</p>
-<ol>
-<li><p>空指针输入：输入的是指针，在访问空指针时程序会崩溃，因此在使用指针之前需要先判断指针是否为空。</p>
-</li>
-<li><p>正负符号：整数不仅包含数字，还有可能是以’+’或’-‘开头表示正负整数，因此如果第一个字符是’-‘号，则要把得到的整数转换成负整数。</p>
-</li>
-<li><p>非法字符：输入的字符串中可能含有不是数字的字符。因此，每当碰到这些非法的字符，程序应停止转换。</p>
-</li>
-<li><p>整型溢出：输入的数字是以字符串的形式输入，因此输入一个很长的字符串将可能导致溢出。</p>
-</li>
-</ol>
-<p>上述其它问题比较好处理，但溢出问题比较麻烦，所以咱们来重点看下溢出问题。</p>
-<p>一般说来，当发生溢出时，取最大或最小的int值。即大于正整数能表示的范围时返回MAX_INT：2147483647；小于负整数能表示的范围时返回MIN_INT：-2147483648。</p>
-<p>我们先设置一些变量：</p>
-<ul>
-<li>sign用来处理数字的正负，当为正时sign &gt; 0，当为负时sign &lt; 0</li>
-<li>n存放最终转换后的结果</li>
-<li>c表示当前数字</li>
-</ul>
-<p>而后，你可能会编写如下代码段处理溢出问题：</p>
-<pre><code>//当发生正溢出时，返回INT_MAXif ((sign == &apos;+&apos;) &amp;&amp; (c &gt; MAX_INT - n * 10))
-{
-    n = MAX_INT;    break;
-}//发生负溢出时，返回INT_MINelse if ((sign == &apos;-&apos;) &amp;&amp; (c - 1 &gt; MAX_INT - n * 10))
-{
-    n = MIN_INT;    break;
-}
-</code></pre><p>但当上述代码转换” 10522545459”会出错，因为正常的话理应得到MAX_INT：2147483647，但程序运行结果将会是：1932610867。<br>为什么呢？因为当给定字符串” 10522545459”时，而MAX_INT是2147483647，即MAX_INT(2147483647) &lt; n10(1052254545\10)，所以当扫描到最后一个字符‘9’的时候，执行上面的这行代码：</p>
-<p>c &gt; MAX_INT - n * 10</p>
-<p>已无意义，因为此时(MAX_INT - n * 10)已经小于0，程序已经出错。</p>
-<p>针对这种由于输入了一个很大的数字转换之后会超过能够表示的最大的整数而导致的溢出情况，我们有两种处理方式可以选择：</p>
-<ul>
-<li><p>一个取巧的方式是把转换后返回的值n定义成long long，即long long n；</p>
-</li>
-<li><p>另外一种则是只比较n和MAX_INT / 10的大小，即：</p>
-</li>
-<li><p>若n &gt; MAX_INT / 10，那么说明最后一步转换时，n*10必定大于MAX_INT，所以在得知n &gt; MAX_INT / 10时，当即返回MAX_INT。</p>
-</li>
-<li><p>若n == MAX_INT / 10时，那么比较最后一个数字c跟MAX_INT % 10的大小，即如果n == MAX_INT / 10且c &gt; MAX_INT % 10，则照样返回MAX_INT。</p>
-</li>
-</ul>
-<p>对于上面第一种方式，虽然我们把n定义了长整型，但最后返回时系统会自动转换成整型。咱们下面主要来看第二种处理方式。</p>
-<p>对于上面第二种方式，先举两个例子说明下：</p>
-<ul>
-<li><p>如果我们要转换的字符串是”2147483697”，那么当我扫描到字符’9’时，判断出214748369 &gt; MAX_INT / 10 = 2147483647 / 10 = 214748364（C语言里，整数相除自动取整，不留小数），则返回MAX_INT；</p>
-</li>
-<li><p>如果我们要转换的字符串是”2147483648”，那么判断最后一个字符’8’所代表的数字8与MAX_INT % 10 = 7的大小，前者大，依然返回MAX_INT。</p>
-</li>
-</ul>
-<p>一直以来，我们努力的目的归根结底是为了更好的处理溢出，但上述第二种处理方式考虑到直接计算n <em> 10 + c 可能会大于MAX_INT导致溢出，那么便两边同时除以10，只比较n和MAX_INT / 10的大小，从而巧妙的规避了计算n</em>10这一乘法步骤，转换成计算除法MAX_INT/10代替，不能不说此法颇妙。</p>
-<p>如此我们可以写出正确的处理溢出的代码：</p>
-<pre><code>c = *str - &apos;0&apos;;if (sign &gt; 0 &amp;&amp; (n &gt; MAX_INT / 10 || (n == MAX_INT / 10 &amp;&amp; c &gt; MAX_INT % 10)))
-{
-    n = MAX_INT;    break;
-}else if (sign &lt; 0 &amp;&amp; (n &gt; (unsigned)MIN_INT / 10 || (n == (unsigned)MIN_INT / 10 &amp;&amp; c &gt; (unsigned)MIN_INT % 10)))
-{
-    n = MIN_INT;    break;
-}
-</code></pre><p>从而，字符串转换成整数，完整的参考代码为：</p>
-<pre><code>int StrToInt(const char* str)
-{    static const int MAX_INT = (int)((unsigned)~0 &gt;&gt; 1);    static const int MIN_INT = -(int)((unsigned)~0 &gt;&gt; 1) - 1;    unsigned int n = 0;    //判断是否输入为空
-    if (str == 0)
-    {        return 0;
-    }    //处理空格
-    while (isspace(*str))
-        ++str;    //处理正负
-    int sign = 1;    if (*str == &apos;+&apos; || *str == &apos;-&apos;)
-    {        if (*str == &apos;-&apos;)
-            sign = -1;
-        ++str;
-    }    //确定是数字后才执行循环
-    while (isdigit(*str))
-    {        //处理溢出
-        int c = *str - &apos;0&apos;;        if (sign &gt; 0 &amp;&amp; (n &gt; MAX_INT / 10 || (n == MAX_INT / 10 &amp;&amp; c &gt; MAX_INT % 10)))
-        {
-            n = MAX_INT;            break;
-        }        else if (sign &lt; 0 &amp;&amp; (n &gt;(unsigned)MIN_INT / 10 || (n == (unsigned)MIN_INT / 10 &amp;&amp; c &gt; (unsigned)MIN_INT % 10)))
-        {
-            n = MIN_INT;            break;
-        }        //把之前得到的数字乘以10，再加上当前字符表示的数字。
-        n = n * 10 + c;
-        ++str;
-    }    return sign &gt; 0 ? n : -n;
-}
-</code></pre><h3 id="在字符串中删除特定的字符-输入They-are-students-”和”aeiou”，则删除之后的第一个字符串变成”Thy-r-stdnts-”。"><a href="#在字符串中删除特定的字符-输入They-are-students-”和”aeiou”，则删除之后的第一个字符串变成”Thy-r-stdnts-”。" class="headerlink" title="在字符串中删除特定的字符.输入They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。"></a>在字符串中删除特定的字符.输入They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。</h3><h3 id="对称子字符串的最大长度-题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。-比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。"><a href="#对称子字符串的最大长度-题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。-比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。" class="headerlink" title="对称子字符串的最大长度  题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。 比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。"></a>对称子字符串的最大长度  题目：输入一个字符串，输出该字符串中对称的子字符串的最大长度。 比如输入字符串“google”，由于该字符串里最长的对称子字符串是“goog”，因此输出4。</h3>
-          
+          <h2 id="打算报名托福来着，万一有用呢。"><a href="#打算报名托福来着，万一有用呢。" class="headerlink" title="打算报名托福来着，万一有用呢。"></a>打算报名托福来着，万一有用呢。</h2><p>这玩意，不怕一万，就怕万一。但是太贵了，只好让老妈付账了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/25/第三天/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1054,7 +632,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-24T10:03:57+08:00" content="2016-09-24">
               2016-09-24
             </time>
@@ -1084,217 +662,12 @@ public:
 
       
         
-          
-            <h2 id="起码写好了英文简历"><a href="#起码写好了英文简历" class="headerlink" title="起码写好了英文简历"></a>起码写好了英文简历</h2><p>花了一个小时，写好了英文简历，一咬牙就去提交了。<br>好伤心，每次到写简历的时候就发现自己的经历好少好少。</p>
-<h2 id="其他的事我就管不了啦"><a href="#其他的事我就管不了啦" class="headerlink" title="其他的事我就管不了啦"></a>其他的事我就管不了啦</h2><p>现在申请处于待审核状态，不知道能不能通过。如果通过是一定要去听一听的，如果不通过，略略略，那也只好这样啦。</p>
-<h2 id="Business-Formal"><a href="#Business-Formal" class="headerlink" title="Business Formal"></a>Business Formal</h2><p>看到宣讲会要求Business Formal的着装，我还不知道这是什么东西呢。。。。</p>
-<h2 id="学习算法———约瑟夫问题"><a href="#学习算法———约瑟夫问题" class="headerlink" title="学习算法———约瑟夫问题"></a>学习算法———约瑟夫问题</h2><p>问题本身很简单，就不贴描述了。大致有三种数据结构可以解决约瑟夫算法：</p>
-<ol>
-<li>数组<br>对于数组，有两种比较常见的解法，一种是直接计算，利用数学公式直接得到结果；另一种是模拟现实场景，一步步来。</li>
-</ol>
-<ul>
-<li>方法一：</li>
-</ul>
-<pre><code>int Joseph(int n, int m){
-    int J[100] = {-1};
-    for(int i = 1; i&lt;=n;i++){
-        J[i] = i;
-    }
-    int in = n;
-    int count = 0;
-    while(in&gt;0){
-        for(int i = 1; i&lt;=n; i++){
-            if(J[i]!=-1){
-                count++;
-                if(count == m){
-                    J[i] = -1;
-                    count = 0;
-                }
-            }
-
-        }
-    }
-    for(int i = 1 ; i&lt;= n; i++){
-        if(J[i] != -1) return i;
-    }
-    return 0;
-}
-</code></pre><ul>
-<li>方法二：</li>
-</ul>
-<ol>
-<li>循环列表</li>
-<li>循环队列</li>
-</ol>
-<h2 id="废话少说，复习一下本周的算法"><a href="#废话少说，复习一下本周的算法" class="headerlink" title="废话少说，复习一下本周的算法"></a>废话少说，复习一下本周的算法</h2><h3 id="剑指OFFER-面试题1-二维数组中的查找"><a href="#剑指OFFER-面试题1-二维数组中的查找" class="headerlink" title="剑指OFFER 面试题1 二维数组中的查找"></a>剑指OFFER 面试题1 二维数组中的查找</h3><h4 id="题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"><a href="#题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。" class="headerlink" title="题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。"></a>题目描述：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</h4><pre><code>class Solution {
-public:
-    bool Find(vector&lt;vector&lt;int&gt; &gt; array,int target) {
-        if(array.size() == 0) return false;
-        int n = array[0].size();
-        int m = array.size();
-        int i = 0;
-        int j = n-1;
-        int p = 0;
-        bool result = false;
-        while( i&lt;= n-1 &amp;&amp; j&gt;=0 ){
-            p = array[i][j];
-            if(target == p) {result = true; break;}
-            else if(target&lt;p) j--;
-            else i++;
-        }
-        return result;
-    }
-};
-</code></pre><p>这段代码的while循环的判断条件还是会搞不清楚，但是基本的思路是有的了。</p>
-<h3 id="剑指OFFER-面试题2：替换空格"><a href="#剑指OFFER-面试题2：替换空格" class="headerlink" title="剑指OFFER 面试题2：替换空格"></a>剑指OFFER 面试题2：替换空格</h3><h4 id="题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。"><a href="#题目描述：请实现一个函数，将一个字符串中的空格替换成“-20”。例如，当字符串为We-Are-Happy-则经过替换之后的字符串为We-20Are-20Happy。" class="headerlink" title="题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。"></a>题目描述：请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</h4><pre><code>//length为牛客系统规定字符串输出的最大长度，固定为一个常数
-class Solution {
-public:
-    void replaceSpace(char *str,int length) {
-        if(str == NULL || length&lt;0) return;
-        int len = 0;
-        int spaceNum = 0;
-        int i = 0;
-        while(str[i]!=&apos;\0&apos;){
-            len++;
-            if(str[i]==&apos; &apos;) spaceNum++;
-            i++;
-        }
-        int len2 = len + spaceNum * 2;
-        if(len2 &gt; length) return;
-        while(len&gt;=0 &amp;&amp; len2&gt;len){
-            if(str[len] == &apos; &apos;){
-                str[len2--] = &apos;0&apos;;
-                str[len2--] = &apos;2&apos;;
-                str[len2--] = &apos;%&apos;;
-            }else{
-                str[len2--] = str[len];
-            }
-            len--;
-        }
-    }
-};
-</code></pre><h3 id="剑指OFFER-面试题3：从尾到头打印链表"><a href="#剑指OFFER-面试题3：从尾到头打印链表" class="headerlink" title="剑指OFFER 面试题3：从尾到头打印链表"></a>剑指OFFER 面试题3：从尾到头打印链表</h3><h4 id="题目描述：输入一个链表，从尾到头打印链表每个节点的值。"><a href="#题目描述：输入一个链表，从尾到头打印链表每个节点的值。" class="headerlink" title="题目描述：输入一个链表，从尾到头打印链表每个节点的值。"></a>题目描述：输入一个链表，从尾到头打印链表每个节点的值。</h4><h5 id="非递归算法："><a href="#非递归算法：" class="headerlink" title="非递归算法："></a>非递归算法：</h5><pre><code>/**
-*  struct ListNode {
-*        int val;
-*        struct ListNode *next;
-*        ListNode(int x) :
-*              val(x), next(NULL) {
-*        }
-*  };
-*/
-class Solution {
-public:
-    vector&lt;int&gt; printListFromTailToHead(struct ListNode* head) {
-        vector&lt;int&gt; res;
-        if(head == NULL) return res;
-        stack&lt;int&gt; s;
-        ListNode* p = head;
-        while(p != NULL){
-            s.push(p-&gt;val);
-            p = p-&gt;next;
-        }
-        while(!s.empty()){
-            res.push_back(s.top());
-            s.pop();
-        }
-        return res;
-    }
-};
-</code></pre><h5 id="递归算法："><a href="#递归算法：" class="headerlink" title="递归算法："></a>递归算法：</h5><pre><code>class Solution {
-private:
-    vector&lt;int&gt; res;
-public:
-    vector&lt;int&gt; printListFromTailToHead(struct ListNode* head) {
-        if(head==NULL) return res;
-        printListFromTailToHead(head-&gt;next);
-        res.push_back(head-&gt;val);
-        return res;
-    }
-};
-</code></pre><h3 id="剑指OFFER-面试题4：重建二叉树"><a href="#剑指OFFER-面试题4：重建二叉树" class="headerlink" title="剑指OFFER 面试题4：重建二叉树"></a>剑指OFFER 面试题4：重建二叉树</h3><h4 id="题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。"><a href="#题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列-1-2-4-7-3-5-6-8-和中序遍历序列-4-7-2-1-5-3-8-6-，则重建二叉树并返回。" class="headerlink" title="题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。"></a>题目描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</h4><pre><code>/**
- * Definition for binary tree
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    struct TreeNode* reConstructBinaryTree(vector&lt;int&gt; pre,vector&lt;int&gt; in) {
-        if(pre.size() == 0 || in.size() == 0) return NULL;
-        TreeNode* root = reConstructBinaryTree(pre, in, 0, pre.size()-1, 0, in.size()-1);
-        return root;
-    }
-    TreeNode* reConstructBinaryTree(vector&lt;int&gt; pre, vector&lt;int&gt; in, int preS, 
-                                    int preE, int inS, int inE){
-        if(preS&gt;preE || inS&gt;inE) return NULL;
-        TreeNode* root = new TreeNode(pre[preS]);
-        root-&gt;left = root-&gt;right = NULL;
-        for(int i = inS; i&lt;=inE; i++){
-            if(in[i] == pre[preS]){
-                root-&gt;left = reConstructBinaryTree(pre, in, preS+1, preS+i-inS, inS, i-1);
-                root-&gt;right = reConstructBinaryTree(pre, in, preS+i-inS+1, preE, i+1, inE);
-                break;
-            }
-        }
-        return root;
-    }
-
-};
-</code></pre><h3 id="剑指OFFER-面试题5：用两个栈实现队列"><a href="#剑指OFFER-面试题5：用两个栈实现队列" class="headerlink" title="剑指OFFER 面试题5：用两个栈实现队列"></a>剑指OFFER 面试题5：用两个栈实现队列</h3><h4 id="题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。"><a href="#题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。-队列中的元素为int类型。" class="headerlink" title="题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。"></a>题目描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</h4><pre><code>class Solution
-{
-public:
-    void push(int node) {
-        s1.push(node);
-    }
-
-    int pop() {
-        if(s2.empty()){
-            while(!s1.empty()){
-                s2.push(s1.top());
-                s1.pop();
-            }
-        }
-        int res = s2.top();
-        s2.pop();
-        return res;
-    }
-
-private:
-    stack&lt;int&gt; s1;
-    stack&lt;int&gt; s2;
-};
-</code></pre><h3 id="剑指OFFER-面试题6：旋转数组的最小值（二分法）"><a href="#剑指OFFER-面试题6：旋转数组的最小值（二分法）" class="headerlink" title="剑指OFFER 面试题6：旋转数组的最小值（二分法）"></a>剑指OFFER 面试题6：旋转数组的最小值（二分法）</h3><h4 id="题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。"><a href="#题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。" class="headerlink" title="题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。"></a>题目描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。</h4><pre><code>class Solution {
-public:
-    int minNumberInRotateArray(vector&lt;int&gt; array) {
-        int n = array.size();
-        if(n == 0) return 0;
-        int i = 0, j = n-1;
-        int mid = 0;
-        while(array[i]&gt;=array[j]){
-            if(j-i == 1){
-                mid = j;
-                break;
-            }
-            mid = (i+j)/2;
-            if(array[mid] == array[i] &amp;&amp; array[mid]==array[j]) return minInOrder(array);
-            if(array[mid]&gt;=array[i]) i = mid;
-            if(array[mid]&lt;=array[j]) j = mid;
-        }
-        return array[mid];
-    }
-    int minInOrder(vector&lt;int&gt; array){
-        int min = array[0];
-        for(int i = 0; i&lt;array.size(); i++){
-            min = min&lt;array[i]?min:array[i];
-        }
-        return min;
-    }
-};
-</code></pre>
-          
+          <h2 id="起码写好了英文简历"><a href="#起码写好了英文简历" class="headerlink" title="起码写好了英文简历"></a>起码写好了英文简历</h2><p>花了一个小时，写好了英文简历，一咬牙就去提交了。<br>好伤心，每次到写简历的时候就发现自己的经历好少好少。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/24/第二天-算法复习/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1355,7 +728,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-23T13:28:11+08:00" content="2016-09-23">
               2016-09-23
             </time>
@@ -1453,7 +826,7 @@ public:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:19:43+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -1555,7 +928,7 @@ public:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1602,7 +975,7 @@ public:
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
