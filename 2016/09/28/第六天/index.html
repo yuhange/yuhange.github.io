@@ -84,25 +84,16 @@
 
 
 
-<meta name="description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。有很多种解法：
-解法一：排序vector&amp;lt;int&amp;gt; GetLeastNumbers_Solution(vector&amp;lt;int&amp;gt; input, int k) {
-        vector&amp;lt;int&amp;gt; res;
-        i">
+<meta name="description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第六天">
 <meta property="og:url" content="http://yoursite.com/2016/09/28/第六天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。有很多种解法：
-解法一：排序vector&amp;lt;int&amp;gt; GetLeastNumbers_Solution(vector&amp;lt;int&amp;gt; input, int k) {
-        vector&amp;lt;int&amp;gt; res;
-        i">
-<meta property="og:updated_time" content="2016-09-28T03:56:54.546Z">
+<meta property="og:description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。">
+<meta property="og:updated_time" content="2016-09-28T04:28:54.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第六天">
-<meta name="twitter:description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。有很多种解法：
-解法一：排序vector&amp;lt;int&amp;gt; GetLeastNumbers_Solution(vector&amp;lt;int&amp;gt; input, int k) {
-        vector&amp;lt;int&amp;gt; res;
-        i">
+<meta name="twitter:description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。">
 
 
 
@@ -285,7 +276,8 @@
       
 
       
-        <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="最小的K个数"><a href="#最小的K个数" class="headerlink" title="最小的K个数"></a>最小的K个数</h3><h4 id="输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><a href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。" class="headerlink" title="输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。"></a>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</h4><p>有很多种解法：</p>
+        <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="最小的K个数"><a href="#最小的K个数" class="headerlink" title="最小的K个数"></a>最小的K个数</h3><h4 id="输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><a href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。" class="headerlink" title="输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。"></a>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</h4><a id="more"></a>
+<p>有很多种解法：</p>
 <h4 id="解法一：排序"><a href="#解法一：排序" class="headerlink" title="解法一：排序"></a>解法一：排序</h4><pre><code>vector&lt;int&gt; GetLeastNumbers_Solution(vector&lt;int&gt; input, int k) {
         vector&lt;int&gt; res;
         if(input.empty()||k&gt;input.size()) return res;
