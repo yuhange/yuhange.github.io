@@ -96,7 +96,7 @@
 解法一：排序vector&amp;lt;int&amp;gt; GetLeastNumbers_Solution(vector&amp;lt;int&amp;gt; input, int k) {
         vector&amp;lt;int&amp;gt; res;
         i">
-<meta property="og:updated_time" content="2016-09-28T03:01:56.069Z">
+<meta property="og:updated_time" content="2016-09-28T03:56:54.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第六天">
 <meta name="twitter:description" content="算法最小的K个数输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。有很多种解法：
@@ -393,6 +393,66 @@ public:
         }
         return al;
     }
+</code></pre><h3 id="把二叉树打印成多行"><a href="#把二叉树打印成多行" class="headerlink" title="把二叉树打印成多行"></a>把二叉树打印成多行</h3><h4 id="从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。"><a href="#从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。" class="headerlink" title="从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。"></a>从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。</h4><pre><code>/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+        vector&lt;vector&lt;int&gt; &gt; Print(TreeNode* pRoot) {
+            vector&lt;vector&lt;int&gt;&gt; res;
+            if(pRoot == NULL) return res;
+            queue&lt;TreeNode*&gt; q;
+            q.push(pRoot);
+            while(!q.empty()){
+                vector&lt;int&gt; v;
+                int n = q.size();
+                for(int i = 0; i&lt;n; i++){
+                    TreeNode* t = q.front();
+                    q.pop();
+                    if(t!=NULL) v.push_back(t-&gt;val);
+                    if(t-&gt;left!=NULL) q.push(t-&gt;left);
+                    if(t-&gt;right!=NULL) q.push(t-&gt;right);
+                }
+                res.push_back(v);
+            }
+            return res;
+        }
+
+};
+</code></pre><h3 id="对称的二叉树"><a href="#对称的二叉树" class="headerlink" title="对称的二叉树"></a>对称的二叉树</h3><h4 id="请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。"><a href="#请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。" class="headerlink" title="请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。"></a>请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。</h4><p>只需要判断两个树的前序遍历序列和对称前序遍历序列是否相同。</p>
+<pre><code>/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    bool isSymmetrical(TreeNode* pRoot)
+    {
+        return isSymmetrical(pRoot, pRoot);
+    }
+    bool isSymmetrical(TreeNode* p1, TreeNode* p2){
+        if(p1==NULL &amp;&amp; p2==NULL) return true;
+        if(p1==NULL || p2==NULL) return false;
+        if(p1-&gt;val != p2-&gt;val) return false;
+        return isSymmetrical(p1-&gt;left, p2-&gt;right) &amp;&amp; 
+            isSymmetrical(p1-&gt;right, p2-&gt;left);
+    }
+
+
+};
 </code></pre><h2 id="托福"><a href="#托福" class="headerlink" title="托福"></a>托福</h2><p>已经做了两天阅读了，情况不错，继续保持。</p>
 
       
@@ -525,7 +585,7 @@ public:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小的K个数"><span class="nav-number">1.1.</span> <span class="nav-text">最小的K个数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><span class="nav-number">1.1.1.</span> <span class="nav-text">输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法一：排序"><span class="nav-number">1.1.2.</span> <span class="nav-text">解法一：排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法二：Partition"><span class="nav-number">1.1.3.</span> <span class="nav-text">解法二：Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法三：最小堆"><span class="nav-number">1.1.4.</span> <span class="nav-text">解法三：最小堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法四：冒泡排序的前k次"><span class="nav-number">1.1.5.</span> <span class="nav-text">解法四：冒泡排序的前k次</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#托福"><span class="nav-number">2.</span> <span class="nav-text">托福</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小的K个数"><span class="nav-number">1.1.</span> <span class="nav-text">最小的K个数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><span class="nav-number">1.1.1.</span> <span class="nav-text">输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法一：排序"><span class="nav-number">1.1.2.</span> <span class="nav-text">解法一：排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法二：Partition"><span class="nav-number">1.1.3.</span> <span class="nav-text">解法二：Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法三：最小堆"><span class="nav-number">1.1.4.</span> <span class="nav-text">解法三：最小堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法四：冒泡排序的前k次"><span class="nav-number">1.1.5.</span> <span class="nav-text">解法四：冒泡排序的前k次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把二叉树打印成多行"><span class="nav-number">1.2.</span> <span class="nav-text">把二叉树打印成多行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。"><span class="nav-number">1.2.1.</span> <span class="nav-text">从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对称的二叉树"><span class="nav-number">1.3.</span> <span class="nav-text">对称的二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。"><span class="nav-number">1.3.1.</span> <span class="nav-text">请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#托福"><span class="nav-number">2.</span> <span class="nav-text">托福</span></a></li></ol></div>
             
           </div>
         </section>
