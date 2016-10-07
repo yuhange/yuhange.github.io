@@ -1,0 +1,891 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="leetcode 递归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第十三天">
+<meta property="og:url" content="http://yoursite.com/2016/10/04/第十三天/index.html">
+<meta property="og:site_name" content="Future Seeking">
+<meta property="og:description" content="leetcode 递归">
+<meta property="og:updated_time" content="2016-10-07T10:19:50.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第十三天">
+<meta name="twitter:description" content="leetcode 递归">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/04/第十三天/"/>
+
+  <title> 第十三天 | Future Seeking </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Future Seeking</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">One Year For a Result</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第十三天
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-10-04T18:03:54+08:00" content="2016-10-04">
+              2016-10-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="leetcode-递归"><a href="#leetcode-递归" class="headerlink" title="leetcode 递归"></a>leetcode 递归</h1><a id="more"></a>
+<h2 id="题目编号"><a href="#题目编号" class="headerlink" title="题目编号"></a>题目编号</h2><ul>
+<li>46.Permutations</li>
+<li>77.Combinations</li>
+<li>90.Subsets II</li>
+<li>78.Subsets</li>
+<li>216.Combination Sum III</li>
+<li>39.Combination Sum</li>
+<li>40.Combination Sum II</li>
+</ul>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>按照套路</li>
+<li>套用条件</li>
+<li>调试</li>
+</ol>
+<h3 id="46-Permutations"><a href="#46-Permutations" class="headerlink" title="46. Permutations"></a>46. Permutations</h3><p>Given a collection of distinct numbers, return all possible permutations. </p>
+<p>For example,</p>
+<p>[1,2,3] have the following permutations:</p>
+<pre><code>[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+</code></pre><p>排列问题</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    int path[100] = {0};
+    bool visited[100] = {false};
+    void robot(int idx, vector&lt;int&gt;&amp; nums){
+        if(idx &gt;= nums.size()) {
+            vector&lt;int&gt; v;
+            for(int i = 0; i&lt;nums.size(); i++){
+                v.push_back(nums[path[i]]);
+            }
+            res.push_back(v);
+            return;
+        }
+        for(int i = 0 ; i&lt;nums.size(); i++){
+            if(!visited[i]){
+                path[idx] = i;
+                visited[i] = true;//何时把visited改回来？
+                robot(idx+1, nums);
+                visited[i] = false;
+            }
+
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; permute(vector&lt;int&gt;&amp; nums) {
+        if(nums.size() == 0) return res;
+        robot(0, nums);
+        return res;
+    }
+};
+</code></pre><h3 id="77-Combinations"><a href="#77-Combinations" class="headerlink" title="77. Combinations"></a>77. Combinations</h3><p>Given two integers n and k, return all possible combinations of k numbers out of 1 … n. </p>
+<p>For example,<br>If n = 4 and k = 2, a solution is: </p>
+<pre><code>[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+</code></pre><p>组合问题，默认结果从小到大，不考虑顺序。</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    int path[100] = {0};//记录路径
+    int K = 0;
+    void robot(int idx, int n, int k){//idx[0,n]
+        if(k == 0){
+            //判断边界条件。和idx的定义是什么有关。idx代表最后搜到的数字是神马。
+            vector&lt;int&gt; v;
+            for(int i = 0 ; i&lt;K ; i++){
+                v.push_back(path[i]);
+            }
+            res.push_back(v);
+            return;
+        }
+        for(int i = idx+1; i&lt;=n; i++){
+            path[k-1] = i;
+            robot(i, n, k-1);
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; combine(int n, int k) {
+        if(k&gt;n) return res;
+        K = k;
+        robot(0, n, k);//套路
+        return res;//套路
+    }
+};
+</code></pre><h3 id="90-Subsets-II"><a href="#90-Subsets-II" class="headerlink" title="90. Subsets II"></a>90. Subsets II</h3><p>Given a collection of integers that might contain duplicates, nums, return all possible subsets. </p>
+<p>Note: The solution set must not contain duplicate subsets. </p>
+<p>For example,</p>
+<p>If nums = [1,2,2], a solution is: </p>
+<pre><code>[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+</code></pre><p>难点在去重。</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    bool v[100] = {false};
+    void robot(int idx, vector&lt;int&gt;&amp; nums){
+        if(idx&gt;=nums.size()){
+            vector&lt;int&gt; vec;
+            for(int i = 0 ; i&lt;nums.size(); i++){
+                if(v[i]) vec.push_back(nums[i]);
+            }
+            res.push_back(vec);
+            return;
+        }
+        if(idx&gt;0 &amp;&amp; nums[idx-1] == nums[idx] &amp;&amp; v[idx-1]==false){
+            v[idx] = false;
+            robot(idx+1, nums);
+        }else{
+            v[idx] = true;
+            robot(idx+1, nums);
+            v[idx] = false;
+            robot(idx+1, nums);
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; subsetsWithDup(vector&lt;int&gt;&amp; nums) {
+        sort(nums.begin(), nums.end());
+        robot(0, nums);
+        return res;
+    }
+};  
+</code></pre><h3 id="78-Subsets"><a href="#78-Subsets" class="headerlink" title="78. Subsets"></a>78. Subsets</h3><p>Given a set of distinct integers, nums, return all possible subsets. </p>
+<p>Note: The solution set must not contain duplicate subsets. </p>
+<p>For example,</p>
+<p>If nums = [1,2,3], a solution is: </p>
+<pre><code>[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+</code></pre><p>不需要考虑重复</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    bool v[100] = {false};
+    void robot(int idx, vector&lt;int&gt;&amp; nums){
+        if(idx&gt;=nums.size()){
+            vector&lt;int&gt; vec;
+            for(int i = 0 ; i&lt;nums.size(); i++){
+                if(v[i]) vec.push_back(nums[i]);
+            }
+            res.push_back(vec);
+            return;
+        }
+        v[idx] = true;
+        robot(idx+1, nums);
+        v[idx] = false;
+        robot(idx+1, nums);
+    }
+    vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) {
+        sort(nums.begin(), nums.end());
+        robot(0, nums);
+        return res;
+    }
+};
+</code></pre><h3 id="216-Combination-Sum-III"><a href="#216-Combination-Sum-III" class="headerlink" title="216. Combination Sum III"></a>216. Combination Sum III</h3><p>Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p>
+<p>Example 1:</p>
+<p>Input: k = 3, n = 7<br>Output: </p>
+<pre><code>[[1,2,4]]
+</code></pre><p>Example 2:</p>
+<p>Input: k = 3, n = 9<br>Output: </p>
+<pre><code>[[1,2,6], [1,3,5], [2,3,4]]
+</code></pre><p>不允许重复</p>
+<h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    int K;
+    int target;
+    bool path[9] = {false};
+    void robot(int idx, int count, int sum, vector&lt;int&gt; c){
+        if(count == K &amp;&amp; sum == target) {
+            //record
+            res.push_back(c);
+            return ;
+        }
+        if(sum&gt;target || count&gt;K){
+            return;
+        }
+        //cout&lt;&lt;idx&lt;&lt;&quot; &quot;;
+        for(int i = idx+1; i&lt;10; i++){
+            c.push_back(i);
+            robot(i, count+1, sum+i, c);
+            c.pop_back();
+        }
+
+    }
+    vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) {
+        vector&lt;int&gt; c;
+        K = k;
+        target = n;
+        robot(0, 0, 0, c);
+        return res;
+    }
+};
+</code></pre><h4 id="解法一：-1"><a href="#解法一：-1" class="headerlink" title="解法一："></a>解法一：</h4><pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    bool path[10] = {false};
+    int K;
+    void robot(int idx, int count, int target){
+        if(count == K &amp;&amp; target == 0) {
+            //record
+            vector&lt;int&gt; v;
+            for(int i = 1; i&lt;10; i++){
+                if(path[i]) v.push_back(i);
+            }
+            res.push_back(v);
+            return ;
+        }
+        if(target&lt;0 || count&gt;K){
+            return;
+        }
+        //cout&lt;&lt;idx&lt;&lt;&quot; &quot;;
+        for(int i = idx+1; i&lt;10; i++){
+            path[i] = true;
+            robot(i, count+1, target-i);
+            path[i] = false;
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) {
+        K = k;
+        robot(0, 0, n);
+        return res;
+    }
+};
+</code></pre><h3 id="39-Combination-Sum"><a href="#39-Combination-Sum" class="headerlink" title="39. Combination Sum"></a>39. Combination Sum</h3><p>Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T. </p>
+<p>The same repeated number may be chosen from C unlimited number of times. </p>
+<p>Note:</p>
+<p>All numbers (including target) will be positive integers.</p>
+<p>The solution set must not contain duplicate combinations.</p>
+<p>For example, given candidate set [2, 3, 6, 7] and target 7, </p>
+<p>A solution set is: </p>
+<pre><code>[
+  [7],
+  [2, 2, 3]
+]
+</code></pre><p>结合216来看</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    int path[100] = {0};
+    int len = 0;//path的长度
+    void robot(int idx, vector&lt;int&gt;&amp; c, int target){
+        if(target == 0) {
+            //record
+            vector&lt;int&gt; vec;
+            for(int i = 0; i&lt;len; i++){
+                vec.push_back(path[i]);
+            }
+            res.push_back(vec);
+            return ;
+        }
+        if(target&lt;0 || idx&gt;=c.size()){
+            return;
+        }
+        path[len++] = c[idx]; 
+        //+1和循环的区别：看待问题的角度不同。
+        robot(idx, c, target-c[idx]);//使用idx
+        len--;
+        robot(idx+1, c, target);//不再使用idx.
+    }
+    vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) {
+        robot(0, candidates, target);
+        return res;
+    }
+};
+</code></pre><h3 id="40-Combination-Sum-II"><a href="#40-Combination-Sum-II" class="headerlink" title="40. Combination Sum II"></a>40. Combination Sum II</h3><p>Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T. </p>
+<p>Each number in C may only be used once in the combination. </p>
+<p>Note:</p>
+<p>All numbers (including target) will be positive integers.</p>
+<p>The solution set must not contain duplicate combinations.</p>
+<p>For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8, </p>
+<p>A solution set is: </p>
+<pre><code>[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+</code></pre><p>元素有重复，难在去重，参考Subsets2</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    int path[100] = {0};
+    bool v[100] = {false};
+    int len = 0;//path的长度
+    void robot(int idx, vector&lt;int&gt;&amp; c, int target){
+        if(target == 0) {
+            //record
+            vector&lt;int&gt; vec;
+            for(int i = 0; i&lt;len; i++){
+                vec.push_back(path[i]);
+            }
+            res.push_back(vec);
+            return ;
+        }
+        if(target&lt;0 || idx&gt;=c.size()){
+            return;
+        }
+        if(idx&gt;0 &amp;&amp; c[idx-1] == c[idx] &amp;&amp; v[idx-1] == false){ //去重
+            v[idx] = false;
+            //len--;
+            robot(idx+1, c, target);//不再使用idx.
+        }else{
+            path[len++] = c[idx]; 
+            v[idx] = true;
+            robot(idx+1, c, target-c[idx]);//使用idx
+            v[idx] = false;
+            len--;
+            robot(idx+1, c, target);//不再使用idx.
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        robot(0, candidates, target);
+        return res;
+    }
+};
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/03/第十二天/" rel="next" title="第十二天">
+                <i class="fa fa-chevron-left"></i> 第十二天
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/05/第十四天/" rel="prev" title="第十四天">
+                第十四天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Yu Hange" />
+          <p class="site-author-name" itemprop="name">Yu Hange</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-递归"><span class="nav-number">1.</span> <span class="nav-text">leetcode 递归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目编号"><span class="nav-number">1.1.</span> <span class="nav-text">题目编号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.1.1.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#46-Permutations"><span class="nav-number">1.1.2.</span> <span class="nav-text">46. Permutations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#77-Combinations"><span class="nav-number">1.1.3.</span> <span class="nav-text">77. Combinations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#90-Subsets-II"><span class="nav-number">1.1.4.</span> <span class="nav-text">90. Subsets II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#78-Subsets"><span class="nav-number">1.1.5.</span> <span class="nav-text">78. Subsets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#216-Combination-Sum-III"><span class="nav-number">1.1.6.</span> <span class="nav-text">216. Combination Sum III</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解法一："><span class="nav-number">1.1.6.1.</span> <span class="nav-text">解法一：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法一：-1"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">解法一：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39-Combination-Sum"><span class="nav-number">1.1.7.</span> <span class="nav-text">39. Combination Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#40-Combination-Sum-II"><span class="nav-number">1.1.8.</span> <span class="nav-text">40. Combination Sum II</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Hange</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

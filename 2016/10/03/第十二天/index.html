@@ -1,0 +1,1108 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="leetcode 树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第十二天">
+<meta property="og:url" content="http://yoursite.com/2016/10/03/第十二天/index.html">
+<meta property="og:site_name" content="Future Seeking">
+<meta property="og:description" content="leetcode 树">
+<meta property="og:updated_time" content="2016-10-07T10:19:41.227Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第十二天">
+<meta name="twitter:description" content="leetcode 树">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/03/第十二天/"/>
+
+  <title> 第十二天 | Future Seeking </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Future Seeking</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">One Year For a Result</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第十二天
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-10-03T18:03:46+08:00" content="2016-10-03">
+              2016-10-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="leetcode-树"><a href="#leetcode-树" class="headerlink" title="leetcode 树"></a>leetcode 树</h1><a id="more"></a>
+<h2 id="题目编号"><a href="#题目编号" class="headerlink" title="题目编号"></a>题目编号</h2><ul>
+<li>404.Sum of Left Leaves</li>
+<li>257.Binary Tree Paths</li>
+<li>236.Lowest Common Ancestor of a Binary Tree</li>
+<li>235.Lowest Common Ancestor of a Binary Search Tree</li>
+<li>226.Invert Binary Tree</li>
+<li>112.Path Sum</li>
+<li>111.Minimum Depth of Binary Tree</li>
+<li>104.Maximum Depth of Binary Tree</li>
+<li>101.Symmetric Tree</li>
+<li>100.Same Tree</li>
+<li>222.Count Complete Tree Nodes</li>
+<li>173.Binary Search Tree Iterator</li>
+<li>116.Populating Next Right Pointers in Each Node</li>
+</ul>
+<h2 id="题目类型"><a href="#题目类型" class="headerlink" title="题目类型"></a>题目类型</h2><ul>
+<li>根到结点的路径（打印，和）</li>
+<li>打印（BFS、DFS）</li>
+<li>DFS的变形</li>
+</ul>
+<h3 id="404-Sum-of-Left-Leaves"><a href="#404-Sum-of-Left-Leaves" class="headerlink" title="404.Sum of Left Leaves"></a>404.Sum of Left Leaves</h3><p>Find the sum of all left leaves in a given binary tree.</p>
+<p>Example: </p>
+<pre><code>  3
+ / \
+9  20
+  /  \
+ 15   7
+</code></pre><p>There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.</p>
+<p>广度优先遍历的过程中判断要压入的结点是不是左叶子。</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(root == NULL) return 0;
+        queue&lt;TreeNode*&gt; q;
+        q.push(root);
+        int count = 0;
+        while(!q.empty()){
+            TreeNode* t = q.front();
+            q.pop();
+            if(t-&gt;left){
+                if(t-&gt;left-&gt;left == NULL &amp;&amp; t-&gt;left-&gt;right == NULL) count += t-&gt;left-&gt;val;
+                else q.push(t-&gt;left);
+            }
+            if(t-&gt;right) q.push(t-&gt;right);
+        }
+        return count;
+    }
+};
+</code></pre><h3 id="257-Binary-Tree-Paths"><a href="#257-Binary-Tree-Paths" class="headerlink" title="257. Binary Tree Paths"></a>257. Binary Tree Paths</h3><p>Given a binary tree, return all root-to-leaf paths.</p>
+<p>For example, given the following binary tree: </p>
+<pre><code>   1
+ /   \
+2     3
+ \
+  5
+</code></pre><p>All root-to-leaf paths are:<br>[“1-&gt;2-&gt;5”, “1-&gt;3”]</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector&lt;string&gt; binaryTreePaths(TreeNode* root) {
+        vector&lt;string&gt; ret;
+        if(root == NULL) return ret;
+        if(root-&gt;left==NULL &amp;&amp; root-&gt;right==NULL){
+            char buff[100];
+            sprintf(buff, &quot;%d&quot;, root-&gt;val);
+            ret.push_back(buff);
+            return ret;
+        }
+        if(root-&gt;left){
+            vector&lt;string&gt; lefts = binaryTreePaths(root-&gt;left);
+            for (int i = 0; i &lt; lefts.size(); i++) {
+                 char *buff = new char[lefts[i].size()+56];
+                 sprintf(buff, &quot;%d-&gt;%s&quot;, root-&gt;val, lefts[i].c_str());
+                 ret.push_back(buff);
+                 delete[] buff;
+             }
+        }
+        if (root-&gt;right) {
+             vector&lt;string&gt; rights = binaryTreePaths(root-&gt;right);
+             for (int i = 0; i &lt; rights.size(); i++) {
+                 char *buff = new char[rights[i].size()+56];
+                 sprintf(buff, &quot;%d-&gt;%s&quot;, root-&gt;val, rights[i].c_str());
+                 ret.push_back(buff);
+                 delete[] buff;
+             }
+         }
+         return ret;
+    }
+};
+</code></pre><h3 id="236-Lowest-Common-Ancestor-of-a-Binary-Tree"><a href="#236-Lowest-Common-Ancestor-of-a-Binary-Tree" class="headerlink" title="236. Lowest Common Ancestor of a Binary Tree"></a>236. Lowest Common Ancestor of a Binary Tree</h3><p>Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. </p>
+<p>According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).” </p>
+<pre><code>     _______3______
+    /              \
+ ___5__          ___1__
+/      \        /      \
+6      _2       0       8
+      /  \
+      7   4
+</code></pre><p>For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.</p>
+<p>本题与LeetCode 235的区别就是由二叉查找树变为了二叉树，即数据从有序变为了无序，那么就不能通过root的值和两个节点的值的大小关系来划分查找区域。在题235的代码基础做了些许变动，同样使用递归搜索的方法，当root非空时，对root-&gt;left和root-&gt;right分别进行搜索。若搜索结果均非空，说明两个节点分别位于左右子树之中，LCA则为root；若只有一个结果为空，则LCA是另一个非空的节点；若结果均空，则返回NULL。</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root == NULL) return NULL;
+        if(p == root || q == root) return root;
+        TreeNode* n1 = lowestCommonAncestor(root-&gt;left, p, q);
+        TreeNode* n2 = lowestCommonAncestor(root-&gt;right, p, q);
+        if(n1!=NULL &amp;&amp; n2!=NULL) return root;
+        if(!n1) return n2;
+        if(!n2) return n1;
+        return NULL;
+    }
+};
+</code></pre><h3 id="235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree"><a href="#235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree" class="headerlink" title="235. Lowest Common Ancestor of a Binary Search Tree"></a>235. Lowest Common Ancestor of a Binary Search Tree</h3><p>Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.</p>
+<p>According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).” </p>
+<pre><code>     _______6______
+    /              \
+ ___2__          ___8__
+/      \        /      \
+0      _4       7       9
+      /  \
+      3   5
+</code></pre><p>For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another example is LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.</p>
+<p>如果如果p,q 比root小, 则LCA必定在左子树, 如果p,q比root大, 则LCA必定在右子树. 如果一大一小, 则root即为LCA.</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root == NULL) return NULL;
+        if(p==root || q == root) return root;
+        int pV = p-&gt;val;
+        int qV = q-&gt;val;
+        int rV = root-&gt;val;
+        if((rV-pV)*(rV-qV)&lt;0) return root;
+        if((rV-pV)*(rV-qV)&gt;0 &amp;&amp; pV&lt;rV) return lowestCommonAncestor(root-&gt;left, p, q);
+        if((rV-pV)*(rV-qV)&gt;0 &amp;&amp; pV&gt;rV) return lowestCommonAncestor(root-&gt;right, p, q);
+        return NULL;
+    }
+};
+</code></pre><h3 id="226-Invert-Binary-Tree"><a href="#226-Invert-Binary-Tree" class="headerlink" title="226. Invert Binary Tree"></a>226. Invert Binary Tree</h3><p>Invert a binary tree. </p>
+<pre><code>     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+</code></pre><p>to </p>
+<pre><code>     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+</code></pre><p>Trivia:</p>
+<p>This problem was inspired by this original tweet by Max Howell: </p>
+<blockquote>
+<p>Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so fuck off.    </p>
+</blockquote>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL) return NULL;
+        if(!root-&gt;left &amp;&amp; !root-&gt;right) return root;
+        TreeNode* tmp = root-&gt;left;
+        root-&gt;left = invertTree(root-&gt;right);
+        root-&gt;right = invertTree(tmp);
+        return root;
+    }
+};
+</code></pre><h3 id="112-Path-Sum"><a href="#112-Path-Sum" class="headerlink" title="112. Path Sum"></a>112. Path Sum</h3><p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. </p>
+<p>For example:</p>
+<p>Given the below binary tree and sum = 22, </p>
+<pre><code>      5
+     / \
+    4   8
+   /   / \
+  11  13  4
+ /  \      \
+7    2      1
+</code></pre><p>return true, as there exist a root-to-leaf path 5-&gt;4-&gt;11-&gt;2 which sum is 22.</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int sum) {
+        if(root == NULL) return false;
+        if(root-&gt;left==NULL &amp;&amp; root-&gt;right==NULL &amp;&amp; root-&gt;val == sum) return true;
+        return hasPathSum(root-&gt;left, sum-root-&gt;val) || hasPathSum(root-&gt;right, sum-root-&gt;val);
+    }
+};
+</code></pre><h3 id="111-Minimum-Depth-of-Binary-Tree"><a href="#111-Minimum-Depth-of-Binary-Tree" class="headerlink" title="111. Minimum Depth of Binary Tree"></a>111. Minimum Depth of Binary Tree</h3><p>Given a binary tree, find its minimum depth.</p>
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root == NULL) return 0;
+        if(!root-&gt;left) return 1+minDepth(root-&gt;right);
+        if(!root-&gt;right) return 1+minDepth(root-&gt;left);
+        else return min(minDepth(root-&gt;left), minDepth(root-&gt;right))+1; 
+    }
+};
+</code></pre><h3 id="129-Sum-Root-to-Leaf-Numbers"><a href="#129-Sum-Root-to-Leaf-Numbers" class="headerlink" title="129. Sum Root to Leaf Numbers"></a>129. Sum Root to Leaf Numbers</h3><p>Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.</p>
+<p>An example is the root-to-leaf path 1-&gt;2-&gt;3 which represents the number 123.</p>
+<p>Find the total sum of all root-to-leaf numbers.</p>
+<p>For example, </p>
+<pre><code>  1
+ / \
+2   3
+</code></pre><p>The root-to-leaf path 1-&gt;2 represents the number 12.</p>
+<p>The root-to-leaf path 1-&gt;3 represents the number 13.<br>Return the sum = 12 + 13 = 25. </p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int sumNumbers(TreeNode* root){
+        return dfs(root, 0);
+    }
+    int dfs(TreeNode* root, int sum) {
+        if(root == NULL) return 0;
+        if(!root-&gt;left &amp;&amp; !root-&gt;right) return sum*10+root-&gt;val;
+        return dfs(root-&gt;left, sum * 10 + root-&gt;val)+dfs(root-&gt;right,sum*10+root-&gt;val);
+    }
+};
+</code></pre><h3 id="104-Maximum-Depth-of-Binary-Tree"><a href="#104-Maximum-Depth-of-Binary-Tree" class="headerlink" title="104. Maximum Depth of Binary Tree"></a>104. Maximum Depth of Binary Tree</h3><p>Given a binary tree, find its maximum depth.</p>
+<p>The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(root == NULL) return 0;
+        if(!root-&gt;left) return 1+maxDepth(root-&gt;right);
+        if(!root-&gt;right) return 1+maxDepth(root-&gt;left);
+        return max(maxDepth(root-&gt;left),maxDepth(root-&gt;right))+1;
+    }
+};
+</code></pre><h3 id="101-Symmetric-Tree"><a href="#101-Symmetric-Tree" class="headerlink" title="101. Symmetric Tree"></a>101. Symmetric Tree</h3><p>Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</p>
+<p>For example, this binary tree [1,2,2,3,4,4,3] is symmetric: </p>
+<pre><code>    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+</code></pre><p>But the following [1,2,2,null,3,null,3] is not:</p>
+<pre><code>  1
+ / \
+2   2
+ \   \
+ 3    3
+</code></pre><p>Note:</p>
+<p>Bonus points if you could solve it both recursively and iteratively. </p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSymmetric(TreeNode* p1, TreeNode* p2){
+        if(!p1 &amp;&amp; !p2) return true;
+        if(p1&amp;&amp;!p2 || !p1&amp;&amp;p2) return false;
+        if(p1-&gt;val != p2-&gt;val) return false;
+        return isSymmetric(p1-&gt;left, p2-&gt;right) &amp;&amp; isSymmetric(p1-&gt;right, p2-&gt;left);
+    }
+    bool isSymmetric(TreeNode* root) {
+        return isSymmetric(root, root);
+    }
+};
+</code></pre><h3 id="100-Same-Tree"><a href="#100-Same-Tree" class="headerlink" title="100. Same Tree"></a>100. Same Tree</h3><p>Given two binary trees, write a function to check if they are equal or not. </p>
+<p>Two binary trees are considered equal if they are structurally identical and the nodes have the same value. </p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(!p &amp;&amp; !q) return true;
+        if(!p || !q) return false;
+        if(p-&gt;val != q-&gt;val) return false;
+        return isSameTree(p-&gt;left, q-&gt;left) &amp;&amp; isSameTree(p-&gt;right, q-&gt;right);
+    }
+};
+</code></pre><h3 id="222-Count-Complete-Tree-Nodes"><a href="#222-Count-Complete-Tree-Nodes" class="headerlink" title="222. Count Complete Tree Nodes"></a>222. Count Complete Tree Nodes</h3><p>Given a complete binary tree, count the number of nodes.</p>
+<p>Definition of a complete binary tree from Wikipedia:<br>In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int getLeftHeight(TreeNode* root){
+        int depth = 0;
+        while(root){
+            root = root-&gt;left;
+            depth++;
+        }
+        return depth;
+    }
+    int getRightHeight(TreeNode* root){
+        int depth = 0;
+        while(root){
+            root = root-&gt;right;
+            depth++;
+        }
+        return depth;
+    }
+    int countNodes(TreeNode* root) {
+        if(root == NULL) return 0;
+        int left = getLeftHeight(root);
+        int right = getRightHeight(root);
+        if(left == right) return (1&lt;&lt;left) - 1;//平方-1
+        else return countNodes(root-&gt;left)+countNodes(root-&gt;right)+1;
+    }
+};
+</code></pre><h3 id="173-Binary-Search-Tree-Iterator"><a href="#173-Binary-Search-Tree-Iterator" class="headerlink" title="173. Binary Search Tree Iterator"></a>173. Binary Search Tree Iterator</h3><p>Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.</p>
+<p>Calling next() will return the next smallest number in the BST.</p>
+<p>Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree. </p>
+<pre><code>/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class BSTIterator {
+public:
+    stack&lt;TreeNode*&gt; s;
+    vector&lt;int&gt; v;
+    BSTIterator(TreeNode *root) {
+        while(root){
+            s.push(root);
+            root = root-&gt;left;
+        }
+    }
+    /** @return whether we have a next smallest number */
+    bool hasNext() {
+        return (!s.empty());
+    }
+    /** @return the next smallest number */
+    int next() {
+        TreeNode* t = s.top();
+        TreeNode* current = t;
+        s.pop();
+        t = t-&gt;right;
+        while(t){
+            s.push(t);
+            t = t-&gt;left;
+        }
+        return current-&gt;val;
+    }
+};
+/**
+ * Your BSTIterator will be called like this:
+ * BSTIterator i = BSTIterator(root);
+ * while (i.hasNext()) cout &lt;&lt; i.next();
+ */
+</code></pre><h3 id="116-Populating-Next-Right-Pointers-in-Each-Node"><a href="#116-Populating-Next-Right-Pointers-in-Each-Node" class="headerlink" title="116. Populating Next Right Pointers in Each Node"></a>116. Populating Next Right Pointers in Each Node</h3><p>Given a binary tree </p>
+<pre><code>struct TreeLinkNode {
+  TreeLinkNode *left;
+  TreeLinkNode *right;
+  TreeLinkNode *next;
+}
+</code></pre><p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.</p>
+<p>Initially, all next pointers are set to NULL.</p>
+<p>Note: </p>
+<p>You may only use constant extra space.</p>
+<p>You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).</p>
+<p>For example,</p>
+<p>Given the following perfect binary tree,</p>
+<pre><code>     1
+   /  \
+  2    3
+ / \  / \
+4  5  6  7
+</code></pre><p>After calling your function, the tree should look like:</p>
+<pre><code>     1 -&gt; NULL
+   /  \
+  2 -&gt; 3 -&gt; NULL
+ / \  / \
+4-&gt;5-&gt;6-&gt;7 -&gt; NULL
+</code></pre><p>tag给的是DFS，但是明明BFS更好做。</p>
+<pre><code>/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if(root == NULL) return;
+        queue&lt;TreeLinkNode*&gt; q;
+        q.push(root);
+        while(!q.empty()){
+            int n = q.size();
+            cout&lt;&lt;n&lt;&lt;&quot;,&quot;;
+            for(int i = 0 ; i&lt;n ; i++){
+                TreeLinkNode* t = q.front();
+                q.pop();
+                if(t == root) t-&gt;next = NULL;
+                else if(i == n-1) t-&gt;next = NULL;
+                else{
+                    TreeLinkNode* next = q.front();
+                    t-&gt;next = next;
+                }
+                if(t-&gt;left) q.push(t-&gt;left);
+                if(t-&gt;right) q.push(t-&gt;right);
+            }
+        }
+    }
+};
+</code></pre><h3 id="114-Flatten-Binary-Tree-to-Linked-List"><a href="#114-Flatten-Binary-Tree-to-Linked-List" class="headerlink" title="114. Flatten Binary Tree to Linked List"></a>114. Flatten Binary Tree to Linked List</h3><p>Given a binary tree, flatten it to a linked list in-place. </p>
+<p>For example,</p>
+<p>Given </p>
+<pre><code>    1
+   / \
+  2   5
+ / \   \
+3   4   6
+</code></pre><p>The flattened tree should look like:</p>
+<pre><code>1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+         \
+          6
+</code></pre><p>深度优先。速度很慢，待优化</p>
+<pre><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        if(root == NULL) return;
+        stack&lt;TreeNode*&gt; s;
+        s.push(root);
+        //TreeNode* p = root;
+        while(!s.empty()){
+            TreeNode* t = s.top();
+            cout&lt;&lt;t-&gt;val&lt;&lt;&quot; &quot;;
+            s.pop();
+            if(t-&gt;right) s.push(t-&gt;right);
+            if(t-&gt;left) s.push(t-&gt;left);
+            if(!s.empty()){
+                TreeNode* p = s.top();
+                t-&gt;right = p;
+                t-&gt;left = NULL;
+            }else{
+                t-&gt;right = NULL;
+                t-&gt;left = NULL;
+            }
+        }
+     }
+};
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/03/第十一天/" rel="next" title="第十一天">
+                <i class="fa fa-chevron-left"></i> 第十一天
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/04/第十三天/" rel="prev" title="第十三天">
+                第十三天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Yu Hange" />
+          <p class="site-author-name" itemprop="name">Yu Hange</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-树"><span class="nav-number">1.</span> <span class="nav-text">leetcode 树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目编号"><span class="nav-number">1.1.</span> <span class="nav-text">题目编号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目类型"><span class="nav-number">1.2.</span> <span class="nav-text">题目类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#404-Sum-of-Left-Leaves"><span class="nav-number">1.2.1.</span> <span class="nav-text">404.Sum of Left Leaves</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#257-Binary-Tree-Paths"><span class="nav-number">1.2.2.</span> <span class="nav-text">257. Binary Tree Paths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#236-Lowest-Common-Ancestor-of-a-Binary-Tree"><span class="nav-number">1.2.3.</span> <span class="nav-text">236. Lowest Common Ancestor of a Binary Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree"><span class="nav-number">1.2.4.</span> <span class="nav-text">235. Lowest Common Ancestor of a Binary Search Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#226-Invert-Binary-Tree"><span class="nav-number">1.2.5.</span> <span class="nav-text">226. Invert Binary Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#112-Path-Sum"><span class="nav-number">1.2.6.</span> <span class="nav-text">112. Path Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#111-Minimum-Depth-of-Binary-Tree"><span class="nav-number">1.2.7.</span> <span class="nav-text">111. Minimum Depth of Binary Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#129-Sum-Root-to-Leaf-Numbers"><span class="nav-number">1.2.8.</span> <span class="nav-text">129. Sum Root to Leaf Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#104-Maximum-Depth-of-Binary-Tree"><span class="nav-number">1.2.9.</span> <span class="nav-text">104. Maximum Depth of Binary Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#101-Symmetric-Tree"><span class="nav-number">1.2.10.</span> <span class="nav-text">101. Symmetric Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#100-Same-Tree"><span class="nav-number">1.2.11.</span> <span class="nav-text">100. Same Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#222-Count-Complete-Tree-Nodes"><span class="nav-number">1.2.12.</span> <span class="nav-text">222. Count Complete Tree Nodes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#173-Binary-Search-Tree-Iterator"><span class="nav-number">1.2.13.</span> <span class="nav-text">173. Binary Search Tree Iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#116-Populating-Next-Right-Pointers-in-Each-Node"><span class="nav-number">1.2.14.</span> <span class="nav-text">116. Populating Next Right Pointers in Each Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#114-Flatten-Binary-Tree-to-Linked-List"><span class="nav-number">1.2.15.</span> <span class="nav-text">114. Flatten Binary Tree to Linked List</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Hange</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
