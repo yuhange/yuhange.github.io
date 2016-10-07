@@ -84,25 +84,37 @@
 
 
 
-<meta name="description" content="算法的不足
-大部分的算法拿到手第一时间的反应不是自己思考，而是去看分析。
-手动写代码的能力太差，不能提前预知错误。
-代码的防护性太差了。">
+<meta name="description" content="第一课7 Reverse an intclass Solution {
+public:
+int reverse(int x) {
+    long long ans = 0;
+    const int maxint = 0x7fffffff;
+    const int minint = 0x80000000;
+    while( x!=0 ){
+        ans = ans*10 +">
 <meta property="og:type" content="article">
-<meta property="og:title" content="准备第一天">
-<meta property="og:url" content="http://yoursite.com/2016/09/23/准备第一天/index.html">
+<meta property="og:title" content="第九天">
+<meta property="og:url" content="http://yoursite.com/2016/10/07/第九天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:description" content="算法的不足
-大部分的算法拿到手第一时间的反应不是自己思考，而是去看分析。
-手动写代码的能力太差，不能提前预知错误。
-代码的防护性太差了。">
-<meta property="og:updated_time" content="2016-09-23T08:31:10.090Z">
+<meta property="og:description" content="第一课7 Reverse an intclass Solution {
+public:
+int reverse(int x) {
+    long long ans = 0;
+    const int maxint = 0x7fffffff;
+    const int minint = 0x80000000;
+    while( x!=0 ){
+        ans = ans*10 +">
+<meta property="og:updated_time" content="2016-10-07T10:06:21.831Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="准备第一天">
-<meta name="twitter:description" content="算法的不足
-大部分的算法拿到手第一时间的反应不是自己思考，而是去看分析。
-手动写代码的能力太差，不能提前预知错误。
-代码的防护性太差了。">
+<meta name="twitter:title" content="第九天">
+<meta name="twitter:description" content="第一课7 Reverse an intclass Solution {
+public:
+int reverse(int x) {
+    long long ans = 0;
+    const int maxint = 0x7fffffff;
+    const int minint = 0x80000000;
+    while( x!=0 ){
+        ans = ans*10 +">
 
 
 
@@ -123,9 +135,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/23/准备第一天/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/07/第九天/"/>
 
-  <title> 准备第一天 | Future Seeking </title>
+  <title> 第九天 | Future Seeking </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -245,7 +257,7 @@
             
             
               
-                准备第一天
+                第九天
               
             
           </h1>
@@ -257,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posté le</span>
-            <time itemprop="dateCreated" datetime="2016-09-23T13:28:11+08:00" content="2016-09-23">
-              2016-09-23
+            <time itemprop="dateCreated" datetime="2016-10-07T18:03:04+08:00" content="2016-10-07">
+              2016-10-07
             </time>
           </span>
 
@@ -285,11 +297,84 @@
       
 
       
-        <h2 id="算法的不足"><a href="#算法的不足" class="headerlink" title="算法的不足"></a>算法的不足</h2><ol>
-<li>大部分的算法拿到手第一时间的反应不是自己思考，而是去看分析。</li>
-<li>手动写代码的能力太差，不能提前预知错误。</li>
-<li>代码的防护性太差了。</li>
+        <h2 id="第一课"><a href="#第一课" class="headerlink" title="第一课"></a>第一课</h2><h3 id="7-Reverse-an-int"><a href="#7-Reverse-an-int" class="headerlink" title="7 Reverse an int"></a>7 Reverse an int</h3><pre><code>class Solution {
+public:
+int reverse(int x) {
+    long long ans = 0;
+    const int maxint = 0x7fffffff;
+    const int minint = 0x80000000;
+    while( x!=0 ){
+        ans = ans*10 + x%10;
+        x/=10;
+    }
+    if(ans&lt;minint || ans&gt;maxint){
+        return 0;
+    }
+    return ans;
+}
+};
+</code></pre><h3 id="8-String-to-int-atoi"><a href="#8-String-to-int-atoi" class="headerlink" title="8 String to int(atoi)"></a>8 String to int(atoi)</h3><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ol>
+<li>0 正数 负数 小数</li>
+<li>错误处理？</li>
+<li>数据大小</li>
+<li>32位int的最大最小值</li>
 </ol>
+<h3 id="231-Power-of-Two"><a href="#231-Power-of-Two" class="headerlink" title="231 Power of Two"></a>231 Power of Two</h3><h4 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h4><p>n&amp;(n-1) 去掉n最左边的1.</p>
+<pre><code>class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        if(n&lt;=0) return false;
+        return ((n&amp;(n-1))==0);
+    }
+};
+</code></pre><h2 id="342-Power-of-Four"><a href="#342-Power-of-Four" class="headerlink" title="342 Power of Four"></a>342 Power of Four</h2><h3 id="Trick-1"><a href="#Trick-1" class="headerlink" title="Trick"></a>Trick</h3><p>n&amp;0x55555555: 保证1在奇数位。</p>
+<pre><code>class Solution {
+public:
+bool isPowerOfFour(int n) {
+        if(n&lt;=0) return false;
+        return ((n&amp;(n-1))==0 &amp;&amp; (n&amp;0x55555555));
+    }
+};
+</code></pre><h2 id="326-Power-of-Three"><a href="#326-Power-of-Three" class="headerlink" title="326 Power of Three"></a>326 Power of Three</h2><h3 id="此方法只对素数有效"><a href="#此方法只对素数有效" class="headerlink" title="此方法只对素数有效"></a>此方法只对素数有效</h3><pre><code>class Solution {
+public:
+bool isPowerOfThree(int n) {
+    int maxint = 0x7fffffff;
+    if(n &lt;= 0) return false;
+    int k = log(maxint)/log(3);
+    int big3 = pow(3, k);
+    return (big3%n == 0);
+}
+};
+</code></pre><h2 id="191-Number-of-1-Bits"><a href="#191-Number-of-1-Bits" class="headerlink" title="191 Number of 1 Bits"></a>191 Number of 1 Bits</h2><pre><code>class Solution {
+public:
+int hammingWeight(uint32_t n) {
+    int ans = 0;
+    while(n!=0){
+        n = n&amp;(n-1);//最高位变0
+        ans++;
+    }
+    return ans;
+}
+};
+</code></pre><h2 id="172-Factorial-Trailing-Zeros"><a href="#172-Factorial-Trailing-Zeros" class="headerlink" title="172 Factorial Trailing Zeros"></a>172 Factorial Trailing Zeros</h2><pre><code>class Solution {
+public:
+int trailingZeroes(int n) {
+    int sum = 0;
+    while(n&gt;0){
+        sum+=n/5;
+        n/=5;
+    }
+    return sum;
+}
+};
+</code></pre><h2 id="258-Add-Digits"><a href="#258-Add-Digits" class="headerlink" title="258 Add Digits"></a>258 Add Digits</h2><pre><code>class Solution {
+public:
+int addDigits(int num) {
+    if(num == 0) return 0;
+    return ((num-1)%9 + 1);
+}
+};
+</code></pre><p>## </p>
 
       
     </div>
@@ -315,16 +400,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/22/第一篇博客/" rel="next" title="第一篇博客">
-                <i class="fa fa-chevron-left"></i> 第一篇博客
+              <a href="/2016/09/30/今天我22岁/" rel="next" title="今天我22岁">
+                <i class="fa fa-chevron-left"></i> 今天我22岁
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/24/第二天-算法复习/" rel="prev" title="第二天-算法复习">
-                第二天-算法复习 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/07/第十天/" rel="prev" title="第十天">
+                第十天 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -432,7 +517,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的不足"><span class="nav-number">1.</span> <span class="nav-text">算法的不足</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一课"><span class="nav-number">1.</span> <span class="nav-text">第一课</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Reverse-an-int"><span class="nav-number">1.1.</span> <span class="nav-text">7 Reverse an int</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-String-to-int-atoi"><span class="nav-number">1.2.</span> <span class="nav-text">8 String to int(atoi)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意"><span class="nav-number">1.2.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#231-Power-of-Two"><span class="nav-number">1.3.</span> <span class="nav-text">231 Power of Two</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Trick"><span class="nav-number">1.3.1.</span> <span class="nav-text">Trick</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#342-Power-of-Four"><span class="nav-number">2.</span> <span class="nav-text">342 Power of Four</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trick-1"><span class="nav-number">2.1.</span> <span class="nav-text">Trick</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#326-Power-of-Three"><span class="nav-number">3.</span> <span class="nav-text">326 Power of Three</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#此方法只对素数有效"><span class="nav-number">3.1.</span> <span class="nav-text">此方法只对素数有效</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#191-Number-of-1-Bits"><span class="nav-number">4.</span> <span class="nav-text">191 Number of 1 Bits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#172-Factorial-Trailing-Zeros"><span class="nav-number">5.</span> <span class="nav-text">172 Factorial Trailing Zeros</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#258-Add-Digits"><span class="nav-number">6.</span> <span class="nav-text">258 Add Digits</span></a></li></ol></div>
             
           </div>
         </section>
