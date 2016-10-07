@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Home
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-10-07T18:03:28+08:00" content="2016-10-07">
               2016-10-07
             </time>
@@ -281,7 +281,7 @@
           <h1 id="leetcode-与-二分法"><a href="#leetcode-与-二分法" class="headerlink" title="leetcode 与 二分法"></a>leetcode 与 二分法</h1>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/07/第十天/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -344,7 +344,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-10-07T18:03:04+08:00" content="2016-10-07">
               2016-10-07
             </time>
@@ -374,87 +374,12 @@
 
       
         
-          
-            <h2 id="第一课"><a href="#第一课" class="headerlink" title="第一课"></a>第一课</h2><h3 id="7-Reverse-an-int"><a href="#7-Reverse-an-int" class="headerlink" title="7 Reverse an int"></a>7 Reverse an int</h3><pre><code>class Solution {
-public:
-int reverse(int x) {
-    long long ans = 0;
-    const int maxint = 0x7fffffff;
-    const int minint = 0x80000000;
-    while( x!=0 ){
-        ans = ans*10 + x%10;
-        x/=10;
-    }
-    if(ans&lt;minint || ans&gt;maxint){
-        return 0;
-    }
-    return ans;
-}
-};
-</code></pre><h3 id="8-String-to-int-atoi"><a href="#8-String-to-int-atoi" class="headerlink" title="8 String to int(atoi)"></a>8 String to int(atoi)</h3><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ol>
-<li>0 正数 负数 小数</li>
-<li>错误处理？</li>
-<li>数据大小</li>
-<li>32位int的最大最小值</li>
-</ol>
-<h3 id="231-Power-of-Two"><a href="#231-Power-of-Two" class="headerlink" title="231 Power of Two"></a>231 Power of Two</h3><h4 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h4><p>n&amp;(n-1) 去掉n最左边的1.</p>
-<pre><code>class Solution {
-public:
-    bool isPowerOfTwo(int n) {
-        if(n&lt;=0) return false;
-        return ((n&amp;(n-1))==0);
-    }
-};
-</code></pre><h2 id="342-Power-of-Four"><a href="#342-Power-of-Four" class="headerlink" title="342 Power of Four"></a>342 Power of Four</h2><h3 id="Trick-1"><a href="#Trick-1" class="headerlink" title="Trick"></a>Trick</h3><p>n&amp;0x55555555: 保证1在奇数位。</p>
-<pre><code>class Solution {
-public:
-bool isPowerOfFour(int n) {
-        if(n&lt;=0) return false;
-        return ((n&amp;(n-1))==0 &amp;&amp; (n&amp;0x55555555));
-    }
-};
-</code></pre><h2 id="326-Power-of-Three"><a href="#326-Power-of-Three" class="headerlink" title="326 Power of Three"></a>326 Power of Three</h2><h3 id="此方法只对素数有效"><a href="#此方法只对素数有效" class="headerlink" title="此方法只对素数有效"></a>此方法只对素数有效</h3><pre><code>class Solution {
-public:
-bool isPowerOfThree(int n) {
-    int maxint = 0x7fffffff;
-    if(n &lt;= 0) return false;
-    int k = log(maxint)/log(3);
-    int big3 = pow(3, k);
-    return (big3%n == 0);
-}
-};
-</code></pre><h2 id="191-Number-of-1-Bits"><a href="#191-Number-of-1-Bits" class="headerlink" title="191 Number of 1 Bits"></a>191 Number of 1 Bits</h2><pre><code>class Solution {
-public:
-int hammingWeight(uint32_t n) {
-    int ans = 0;
-    while(n!=0){
-        n = n&amp;(n-1);//最高位变0
-        ans++;
-    }
-    return ans;
-}
-};
-</code></pre><h2 id="172-Factorial-Trailing-Zeros"><a href="#172-Factorial-Trailing-Zeros" class="headerlink" title="172 Factorial Trailing Zeros"></a>172 Factorial Trailing Zeros</h2><pre><code>class Solution {
-public:
-int trailingZeroes(int n) {
-    int sum = 0;
-    while(n&gt;0){
-        sum+=n/5;
-        n/=5;
-    }
-    return sum;
-}
-};
-</code></pre><h2 id="258-Add-Digits"><a href="#258-Add-Digits" class="headerlink" title="258 Add Digits"></a>258 Add Digits</h2><pre><code>class Solution {
-public:
-int addDigits(int num) {
-    if(num == 0) return 0;
-    return ((num-1)%9 + 1);
-}
-};
-</code></pre><p>## </p>
-
-          
+          <h2 id="第一课"><a href="#第一课" class="headerlink" title="第一课 "></a>第一课
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/07/第九天/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -515,7 +440,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-30T10:10:11+08:00" content="2016-09-30">
               2016-09-30
             </time>
@@ -548,7 +473,7 @@ int addDigits(int num) {
           <h2 id="今天我22岁了。"><a href="#今天我22岁了。" class="headerlink" title="今天我22岁了。"></a>今天我22岁了。</h2>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/30/今天我22岁/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -611,7 +536,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-29T09:22:52+08:00" content="2016-09-29">
               2016-09-29
             </time>
@@ -644,7 +569,7 @@ int addDigits(int num) {
           <h2 id="左程云面试经典算法视频-第一季（一）"><a href="#左程云面试经典算法视频-第一季（一）" class="headerlink" title="左程云面试经典算法视频 第一季（一）"></a>左程云面试经典算法视频 第一季（一）</h2><h3 id="1-1-视频"><a href="#1-1-视频" class="headerlink" title="1.1 视频"></a>1.1 视频</h3><p><a href="http://www.nowcoder.com/live/2/1/1">1.1视频</a></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/29/第七天/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -707,7 +632,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-28T14:38:01+08:00" content="2016-09-28">
               2016-09-28
             </time>
@@ -740,7 +665,7 @@ int addDigits(int num) {
           <h1 id="Reunion"><a href="#Reunion" class="headerlink" title="Reunion"></a>Reunion</h1><h2 id="Chapter-One"><a href="#Chapter-One" class="headerlink" title="Chapter One"></a>Chapter One</h2><p>当DJ的雷鬼乐播放到第十首的时候，我的耳朵已经基本上废了。我坐在吧台上离舞池最远的那一端，一个人忧伤地啜饮着第三杯深水炸弹。我看着舞池里群魔乱舞的陌生人，意识到自己的不耐烦快要掩饰不住了。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/28/Reunion/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -803,7 +728,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-28T10:57:23+08:00" content="2016-09-28">
               2016-09-28
             </time>
@@ -836,7 +761,7 @@ int addDigits(int num) {
           <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="最小的K个数"><a href="#最小的K个数" class="headerlink" title="最小的K个数"></a>最小的K个数</h3><h4 id="输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。"><a href="#输入n个整数，找出其中最小的K个数。例如输入4-5-1-6-2-7-3-8这8个数字，则最小的4个数字是1-2-3-4-。" class="headerlink" title="输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。"></a>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/28/第六天/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -899,7 +824,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-26T18:06:47+08:00" content="2016-09-26">
               2016-09-26
             </time>
@@ -932,7 +857,7 @@ int addDigits(int num) {
           <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="两个链表的第一个公共结点"><a href="#两个链表的第一个公共结点" class="headerlink" title="两个链表的第一个公共结点"></a>两个链表的第一个公共结点</h3>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/26/第四天/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -995,7 +920,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-25T11:06:16+08:00" content="2016-09-25">
               2016-09-25
             </time>
@@ -1028,7 +953,7 @@ int addDigits(int num) {
           <h1 id="Leetcode–String"><a href="#Leetcode–String" class="headerlink" title="Leetcode–String"></a>Leetcode–String</h1><h2 id="383-Ransom-Note"><a href="#383-Ransom-Note" class="headerlink" title="383. Ransom Note"></a>383. Ransom Note</h2>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/25/leetcode/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1091,7 +1016,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-25T09:23:07+08:00" content="2016-09-25">
               2016-09-25
             </time>
@@ -1124,7 +1049,7 @@ int addDigits(int num) {
           <h2 id="打算报名托福来着，万一有用呢。"><a href="#打算报名托福来着，万一有用呢。" class="headerlink" title="打算报名托福来着，万一有用呢。"></a>打算报名托福来着，万一有用呢。</h2><p>这玩意，不怕一万，就怕万一。但是太贵了，只好让老妈付账了。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/25/第三天/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1187,7 +1112,7 @@ int addDigits(int num) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-24T10:03:57+08:00" content="2016-09-24">
               2016-09-24
             </time>
@@ -1220,7 +1145,7 @@ int addDigits(int num) {
           <h2 id="起码写好了英文简历"><a href="#起码写好了英文简历" class="headerlink" title="起码写好了英文简历"></a>起码写好了英文简历</h2><p>花了一个小时，写好了英文简历，一咬牙就去提交了。<br>好伤心，每次到写简历的时候就发现自己的经历好少好少。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/24/第二天-算法复习/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1295,7 +1220,7 @@ int addDigits(int num) {
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">22</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1353,7 +1278,7 @@ int addDigits(int num) {
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
