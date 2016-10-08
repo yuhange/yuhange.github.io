@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/07/第十五天/index.html">
 <meta property="og:site_name" content="Future Seeking">
 <meta property="og:description" content="《程序员代码面试指南》">
-<meta property="og:updated_time" content="2016-10-08T05:05:32.058Z">
+<meta property="og:updated_time" content="2016-10-08T14:10:00.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十五天">
 <meta name="twitter:description" content="《程序员代码面试指南》">
@@ -174,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -184,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -247,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-10-07T18:04:12+08:00" content="2016-10-07">
               2016-10-07
             </time>
@@ -370,7 +370,284 @@ private:
     stack&lt;int&gt; s2;
 };
 </code></pre><h3 id="如何仅用递归函数和栈操作逆序一个栈"><a href="#如何仅用递归函数和栈操作逆序一个栈" class="headerlink" title="如何仅用递归函数和栈操作逆序一个栈"></a>如何仅用递归函数和栈操作逆序一个栈</h3><p>如题。</p>
+<p>需要两个递归函数。</p>
+<p>递归函数一：将栈的栈底元素返回并移除。</p>
+<p>递归函数二：逆序一个栈。</p>
+<pre><code>package chapter_1_stackandqueue;
 
+import java.util.Stack;
+
+public class Problem_03_ReverseStackUsingRecursive {
+
+public static void reverse(Stack&lt;Integer&gt; stack) {
+    if (stack.isEmpty()) {
+        return;
+    }
+    int i = getAndRemoveLastElement(stack);
+    reverse(stack);
+    stack.push(i);
+}
+
+public static int getAndRemoveLastElement(Stack&lt;Integer&gt; stack) {
+    int result = stack.pop();
+    if (stack.isEmpty()) {
+        return result;
+    } else {
+        int last = getAndRemoveLastElement(stack);
+        stack.push(result);
+        return last;
+    }
+}
+
+public static void main(String[] args) {
+    Stack&lt;Integer&gt; test = new Stack&lt;Integer&gt;();
+    test.push(1);
+    test.push(2);
+    test.push(3);
+    test.push(4);
+    test.push(5);
+    reverse(test);
+    while (!test.isEmpty()) {
+        System.out.println(test.pop());
+    }
+
+}
+}
+</code></pre><p>..代码是直接复制的，其实还没有很懂。</p>
+<h3 id="猫狗队列"><a href="#猫狗队列" class="headerlink" title="猫狗队列"></a>猫狗队列</h3><p>宠物、狗和猫的类如下：</p>
+<pre><code>public static class Pet {
+    private String type;
+
+    public Pet(String type) {
+        this.type = type;
+    }
+
+    public String getPetType() {
+        return this.type;
+    }
+}
+
+public static class Dog extends Pet {
+    public Dog() {
+        super(&quot;dog&quot;);
+    }
+}
+
+public static class Cat extends Pet {
+    public Cat() {
+        super(&quot;cat&quot;);
+    }
+}
+</code></pre><p>实现一种猫狗队列的结构，要求：</p>
+<ul>
+<li>用户可以调用add方法将cat类或dog类的实例放入队列中。</li>
+<li>用户可以调用pollAll方法将队列中所有的实例按照进队列的先后顺序依次弹出；</li>
+<li>用户可以调用pollDog方法将队列中的狗实例按照进队列顺序依次弹出；</li>
+<li>用户可以调用pollCat方法将队列中的猫实例按照进队列顺序依次弹出；</li>
+<li>用户调用isEmpty方法检查队列中是否还有猫或者狗的实例；</li>
+<li>用户调用isDogEmpty方法检查队列中是否还有狗的实例；</li>
+<li>用户调用isCatEmpty方法检查队列中是否还有猫的实例。</li>
+</ul>
+<p>解析：</p>
+<p>使用三个队列的方法是不合理的，那样没有办法判断总队列中的猫狗顺序问题。</p>
+<p>解决方法：在猫狗压入时加一个时间戳。</p>
+<pre><code>package chapter_1_stackandqueue;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Problem_04_DogCatQueue {
+
+public static class Pet {
+    private String type;
+
+    public Pet(String type) {
+        this.type = type;
+    }
+
+    public String getPetType() {
+        return this.type;
+    }
+}
+
+public static class Dog extends Pet {
+    public Dog() {
+        super(&quot;dog&quot;);
+    }
+}
+
+public static class Cat extends Pet {
+    public Cat() {
+        super(&quot;cat&quot;);
+    }
+}
+
+public static class PetEnterQueue {
+    private Pet pet;
+    private long count;
+
+    public PetEnterQueue(Pet pet, long count) {
+        this.pet = pet;
+        this.count = count;
+    }
+
+    public Pet getPet() {
+        return this.pet;
+    }
+
+    public long getCount() {
+        return this.count;
+    }
+
+    public String getEnterPetType() {
+        return this.pet.getPetType();
+    }
+}
+
+public static class DogCatQueue {
+    private Queue&lt;PetEnterQueue&gt; dogQ;
+    private Queue&lt;PetEnterQueue&gt; catQ;
+    private long count;
+
+    public DogCatQueue() {
+        this.dogQ = new LinkedList&lt;PetEnterQueue&gt;();
+        this.catQ = new LinkedList&lt;PetEnterQueue&gt;();
+        this.count = 0;
+    }
+
+    public void add(Pet pet) {
+        if (pet.getPetType().equals(&quot;dog&quot;)) {
+            this.dogQ.add(new PetEnterQueue(pet, this.count++));
+        } else if (pet.getPetType().equals(&quot;cat&quot;)) {
+            this.catQ.add(new PetEnterQueue(pet, this.count++));
+        } else {
+            throw new RuntimeException(&quot;err, not dog or cat&quot;);
+        }
+    }
+
+    public Pet pollAll() {
+        if (!this.dogQ.isEmpty() &amp;&amp; !this.catQ.isEmpty()) {
+            if (this.dogQ.peek().getCount() &lt; this.catQ.peek().getCount()) {
+                return this.dogQ.poll().getPet();
+            } else {
+                return this.catQ.poll().getPet();
+            }
+        } else if (!this.dogQ.isEmpty()) {
+            return this.dogQ.poll().getPet();
+        } else if (!this.catQ.isEmpty()) {
+            return this.catQ.poll().getPet();
+        } else {
+            throw new RuntimeException(&quot;err, queue is empty!&quot;);
+        }
+    }
+
+    public Dog pollDog() {
+        if (!this.isDogQueueEmpty()) {
+            return (Dog) this.dogQ.poll().getPet();
+        } else {
+            throw new RuntimeException(&quot;Dog queue is empty!&quot;);
+        }
+    }
+
+    public Cat pollCat() {
+        if (!this.isCatQueueEmpty()) {
+            return (Cat) this.catQ.poll().getPet();
+        } else
+            throw new RuntimeException(&quot;Cat queue is empty!&quot;);
+    }
+
+    public boolean isEmpty() {
+        return this.dogQ.isEmpty() &amp;&amp; this.catQ.isEmpty();
+    }
+
+    public boolean isDogQueueEmpty() {
+        return this.dogQ.isEmpty();
+    }
+
+    public boolean isCatQueueEmpty() {
+        return this.catQ.isEmpty();
+    }
+
+}
+
+public static void main(String[] args) {
+    DogCatQueue test = new DogCatQueue();
+
+    Pet dog1 = new Dog();
+    Pet cat1 = new Cat();
+    Pet dog2 = new Dog();
+    Pet cat2 = new Cat();
+    Pet dog3 = new Dog();
+    Pet cat3 = new Cat();
+
+    test.add(dog1);
+    test.add(cat1);
+    test.add(dog2);
+    test.add(cat2);
+    test.add(dog3);
+    test.add(cat3);
+
+    test.add(dog1);
+    test.add(cat1);
+    test.add(dog2);
+    test.add(cat2);
+    test.add(dog3);
+    test.add(cat3);
+
+    test.add(dog1);
+    test.add(cat1);
+    test.add(dog2);
+    test.add(cat2);
+    test.add(dog3);
+    test.add(cat3);
+    while (!test.isDogQueueEmpty()) {
+        System.out.println(test.pollDog().getPetType());
+    }
+    while (!test.isEmpty()) {
+        System.out.println(test.pollAll().getPetType());
+    }
+}
+</code></pre><p>}</p>
+<h3 id="用一个栈实现另一个栈的排序"><a href="#用一个栈实现另一个栈的排序" class="headerlink" title="用一个栈实现另一个栈的排序"></a>用一个栈实现另一个栈的排序</h3><p>希望将栈从顶到底按从大到小排序，只能申请一个栈。</p>
+<pre><code>package chapter_1_stackandqueue;
+
+import java.util.Stack;
+
+public class Problem_05_StackSortStack {
+
+public static void sortStackByStack(Stack&lt;Integer&gt; stack) {
+    Stack&lt;Integer&gt; help = new Stack&lt;Integer&gt;();
+    while (!stack.isEmpty()) {
+        int cur = stack.pop();
+        while (!help.isEmpty() &amp;&amp; help.peek() &gt; cur) {
+            stack.push(help.pop());
+        }
+        help.push(cur);
+    }
+    while (!help.isEmpty()) {
+        stack.push(help.pop());
+    }
+}
+
+public static void main(String[] args) {
+    Stack&lt;Integer&gt; stack = new Stack&lt;Integer&gt;();
+    stack.push(3);
+    stack.push(1);
+    stack.push(6);
+    stack.push(2);
+    stack.push(5);
+    stack.push(4);
+    sortStackByStack(stack);
+    System.out.println(stack.pop());
+    System.out.println(stack.pop());
+    System.out.println(stack.pop());
+    System.out.println(stack.pop());
+    System.out.println(stack.pop());
+    System.out.println(stack.pop());
+
+}
+}
+</code></pre><h3 id="用栈来实现汉诺塔问题"><a href="#用栈来实现汉诺塔问题" class="headerlink" title="用栈来实现汉诺塔问题"></a>用栈来实现汉诺塔问题</h3>
       
     </div>
 
@@ -454,10 +731,10 @@ private:
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -474,7 +751,7 @@ private:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">22</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -484,7 +761,7 @@ private:
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -512,7 +789,7 @@ private:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">1.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-栈和队列"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计一个有getMin功能的栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">设计一个有getMin功能的栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#由两个栈组成的队列"><span class="nav-number">1.1.2.</span> <span class="nav-text">由两个栈组成的队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何仅用递归函数和栈操作逆序一个栈"><span class="nav-number">1.1.3.</span> <span class="nav-text">如何仅用递归函数和栈操作逆序一个栈</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">1.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-栈和队列"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计一个有getMin功能的栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">设计一个有getMin功能的栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#由两个栈组成的队列"><span class="nav-number">1.1.2.</span> <span class="nav-text">由两个栈组成的队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何仅用递归函数和栈操作逆序一个栈"><span class="nav-number">1.1.3.</span> <span class="nav-text">如何仅用递归函数和栈操作逆序一个栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#猫狗队列"><span class="nav-number">1.1.4.</span> <span class="nav-text">猫狗队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用一个栈实现另一个栈的排序"><span class="nav-number">1.1.5.</span> <span class="nav-text">用一个栈实现另一个栈的排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用栈来实现汉诺塔问题"><span class="nav-number">1.1.6.</span> <span class="nav-text">用栈来实现汉诺塔问题</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -539,7 +816,7 @@ private:
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
