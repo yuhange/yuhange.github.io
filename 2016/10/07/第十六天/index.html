@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="《程序员代码面试指南》">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第十六天">
 <meta property="og:url" content="http://yoursite.com/2016/10/07/第十六天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-07T10:04:21.646Z">
+<meta property="og:description" content="《程序员代码面试指南》">
+<meta property="og:updated_time" content="2016-10-09T11:01:28.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十六天">
+<meta name="twitter:description" content="《程序员代码面试指南》">
 
 
 
@@ -171,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -244,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-10-07T18:04:21+08:00" content="2016-10-07">
               2016-10-07
             </time>
@@ -273,7 +276,152 @@
       
 
       
-        
+        <h1 id="《程序员代码面试指南》"><a href="#《程序员代码面试指南》" class="headerlink" title="《程序员代码面试指南》"></a>《程序员代码面试指南》</h1><a id="more"></a>
+<h2 id="第二章-链表问题"><a href="#第二章-链表问题" class="headerlink" title="第二章 链表问题"></a>第二章 链表问题</h2><h3 id="打印两个有序链表的公共部分"><a href="#打印两个有序链表的公共部分" class="headerlink" title="打印两个有序链表的公共部分"></a>打印两个有序链表的公共部分</h3><p>给定两个有序链表head1和head2，打印两个链表的公共部分。</p>
+<pre><code>package chapter_2_listproblem;
+public class Problem_01_PrintCommonPart {
+    /**打印两个有序链表的公共部分**/
+    static void print(Node n1, Node n2){
+        if(n1 == null || n2 == null) return;
+        Node p1 = n1;
+        Node p2 = n2;
+        while(p1!=null &amp;&amp; p2!=null){
+            if(p1.value&gt;p2.value) p2 = p2.next;
+            else if(p1.value&lt;p2.value) p1 = p1.next;
+            else {
+                System.out.println(p1.value);
+                p1 = p1.next;
+                p2 = p2.next;
+            }
+        }
+    }
+    public static void main(String[] arg){
+        Node n1 = new Node(1);
+        Node n2 = new Node(7);
+        Node n3 = new Node(9);
+        Node n4 = new Node(14);
+        Node n5 = new Node(15);
+        Node n6 = new Node(17);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        Node n10 = new Node(1);
+        Node n20 = new Node(2);
+        Node n30 = new Node(9);
+        Node n40 = new Node(14);
+        Node n50 = new Node(25);
+        Node n60 = new Node(36);
+        n10.next = n20;
+        n20.next = n30;
+        n30.next = n40;
+        n40.next = n50;
+        n50.next = n60;
+        print(n1, n10);
+    }
+}
+</code></pre><h3 id="在单链表和双链表中删除倒数第K个结点"><a href="#在单链表和双链表中删除倒数第K个结点" class="headerlink" title="在单链表和双链表中删除倒数第K个结点"></a>在单链表和双链表中删除倒数第K个结点</h3><p>分别实现两个函数，一个可以删除单链表中倒数第K个结点，另一个可以删除双链表中倒数第K的结点。</p>
+<pre><code>package chapter_2_listproblem;
+public class Problem_02_RemoveLastKthNode {
+
+    static Node deleteKthNodeFromEnd(Node node, int k){
+        if(node == null || k&lt;1) return node;
+        Node n1 = node;
+        Node n2 = node;
+        while(n2.next!=null &amp;&amp; k&gt;0){
+            n2 = n2.next;
+            k--;
+        }
+        while(n2.next!=null){
+            n2 = n2.next;
+            n1 = n1.next;
+        }
+        n1.next = n1.next.next;
+        return node;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(7);
+        Node n3 = new Node(9);
+        Node n4 = new Node(14);
+        Node n5 = new Node(15);
+        Node n6 = new Node(17);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        deleteKthNodeFromEnd(n1, 3);
+        n1.print(n1);
+    }
+}
+</code></pre><h3 id="删除链表的中间结点和a-b处的结点"><a href="#删除链表的中间结点和a-b处的结点" class="headerlink" title="删除链表的中间结点和a/b处的结点"></a>删除链表的中间结点和a/b处的结点</h3><pre><code>package chapter_2_listproblem;
+public class Problem_03_RemoveNodeByRatio {
+
+    static Node removeMidNode(Node n){
+        if(n == null || n.next == null) return n;
+        Node fast = n.next.next;//注意这里
+        Node slow = n;
+        while(fast.next != null &amp;&amp; fast.next.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        return n;
+    }
+
+    public static void main(String[] args){
+        Node n1 = new Node(1);
+        Node n2 = new Node(7);
+        Node n3 = new Node(9);
+        Node n4 = new Node(14);
+        Node n5 = new Node(15);
+        Node n6 = new Node(17);
+        Node n7 = new Node(19);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        n6.next = n7;
+        removeMidNode(n1);
+        n1.print(n1);
+    }
+}
+</code></pre><h3 id="反转单向和双向链表"><a href="#反转单向和双向链表" class="headerlink" title="反转单向和双向链表"></a>反转单向和双向链表</h3><pre><code>package chapter_2_listproblem;
+public class Problem_04_ReverseList {
+    static Node reverse(Node head){
+        if(head == null || head.next == null) return head;
+        Node pre = null;
+        Node next = null;
+        while(head!=null){
+            next = head.next;
+            head.next = pre;//每次都是在下一步时将head指向前一个。
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(7);
+        Node n3 = new Node(9);
+        Node n4 = new Node(14);
+        Node n5 = new Node(15);
+        Node n6 = new Node(17);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        Node n = reverse(n1);
+        n.print(n);
+    }
+}
+</code></pre>
       
     </div>
 
@@ -357,10 +505,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Ensemble
           </li>
         </ul>
       
@@ -377,7 +525,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">22</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -415,7 +563,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">1.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-链表问题"><span class="nav-number">1.1.</span> <span class="nav-text">第二章 链表问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打印两个有序链表的公共部分"><span class="nav-number">1.1.1.</span> <span class="nav-text">打印两个有序链表的公共部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在单链表和双链表中删除倒数第K个结点"><span class="nav-number">1.1.2.</span> <span class="nav-text">在单链表和双链表中删除倒数第K个结点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除链表的中间结点和a-b处的结点"><span class="nav-number">1.1.3.</span> <span class="nav-text">删除链表的中间结点和a/b处的结点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反转单向和双向链表"><span class="nav-number">1.1.4.</span> <span class="nav-text">反转单向和双向链表</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -446,7 +594,7 @@
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
