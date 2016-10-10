@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="快速排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第十七天">
 <meta property="og:url" content="http://yoursite.com/2016/10/07/第十七天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-07T10:04:30.602Z">
+<meta property="og:description" content="快速排序">
+<meta property="og:updated_time" content="2016-10-10T07:25:41.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十七天">
+<meta name="twitter:description" content="快速排序">
 
 
 
@@ -171,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Home
           </a>
         </li>
       
@@ -244,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-10-07T18:04:30+08:00" content="2016-10-07">
               2016-10-07
             </time>
@@ -273,7 +276,204 @@
       
 
       
-        
+        <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><a id="more"></a>
+<pre><code>package sort;
+/**快速排序算法**/
+public class QuickSort {
+
+    static void sort(int[] nums, int begin, int end){
+        if(begin&lt;end){
+            int index = partition(nums, begin, end);
+            sort(nums, 0, index-1);
+            sort(nums, index+1, end);
+        }
+    }
+    static int partition(int[] nums, int begin, int end){
+        int pivot = nums[end];//用最后一个数字作为基准
+        int index = end;
+        //未改进前算法：
+        /*for(int i = begin; i&lt;=end; i++){
+            if(nums[i]&gt;pivot &amp;&amp; i&lt;index){
+                index = i;
+                int tmp = nums[i];
+                nums[i] = nums[end];
+                nums[end] = tmp;
+            }
+            else if(nums[i]&lt;pivot &amp;&amp; i&gt;index){
+                int tmp = nums[i];
+                nums[i] = nums[index];
+                nums[index] = tmp;
+                index = i;
+            }
+        }*/
+        //改进算法：
+        for(int i = end-1; i&gt;=begin; i--){
+            if(nums[i]&gt;pivot){
+                index--;
+                if(index!=i){
+                    int tmp = nums[index];
+                    nums[index] = nums[i];
+                    nums[i] = tmp;
+                }
+            }
+        }
+        nums[end] = nums[index];
+        nums[index] = pivot;
+        return index;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        int[] nums = {3, 12, 5, 7, 14, 9};
+        sort(nums, 0, nums.length-1);
+        //int index = partition(nums, 0, 5);
+        //System.out.println(index);
+        for(int i = 0; i&lt;nums.length; i++){
+            System.out.print(nums[i]+&quot; &quot;);
+        }
+        System.out.println();
+    }
+}
+</code></pre><h1 id="《程序员代码面试指南》"><a href="#《程序员代码面试指南》" class="headerlink" title="《程序员代码面试指南》"></a>《程序员代码面试指南》</h1><h2 id="第二章-链表-第二部分"><a href="#第二章-链表-第二部分" class="headerlink" title="第二章 链表 第二部分"></a>第二章 链表 第二部分</h2><h3 id="反转部分链表"><a href="#反转部分链表" class="headerlink" title="反转部分链表"></a>反转部分链表</h3><pre><code>package chapter_2_listproblem;
+/**反转部分单链表**/
+public class Problem_05_ReversePartList {
+    /**思路：获得反转序列的前一个和后一个结点，反转要反转的序列，连接。**/
+    static Node reversePart(Node head, int from, int to){
+        if(head == null || head.next==null || to&lt;=from) return head;
+        int i = 1;
+        Node pre = head;//反转序列第一个结点的前一个结点
+        Node next = head;//反转序列的最后一个结点的后一个结点
+        for(; i&lt;from &amp;&amp; next.next!=null; i++){
+            pre = next;
+            next = next.next;
+        }
+        for(i = from; i&lt;=to &amp;&amp; next!=null; i++){
+            next = next.next;
+        }
+        //System.out.println(pre.value);
+        Node p = null;//这是反转后的第一个结点，用它和pre连接
+        Node n = null;
+        Node cur = pre.next; //这是反转后的最后一个结点，用它和next连接。
+        Node tmp = pre.next;
+        for(i = from; i&lt;=to &amp;&amp; tmp!=null; i++){
+            n = tmp.next;
+            //if(n!=null) 
+                tmp.next = p;
+            p = tmp;
+            tmp = n;
+            //System.out.println(p.value);
+        }
+        cur.next = next;
+        pre.next = p;
+        //System.out.println(p.value);
+        return head;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(7);
+        Node n3 = new Node(9);
+        Node n4 = new Node(14);
+        Node n5 = new Node(15);
+        Node n6 = new Node(17);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        Node n = reversePart(n1, 2, 5);
+        n.print(n);
+    }
+}
+</code></pre><h3 id="环形单链表的约瑟夫问题"><a href="#环形单链表的约瑟夫问题" class="headerlink" title="环形单链表的约瑟夫问题"></a>环形单链表的约瑟夫问题</h3><h4 id="O-N-M-的算法"><a href="#O-N-M-的算法" class="headerlink" title="O(N*M)的算法"></a>O(N*M)的算法</h4><pre><code>package chapter_2_listproblem;
+public class Problem_06_JosephusProblem {
+    static Node josephusKill(Node head, int m){
+        if(head == null || head.next == head || m&lt;1) return head;
+        Node last = head;
+        while(last.next!=head) last = last.next; //将last置于head的前一个。
+        int count = 0;
+        while(head!=last){
+            if(++count == m){
+                count = 0;
+                last.next = head.next;
+            }else{
+                last = last.next;
+            }
+            head = last.next;
+        }
+        return head;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(3);
+        Node n4 = new Node(4);
+        Node n5 = new Node(5);
+        Node n6 = new Node(6);
+        Node n7 = new Node(7);
+        Node n8 = new Node(8);
+        Node n9 = new Node(9);
+        Node n10 = new Node(10);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        n6.next = n7;
+        n7.next = n8;
+        n8.next = n9;
+        n9.next = n10;
+        n10.next = n1;
+        Node n = josephusKill(n1, 3);
+        System.out.println(n.value);
+    }
+}
+</code></pre><h3 id="判断一个单链表是否是回文结构"><a href="#判断一个单链表是否是回文结构" class="headerlink" title="判断一个单链表是否是回文结构"></a>判断一个单链表是否是回文结构</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><pre><code>package chapter_2_listproblem;
+import java.util.Stack;
+public class Problem_07_IsPalindromeList {
+    static boolean isPalindrome(Node head){
+        if(head == null || head.next == null) return true;
+        Stack&lt;Node&gt; s = new Stack&lt;Node&gt;();
+        Node p = head;
+        while(p!=null){
+            s.push(p);
+            p = p.next;
+        }
+        p = head;
+        while(!s.isEmpty() &amp;&amp; p!=null){
+            int v = s.pop().value;
+            if(v!= p.value) {
+                return false;
+            }
+            p = p.next;
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(3);
+        Node n4 = new Node(4);
+        Node n5 = new Node(5);
+        Node n6 = new Node(4);
+        Node n7 = new Node(3);
+        Node n8 = new Node(2);
+        Node n9 = new Node(1);
+        //Node n10 = new Node(10);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        n6.next = n7;
+        n7.next = n8;
+        n8.next = n9;
+        //n9.next = n10;
+        System.out.println(isPalindrome(n1));
+    }
+}
+</code></pre>
       
     </div>
 
@@ -357,10 +557,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table Des Matières
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Ensemble
+            Overview
           </li>
         </ul>
       
@@ -377,7 +577,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">22</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -415,7 +615,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速排序"><span class="nav-number">1.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">2.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-链表-第二部分"><span class="nav-number">2.1.</span> <span class="nav-text">第二章 链表 第二部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反转部分链表"><span class="nav-number">2.1.1.</span> <span class="nav-text">反转部分链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环形单链表的约瑟夫问题"><span class="nav-number">2.1.2.</span> <span class="nav-text">环形单链表的约瑟夫问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#O-N-M-的算法"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">O(N*M)的算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个单链表是否是回文结构"><span class="nav-number">2.1.3.</span> <span class="nav-text">判断一个单链表是否是回文结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">方法一</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -446,7 +646,7 @@
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
