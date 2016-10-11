@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="《程序员代码面试指南》">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第十八天">
 <meta property="og:url" content="http://yoursite.com/2016/10/07/第十八天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-07T10:04:38.866Z">
+<meta property="og:description" content="《程序员代码面试指南》">
+<meta property="og:updated_time" content="2016-10-11T05:36:38.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十八天">
+<meta name="twitter:description" content="《程序员代码面试指南》">
 
 
 
@@ -273,7 +276,98 @@
       
 
       
-        
+        <h1 id="《程序员代码面试指南》"><a href="#《程序员代码面试指南》" class="headerlink" title="《程序员代码面试指南》"></a>《程序员代码面试指南》</h1><a id="more"></a>
+<h2 id="第二章-链表问题"><a href="#第二章-链表问题" class="headerlink" title="第二章 链表问题"></a>第二章 链表问题</h2><h3 id="将单向链表按某值划分成左边小、中间相等、右边大的形式"><a href="#将单向链表按某值划分成左边小、中间相等、右边大的形式" class="headerlink" title="将单向链表按某值划分成左边小、中间相等、右边大的形式"></a>将单向链表按某值划分成左边小、中间相等、右边大的形式</h3><h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><p>将链表先转化为数组，做一次partition，然后再转化为链表。注意partition用到了“数组类似partition”的算法，在P382.</p>
+<pre><code>package chapter_2_listproblem;
+public class Problem_08_SmallerEqualBigger {
+    static Node listPartition(Node head, int pivot){
+        if(head == null || head.next == null ) return head;
+        Node[] a = new Node[100];
+        int len = 0;
+        Node p = head;
+        while(p!=null){
+            a[len++] = p;
+            p = p.next;
+        }
+        int index = 0;
+        int left = -1;
+        int right = len-1;
+        while(index!=right){
+            if(a[index].value &lt; pivot){
+                Node tmp = a[index];
+                a[index] = a[left+1];
+                a[left+1] = tmp;
+                left++;
+                index++;
+            }else if(a[index].value == pivot){
+                index++;
+            }else if(a[index].value &gt; pivot){
+                Node tmp = a[index];
+                a[index] = a[right-1];
+                a[right-1] = tmp;
+                right--;
+            }
+        }
+        for(int i = 1; i&lt;len; i++){
+            a[i-1].next = a[i];
+        }
+        a[len-1].next = null;
+        return a[0];
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(6);
+        Node n4 = new Node(3);
+        Node n5 = new Node(4);
+        //Node n10 = new Node(10);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        Node n = listPartition(n1, 3);
+        n.print(n);
+    }
+}
+</code></pre><h3 id="复制含有随机指针结点的链表"><a href="#复制含有随机指针结点的链表" class="headerlink" title="复制含有随机指针结点的链表"></a>复制含有随机指针结点的链表</h3><p>链表的定义中加了一个random的变量。</p>
+<h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><p>使用hashmap</p>
+<pre><code>package chapter_2_listproblem;
+import java.util.*;
+public class Problem_09_CopyListWithRandom {
+    static Node copy(Node head){
+        if(head == null) return head;
+        HashMap&lt;Node, Node&gt; map = new HashMap&lt;Node, Node&gt;();
+        Node cur = head;
+        while(cur!=null){
+            map.put(cur, new Node(cur.value));
+            cur = cur.next;
+        }
+        cur = head;
+        while(cur!=null){
+            map.get(cur).next = map.get(cur.next);
+            map.get(cur).random = map.get(cur.random);
+            cur = cur.next;
+        }
+        return map.get(head);
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(6);
+        Node n4 = new Node(3);
+        Node n5 = new Node(4);
+        //Node n10 = new Node(10);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        Node n = copy(n1);
+        n.print(n);
+    }
+}
+</code></pre>
       
     </div>
 
@@ -415,7 +509,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">1.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-链表问题"><span class="nav-number">1.1.</span> <span class="nav-text">第二章 链表问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将单向链表按某值划分成左边小、中间相等、右边大的形式"><span class="nav-number">1.1.1.</span> <span class="nav-text">将单向链表按某值划分成左边小、中间相等、右边大的形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一："><span class="nav-number">1.1.1.1.</span> <span class="nav-text">方法一：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制含有随机指针结点的链表"><span class="nav-number">1.1.2.</span> <span class="nav-text">复制含有随机指针结点的链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解法一："><span class="nav-number">1.1.2.1.</span> <span class="nav-text">解法一：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
