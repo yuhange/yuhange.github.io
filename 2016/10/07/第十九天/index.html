@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="《程序员代码面试指南》">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第十九天">
 <meta property="og:url" content="http://yoursite.com/2016/10/07/第十九天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-07T10:04:47.713Z">
+<meta property="og:description" content="《程序员代码面试指南》">
+<meta property="og:updated_time" content="2016-10-12T05:41:35.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十九天">
+<meta name="twitter:description" content="《程序员代码面试指南》">
 
 
 
@@ -273,7 +276,64 @@
       
 
       
-        
+        <h1 id="《程序员代码面试指南》"><a href="#《程序员代码面试指南》" class="headerlink" title="《程序员代码面试指南》"></a>《程序员代码面试指南》</h1><a id="more"></a>
+<h2 id="第二章-链表问题"><a href="#第二章-链表问题" class="headerlink" title="第二章 链表问题"></a>第二章 链表问题</h2><h3 id="实现两个相加链表"><a href="#实现两个相加链表" class="headerlink" title="实现两个相加链表"></a>实现两个相加链表</h3><pre><code>package chapter_2_listproblem;
+public class Problem_10_AddTwoLinkedLists {
+    static Node add(Node head1, Node head2){
+        Node head = null;
+        head1 = reverse(head1);
+        head2 = reverse(head2);
+        int ca = 0;
+        Node p = null;
+        while(head1!=null &amp;&amp; head2!=null){
+            int a = head1==null?0:head1.value;
+            int b = head2==null?0:head2.value;
+            int c = a+b+ca;
+            ca = c&gt;=10?(c/10):0;
+            p = head;
+            head = new Node(c%10);
+            head.next = p;
+            head1 = head1==null?null:head1.next;
+            head2 = head2==null?null:head2.next;
+        }
+        if(ca != 0){
+            p = head;
+            head = new Node(1);
+            head.next = p;
+        }
+        head1 = reverse(head1);
+        head2 = reverse(head2);
+        return head;
+    }
+    static Node reverse(Node h){
+        Node pre = null;
+        Node next = null;
+        while(h!=null){
+            next = h.next;
+            h.next = pre;
+            pre = h;
+            h = next;
+        }
+        return pre;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(9);
+        Node n2 = new Node(3);
+        Node n3 = new Node(7);
+        Node n4 = new Node(6);
+        Node n5 = new Node(3);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = null;
+        //n3.next = n4;
+        n4.next = n5;
+        n5.next = null;
+        Node head = add(n1, n4);
+        head.print(head);
+    }
+}
+</code></pre>
       
     </div>
 
@@ -415,7 +475,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">1.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-链表问题"><span class="nav-number">1.1.</span> <span class="nav-text">第二章 链表问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现两个相加链表"><span class="nav-number">1.1.1.</span> <span class="nav-text">实现两个相加链表</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
