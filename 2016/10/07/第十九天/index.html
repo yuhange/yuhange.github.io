@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/07/第十九天/index.html">
 <meta property="og:site_name" content="Future Seeking">
 <meta property="og:description" content="《程序员代码面试指南》">
-<meta property="og:updated_time" content="2016-10-12T05:41:35.718Z">
+<meta property="og:updated_time" content="2016-10-12T10:50:02.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十九天">
 <meta name="twitter:description" content="《程序员代码面试指南》">
@@ -279,17 +279,17 @@
         <h1 id="《程序员代码面试指南》"><a href="#《程序员代码面试指南》" class="headerlink" title="《程序员代码面试指南》"></a>《程序员代码面试指南》</h1><a id="more"></a>
 <h2 id="第二章-链表问题"><a href="#第二章-链表问题" class="headerlink" title="第二章 链表问题"></a>第二章 链表问题</h2><h3 id="实现两个相加链表"><a href="#实现两个相加链表" class="headerlink" title="实现两个相加链表"></a>实现两个相加链表</h3><pre><code>package chapter_2_listproblem;
 public class Problem_10_AddTwoLinkedLists {
-    static Node add(Node head1, Node head2){
+    static Node add(Node h1, Node h2){
         Node head = null;
-        head1 = reverse(head1);
-        head2 = reverse(head2);
-        int ca = 0;
         Node p = null;
-        while(head1!=null &amp;&amp; head2!=null){
+        Node head1 = reverse(h1);
+        Node head2 = reverse(h2);
+        int ca = 0;
+        while(head1!=null || head2!=null){
             int a = head1==null?0:head1.value;
             int b = head2==null?0:head2.value;
             int c = a+b+ca;
-            ca = c&gt;=10?(c/10):0;
+            ca = c/10;
             p = head;
             head = new Node(c%10);
             head.next = p;
@@ -301,8 +301,8 @@ public class Problem_10_AddTwoLinkedLists {
             head = new Node(1);
             head.next = p;
         }
-        head1 = reverse(head1);
-        head2 = reverse(head2);
+        h1 = reverse(h1);
+        h2 = reverse(h2);
         return head;
     }
     static Node reverse(Node h){
@@ -319,9 +319,9 @@ public class Problem_10_AddTwoLinkedLists {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Node n1 = new Node(9);
-        Node n2 = new Node(3);
-        Node n3 = new Node(7);
-        Node n4 = new Node(6);
+        Node n2 = new Node(9);
+        Node n3 = new Node(9);
+        Node n4 = new Node(0);
         Node n5 = new Node(3);
         n1.next = n2;
         n2.next = n3;
@@ -331,6 +331,140 @@ public class Problem_10_AddTwoLinkedLists {
         n5.next = null;
         Node head = add(n1, n4);
         head.print(head);
+    }
+}
+</code></pre><h3 id="将单链表的每K个结点之间逆序"><a href="#将单链表的每K个结点之间逆序" class="headerlink" title="将单链表的每K个结点之间逆序"></a>将单链表的每K个结点之间逆序</h3><pre><code>package chapter_2_listproblem;
+public class Problem_12_ConvertEveryKNodesInList {
+    static Node reverse(Node head, int k){
+        if(k&lt;2) return head;
+        Node cur = head;
+        Node pre = null;
+        Node next = null;
+        Node start = head;
+        int count = 1;
+        while(cur != null){
+            next = cur.next;
+            if(count == k){
+                count = 0;
+                start = pre == null?head:pre.next;
+                head = pre == null?cur:head;
+                reverse(pre, start, cur, next);
+                pre = start;
+                count = 0;
+            }
+            count++;
+            cur = next;
+        }
+        return head;
+    }
+    static void reverse(Node left, Node start, Node end, Node right){
+        Node pre = start;
+        Node cur = start.next;
+        Node next = null;
+        while(cur!=right){
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        if(left!=null) left.next = end;
+        start.next = right;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(3);
+        Node n4 = new Node(4);
+//        Node n5 = new Node(5);
+//        Node n6 = new Node(6);
+//        Node n7 = new Node(7);
+//        Node n8 = new Node(8);
+//        Node n9 = new Node(9);
+//        Node n10 = new Node(10);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+//        n4.next = n5;
+//        n5.next = n6;
+//        n6.next = n7;
+//        n7.next = n8;
+//        n8.next = n9;
+//        n9.next = n10;
+//        n10.next = n1;
+        Node n = reverse(n1, 2);
+        n.print(n);
+    }
+}
+</code></pre><h3 id="删除无序单链表中值重复出现的结点"><a href="#删除无序单链表中值重复出现的结点" class="headerlink" title="删除无序单链表中值重复出现的结点"></a>删除无序单链表中值重复出现的结点</h3><pre><code>package chapter_2_listproblem;
+import java.util.*;
+public class Problem_13_RemoveRepetition {
+    static Node delete(Node head){
+        if(head == null) return head;
+        HashSet&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();
+        Node pre = head;
+        Node cur = head.next;
+        set.add(cur.value);
+        while(cur!=null){
+            //System.out.println(cur.value);
+            if(!set.contains(cur.value)) {
+                set.add(cur.value);
+                pre = cur;
+            }
+            else{
+                pre.next = cur.next;
+            }
+            cur = cur.next;
+        }
+        return head;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(9);
+        Node n2 = new Node(9);
+        Node n3 = new Node(9);
+        Node n4 = new Node(0);
+        Node n5 = new Node(3);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        Node n = delete(n1);
+        n.print(n);
+    }
+}
+</code></pre><h3 id="删除单链表中指定值的结点"><a href="#删除单链表中指定值的结点" class="headerlink" title="删除单链表中指定值的结点"></a>删除单链表中指定值的结点</h3><pre><code>package chapter_2_listproblem;
+public class Problem_14_RemoveGivenValue {
+    static Node delete(Node head, int k){
+        while(head!=null){
+            if(head.value != k) break;
+            head = head.next;
+        }
+        Node cur = head;
+        Node pre = head;
+        while(cur!=null){
+            if(cur.value == k) {
+                pre.next = cur.next;
+            }else{
+                pre = cur;
+            }
+            cur = cur.next;
+        }
+        return head;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Node n1 = new Node(9);
+        Node n2 = new Node(9);
+        Node n3 = new Node(9);
+        Node n4 = new Node(0);
+        Node n5 = new Node(3);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        Node n = delete(n1, 0);
+        n.print(n);
     }
 }
 </code></pre>
@@ -475,7 +609,7 @@ public class Problem_10_AddTwoLinkedLists {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">1.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-链表问题"><span class="nav-number">1.1.</span> <span class="nav-text">第二章 链表问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现两个相加链表"><span class="nav-number">1.1.1.</span> <span class="nav-text">实现两个相加链表</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">1.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-链表问题"><span class="nav-number">1.1.</span> <span class="nav-text">第二章 链表问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现两个相加链表"><span class="nav-number">1.1.1.</span> <span class="nav-text">实现两个相加链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将单链表的每K个结点之间逆序"><span class="nav-number">1.1.2.</span> <span class="nav-text">将单链表的每K个结点之间逆序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除无序单链表中值重复出现的结点"><span class="nav-number">1.1.3.</span> <span class="nav-text">删除无序单链表中值重复出现的结点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除单链表中指定值的结点"><span class="nav-number">1.1.4.</span> <span class="nav-text">删除单链表中指定值的结点</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
