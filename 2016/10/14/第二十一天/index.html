@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/14/第二十一天/index.html">
 <meta property="og:site_name" content="Future Seeking">
 <meta property="og:description" content="软件工程管理 容国平 CMM/CMMI">
-<meta property="og:updated_time" content="2016-10-14T04:57:31.889Z">
+<meta property="og:updated_time" content="2016-10-14T15:11:59.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二十一天">
 <meta name="twitter:description" content="软件工程管理 容国平 CMM/CMMI">
@@ -413,7 +413,210 @@
 <p>O开头的是过程管理的，反之成立 Organizational </p>
 <p>！ CMMI中的每个过程域在阶段性的表现形式下有五个<em>成熟度</em>级别</p>
 <p>！ 在连续性的表现形式下有六个<em>能力</em>级别（0级：incomplete 1级：performed 2级：managed 3级：defined 4级：quantitive managed 5级：optimizing）</p>
+<h1 id="《程序员代码面试指南》"><a href="#《程序员代码面试指南》" class="headerlink" title="《程序员代码面试指南》"></a>《程序员代码面试指南》</h1><h2 id="第二章-链表问题"><a href="#第二章-链表问题" class="headerlink" title="第二章 链表问题"></a>第二章 链表问题</h2><h3 id="将搜索二叉树转化成双向链表"><a href="#将搜索二叉树转化成双向链表" class="headerlink" title="将搜索二叉树转化成双向链表"></a>将搜索二叉树转化成双向链表</h3><p>中序遍历，放入队列中，然后依次出队，再成链表。注意要新定义二叉树和双向链表的数据格式</p>
+<pre><code>package chapter_2_listproblem;
+import java.util.*;
+public class Problem_15_BSTtoDoubleLinkedList {
+    static Node convert(TreeNode root){
+        if(root == null) return null;
+        Queue&lt;TreeNode&gt; q = new LinkedList&lt;TreeNode&gt;();
+        inorder(q, root);
+        Node head = new Node(q.poll().value);
+        head.last = null;
+        head.next = null;
+        Node node = head;
+        Node pre = head;
+        while(!q.isEmpty()){
+            TreeNode t = q.poll();
+            node = new Node(t.value);
+            node.last = pre;
+            pre.next = node;
+            node.next = null;
+            pre = node;
+        }
+        return head;
+    }
+    static void inorder(Queue&lt;TreeNode&gt; q, TreeNode root){
+        if(root == null) return;
+        inorder(q, root.left);
+        q.offer(root);
+        inorder(q, root.right);
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        TreeNode t1 = new TreeNode(2);
+        TreeNode t2 = new TreeNode(1);
+        TreeNode t3 = new TreeNode(3);
+        t1.right = t3;
+        t1.left = t2;
+        Node n = convert(t1);
+        n.print(n);
+    }
+}
+</code></pre><h1 id="排序算法-二"><a href="#排序算法-二" class="headerlink" title="排序算法 二"></a>排序算法 二</h1><h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><pre><code>class BubbleSort {
+public:
+    void swap(int &amp;a,int &amp;b)
+        {
+            int temp=a;
+            a=b;
+            b=temp;
+    }
+    int* bubbleSort(int* A, int n) {
 
+            while(--n!=0)
+             {
+
+                    for(int j=1;j&lt;=n;j++)
+              {
+                  if(A[j-1]&gt;A[j])
+                      swap(A[j-1],A[j]);
+                  else
+                      continue;
+              }
+
+            }
+
+        return A;
+    }
+};
+</code></pre><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><pre><code>class SelectionSort {
+public:
+    void swap(int &amp;a,int &amp;b)
+        {
+        int temp=a;
+        a=b;
+        b=temp;
+
+    }
+    int* selectionSort(int* A, int n) {
+        int min;
+        for(int i=0;i&lt;n;i++)
+            {
+                min=i;
+            for(int j=i;j&lt;n;j++)
+                {
+                if(A[min]&gt;A[j])
+                    {
+                    min=j;
+                }
+            }
+            swap(A[i],A[min]);
+
+        }
+        return A;
+    }
+};
+</code></pre><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="申请额外空间的插入排序"><a href="#申请额外空间的插入排序" class="headerlink" title="申请额外空间的插入排序"></a>申请额外空间的插入排序</h3><pre><code>package sort;
+public class InsertionSort {
+    static int[] insertionSort(int[] A, int n) {
+        // write code here
+        if(n ==0 || n==1) return A;
+        int[] B = new int[n];
+        int len = 1;
+        B[0] = A[0];
+        for(int i = 1; i&lt;n; i++){
+            int cur = A[i];
+            int index = i;
+            //获取A[i]应该插入的位置
+            for(int j = 0; j&lt;len; j++){
+                if(cur&lt;B[j]){
+                    index = j;
+                    break;
+                }
+            }
+            //调整B数组
+            for(int k = len; k&gt;index; k--){
+                B[k] = B[k-1];
+            }
+            //插入A[i];
+            B[index] = cur;
+            len++;
+        }
+        return B;
+    }
+    public static void main(String[] args){
+        int[] A = {3,1,4,2,6,5,7};
+        int[] B = insertionSort(A, 7);
+        for(int i = 0 ; i&lt;A.length; i++){
+            System.out.print(B[i]+&quot; &quot;);
+        }
+        System.out.println();
+    }
+}
+</code></pre><h3 id="不申请额外空间"><a href="#不申请额外空间" class="headerlink" title="不申请额外空间"></a>不申请额外空间</h3><pre><code>package sort;
+public class InsertionSort {
+    static int[] insertionSort(int[] A, int n) {
+        // write code here
+        if(n ==0 || n==1) return A;
+        for(int i = 1; i&lt;n; i++){
+            int cur = A[i];
+            int index = i;
+            //获取A[i]应该插入的位置
+            for(int j = 0; j&lt;i; j++){
+                if(cur&lt;A[j]){
+                    index = j;
+                    break;
+                }
+            }
+            //调整B数组
+            for(int k = i; k&gt;index; k--){
+                A[k] = A[k-1];
+            }
+            //插入A[i];
+            A[index] = cur;
+        }
+        return A;
+    }
+    public static void main(String[] args){
+        int[] A = {3,1,4,2,6,5,7};
+        int[] B = insertionSort(A, 7);
+        for(int i = 0 ; i&lt;A.length; i++){
+            System.out.print(B[i]+&quot; &quot;);
+        }
+        System.out.println();
+    }
+}
+</code></pre><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><pre><code>package sort;
+public class MergeSort {
+     public static void mergeArray(int[] A, int begin, int mid, int end, int[] B) {
+        int i = begin;
+        int j = mid+1;
+        int k = begin;
+        while(i&lt;=mid &amp;&amp; j&lt;=end){
+            if(A[i]&lt;A[j]) B[k++] = A[i++];
+            else B[k++] = A[j++];
+        }
+        while(i&lt;=mid) B[k++] = A[i++];
+        while(j&lt;=end) B[k++] = A[j++];
+        for(int m = begin ; m&lt;=end; m++){
+            A[m] = B[m];
+        }
+    }
+    public static void mergeSort(int[] A, int begin, int end, int[] B){
+        if(begin&lt;end){
+            int mid = (end+begin)/2;
+            mergeSort(A, begin, mid, B);
+            mergeSort(A, mid+1, end, B);
+            mergeArray(A, begin, mid, end, B);
+        }
+    }
+    public static int[] mergeSort(int[] A, int n) {
+        // write code here
+        if(n == 0 || n == 1) return A;
+        int[] B = new int[n];
+        mergeSort(A, 0, n-1, B);
+        return A;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        int[] A = {1, 1};
+        mergeSort(A, A.length);
+        for(int i = 0; i&lt;A.length; i++){
+            System.out.println(A[i]);
+        }
+    }
+}
+</code></pre>
       
     </div>
 
@@ -555,7 +758,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#软件工程管理-容国平-CMM-CMMI"><span class="nav-number">1.</span> <span class="nav-text">软件工程管理 容国平 CMM/CMMI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CMM与CMMI"><span class="nav-number">1.1.</span> <span class="nav-text">CMM与CMMI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一种模式"><span class="nav-number">1.2.</span> <span class="nav-text">一种模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种表现形式"><span class="nav-number">1.3.</span> <span class="nav-text">两种表现形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阶段式"><span class="nav-number">1.3.1.</span> <span class="nav-text">阶段式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续式"><span class="nav-number">1.3.2.</span> <span class="nav-text">连续式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种不同的应用领域"><span class="nav-number">1.4.</span> <span class="nav-text">三种不同的应用领域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-DEV-CMMI-for-development"><span class="nav-number">1.4.1.</span> <span class="nav-text">CMMI-DEV(CMMI for development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-SVC-CMMI-for-Service"><span class="nav-number">1.4.2.</span> <span class="nav-text">CMMI-SVC(CMMI for Service)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-ACQ-采购"><span class="nav-number">1.4.3.</span> <span class="nav-text">CMMI-ACQ(采购)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每一个项目不一定仅仅只包括上面的某一种。"><span class="nav-number">1.4.4.</span> <span class="nav-text">每一个项目不一定仅仅只包括上面的某一种。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三个模型共享十六个核心过程域"><span class="nav-number">1.4.5.</span> <span class="nav-text">三个模型共享十六个核心过程域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个类别"><span class="nav-number">1.5.</span> <span class="nav-text">四个类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目管理类型-project-management"><span class="nav-number">1.5.1.</span> <span class="nav-text">项目管理类型 project management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程管理类型-process-management"><span class="nav-number">1.5.2.</span> <span class="nav-text">过程管理类型 process management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工程实践类型-engineering"><span class="nav-number">1.5.3.</span> <span class="nav-text">工程实践类型 engineering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持类型-support"><span class="nav-number">1.5.4.</span> <span class="nav-text">支持类型 support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域一定唯一的属于某个类别"><span class="nav-number">1.5.5.</span> <span class="nav-text">一个过程域一定唯一的属于某个类别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个级别"><span class="nav-number">1.6.</span> <span class="nav-text">四个级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级：没有任何过程域"><span class="nav-number">1.6.1.</span> <span class="nav-text">一级：没有任何过程域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二级"><span class="nav-number">1.6.2.</span> <span class="nav-text">二级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三级"><span class="nav-number">1.6.3.</span> <span class="nav-text">三级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四级"><span class="nav-number">1.6.4.</span> <span class="nav-text">四级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五级"><span class="nav-number">1.6.5.</span> <span class="nav-text">五级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域唯一的属于某个级别"><span class="nav-number">1.6.6.</span> <span class="nav-text">一个过程域唯一的属于某个级别</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#软件工程管理-容国平-CMM-CMMI"><span class="nav-number">1.</span> <span class="nav-text">软件工程管理 容国平 CMM/CMMI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CMM与CMMI"><span class="nav-number">1.1.</span> <span class="nav-text">CMM与CMMI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一种模式"><span class="nav-number">1.2.</span> <span class="nav-text">一种模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种表现形式"><span class="nav-number">1.3.</span> <span class="nav-text">两种表现形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阶段式"><span class="nav-number">1.3.1.</span> <span class="nav-text">阶段式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续式"><span class="nav-number">1.3.2.</span> <span class="nav-text">连续式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种不同的应用领域"><span class="nav-number">1.4.</span> <span class="nav-text">三种不同的应用领域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-DEV-CMMI-for-development"><span class="nav-number">1.4.1.</span> <span class="nav-text">CMMI-DEV(CMMI for development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-SVC-CMMI-for-Service"><span class="nav-number">1.4.2.</span> <span class="nav-text">CMMI-SVC(CMMI for Service)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-ACQ-采购"><span class="nav-number">1.4.3.</span> <span class="nav-text">CMMI-ACQ(采购)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每一个项目不一定仅仅只包括上面的某一种。"><span class="nav-number">1.4.4.</span> <span class="nav-text">每一个项目不一定仅仅只包括上面的某一种。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三个模型共享十六个核心过程域"><span class="nav-number">1.4.5.</span> <span class="nav-text">三个模型共享十六个核心过程域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个类别"><span class="nav-number">1.5.</span> <span class="nav-text">四个类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目管理类型-project-management"><span class="nav-number">1.5.1.</span> <span class="nav-text">项目管理类型 project management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程管理类型-process-management"><span class="nav-number">1.5.2.</span> <span class="nav-text">过程管理类型 process management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工程实践类型-engineering"><span class="nav-number">1.5.3.</span> <span class="nav-text">工程实践类型 engineering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持类型-support"><span class="nav-number">1.5.4.</span> <span class="nav-text">支持类型 support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域一定唯一的属于某个类别"><span class="nav-number">1.5.5.</span> <span class="nav-text">一个过程域一定唯一的属于某个类别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个级别"><span class="nav-number">1.6.</span> <span class="nav-text">四个级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级：没有任何过程域"><span class="nav-number">1.6.1.</span> <span class="nav-text">一级：没有任何过程域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二级"><span class="nav-number">1.6.2.</span> <span class="nav-text">二级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三级"><span class="nav-number">1.6.3.</span> <span class="nav-text">三级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四级"><span class="nav-number">1.6.4.</span> <span class="nav-text">四级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五级"><span class="nav-number">1.6.5.</span> <span class="nav-text">五级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域唯一的属于某个级别"><span class="nav-number">1.6.6.</span> <span class="nav-text">一个过程域唯一的属于某个级别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#《程序员代码面试指南》"><span class="nav-number">2.</span> <span class="nav-text">《程序员代码面试指南》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-链表问题"><span class="nav-number">2.1.</span> <span class="nav-text">第二章 链表问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将搜索二叉树转化成双向链表"><span class="nav-number">2.1.1.</span> <span class="nav-text">将搜索二叉树转化成双向链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排序算法-二"><span class="nav-number">3.</span> <span class="nav-text">排序算法 二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">3.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">3.2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">3.3.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#申请额外空间的插入排序"><span class="nav-number">3.3.1.</span> <span class="nav-text">申请额外空间的插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不申请额外空间"><span class="nav-number">3.3.2.</span> <span class="nav-text">不申请额外空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">3.4.</span> <span class="nav-text">归并排序</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
