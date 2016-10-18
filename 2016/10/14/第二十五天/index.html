@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第二十五天">
 <meta property="og:url" content="http://yoursite.com/2016/10/14/第二十五天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-14T04:46:32.032Z">
+<meta property="og:description" content="leetcode">
+<meta property="og:updated_time" content="2016-10-18T02:16:45.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二十五天">
+<meta name="twitter:description" content="leetcode">
 
 
 
@@ -171,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -181,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -244,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-10-14T12:46:31+08:00" content="2016-10-14">
               2016-10-14
             </time>
@@ -273,7 +276,89 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
+<h2 id="10-Regular-Expression-Matching"><a href="#10-Regular-Expression-Matching" class="headerlink" title="10. Regular Expression Matching"></a>10. Regular Expression Matching</h2><p>Implement regular expression matching with support for ‘.’ and ‘*’.</p>
+<pre><code>&apos;.&apos; Matches any single character.
+&apos;*&apos; Matches zero or more of the preceding element.
+
+The matching should cover the entire input string (not partial).
+
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+
+Some examples:
+isMatch(&quot;aa&quot;,&quot;a&quot;) → false
+isMatch(&quot;aa&quot;,&quot;aa&quot;) → true
+isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false
+isMatch(&quot;aa&quot;, &quot;a*&quot;) → true
+isMatch(&quot;aa&quot;, &quot;.*&quot;) → true
+isMatch(&quot;ab&quot;, &quot;.*&quot;) → true
+isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    bool isMatch(string s, string p) {
+       return isMatch(s.c_str(), p.c_str());
+    }
+    bool isMatch(const char *s, const char *p) {
+      assert(s &amp;&amp; p);//判断s和p是否全不为空。
+      if (*p == &apos;\0&apos;) return *s == &apos;\0&apos;;//如果p长度为0，那么如果s长度不为零，则错误。
+
+      // next char is not &apos;*&apos;: must match current character
+      if (*(p+1) != &apos;*&apos;) {
+        assert(*p != &apos;*&apos;);
+        return ((*p == *s) || (*p == &apos;.&apos; &amp;&amp; *s != &apos;\0&apos;)) &amp;&amp; isMatch(s+1, p+1);
+      }
+      // next char is &apos;*&apos;
+      while ((*p == *s) || (*p == &apos;.&apos; &amp;&amp; *s != &apos;\0&apos;)) {
+        if (isMatch(s, p+2)) return true;
+        s++;
+      }
+      return isMatch(s, p+2);
+    }
+};
+</code></pre><h2 id="11-Container-With-Most-Water"><a href="#11-Container-With-Most-Water" class="headerlink" title="11. Container With Most Water"></a>11. Container With Most Water</h2><p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. </p>
+<p>Note: You may not slant the container. </p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int maxArea(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if(n ==0 || n == 1) return 0;
+        int i = 0;
+        int j = n-1;
+        int max_S = 0;
+        while(i&lt;j){
+            max_S = max(max_S, min(nums[i], nums[j])*(j-i));
+            if(nums[i]&gt;nums[j]) j--;
+            else i++;
+            cout&lt;&lt;max_S;
+        }
+        return max_S;
+    }
+};
+</code></pre><h2 id="12-Integer-to-Roman"><a href="#12-Integer-to-Roman" class="headerlink" title="12. Integer to Roman"></a>12. Integer to Roman</h2><p>Given an integer, convert it to a roman numeral. </p>
+<p>Input is guaranteed to be within the range from 1 to 3999.</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    string intToRoman(int num) {
+        char*c[4][10]={
+            {&quot;&quot;,&quot;I&quot;,&quot;II&quot;,&quot;III&quot;,&quot;IV&quot;,&quot;V&quot;,&quot;VI&quot;,&quot;VII&quot;,&quot;VIII&quot;,&quot;IX&quot;},
+            {&quot;&quot;,&quot;X&quot;,&quot;XX&quot;,&quot;XXX&quot;,&quot;XL&quot;,&quot;L&quot;,&quot;LX&quot;,&quot;LXX&quot;,&quot;LXXX&quot;,&quot;XC&quot;},
+            {&quot;&quot;,&quot;C&quot;,&quot;CC&quot;,&quot;CCC&quot;,&quot;CD&quot;,&quot;D&quot;,&quot;DC&quot;,&quot;DCC&quot;,&quot;DCCC&quot;,&quot;CM&quot;},
+            {&quot;&quot;,&quot;M&quot;,&quot;MM&quot;,&quot;MMM&quot;}
+        };
+        string roman;
+        roman.append(c[3][num/1000%10]);
+        roman.append(c[2][num/100%10]);
+        roman.append(c[1][num/10%10]);
+        roman.append(c[0][num%10]);
+
+        return roman;
+    }
+};
+</code></pre>
       
     </div>
 
@@ -357,10 +442,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -377,7 +462,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">29</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -387,7 +472,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -415,7 +500,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Regular-Expression-Matching"><span class="nav-number">1.1.</span> <span class="nav-text">10. Regular Expression Matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Container-With-Most-Water"><span class="nav-number">1.2.</span> <span class="nav-text">11. Container With Most Water</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Integer-to-Roman"><span class="nav-number">1.3.</span> <span class="nav-text">12. Integer to Roman</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -442,7 +527,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
