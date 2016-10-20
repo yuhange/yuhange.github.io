@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode16. 3Sum ClosestGiven an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第二十七天">
 <meta property="og:url" content="http://yoursite.com/2016/10/14/第二十七天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-14T04:46:50.724Z">
+<meta property="og:description" content="leetcode16. 3Sum ClosestGiven an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each">
+<meta property="og:updated_time" content="2016-10-20T05:34:10.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二十七天">
+<meta name="twitter:description" content="leetcode16. 3Sum ClosestGiven an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each">
 
 
 
@@ -171,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -244,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-10-14T12:46:50+08:00" content="2016-10-14">
               2016-10-14
             </time>
@@ -273,7 +276,183 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><h2 id="16-3Sum-Closest"><a href="#16-3Sum-Closest" class="headerlink" title="16. 3Sum Closest"></a>16. 3Sum Closest</h2><p>Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+<p>For example, given array S = {-1 2 1 -4}, and target = 1.</p>
+<pre><code>The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) {
+        int n = nums.size();
+        int minGap = 0x7fffffff;
+        sort(nums.begin(), nums.end());
+        int res = 0;
+        for(int i = 0; i&lt;n; i++){
+            int cur = nums[i];
+            int l = i+1;
+            int r = n-1;
+            while(l&lt;r){
+                int sum = cur + nums[l] + nums[r];
+                if(abs(sum -target) &lt; minGap) {
+                    minGap = abs(sum - target);
+                    res = sum;
+                }
+                if(sum &lt; target) l++;
+                else r--;
+            }
+        }
+        return res;
+    }
+};
+</code></pre><h2 id="17-Letter-Combinations-of-a-Phone-Number"><a href="#17-Letter-Combinations-of-a-Phone-Number" class="headerlink" title="17. Letter Combinations of a Phone Number"></a>17. Letter Combinations of a Phone Number</h2><p>Given a digit string, return all possible letter combinations that the number could represent. </p>
+<p>Input: Digit string “23”</p>
+<p>Output: [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    char array[10][4] = {{&apos; &apos;,&apos; &apos;,&apos; &apos;,&apos; &apos;},{&apos; &apos;,&apos; &apos;,&apos; &apos;,&apos; &apos;},{&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos; &apos;},{&apos;d&apos;,&apos;e&apos;,&apos;f&apos;, &apos; &apos;},{&apos;g&apos;,&apos;h&apos;,&apos;i&apos;, &apos; &apos;},{&apos;j&apos;,&apos;k&apos;,&apos;l&apos;, &apos; &apos;},{&apos;m&apos;,&apos;n&apos;,&apos;o&apos;, &apos; &apos;}, {&apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;}, {&apos;t&apos;,&apos;u&apos;, &apos;v&apos;, &apos; &apos;}, {&apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;}
+    };
+    vector&lt;string&gt; v;
+    vector&lt;string&gt; letterCombinations(string digits) {
+        int n = digits.length();
+        if(n == 0) return v;
+        string res = &quot;&quot;;
+        dfs(0, digits, res);
+        return v;
+    }
+    void dfs(int idx, string s, string res){
+        if(idx&gt;=s.length()) {
+            v.push_back(res);
+            return;
+        }
+        int index = s[idx]-&apos;0&apos;;
+        for(int i = 0; i&lt;4; i++){
+            if(array[index][i] != &apos; &apos;) {
+                res += array[index][i];
+                dfs(idx+1, s, res);
+                res = res.substr(0, res.length()-1);
+            }
+        }
+    }
+}  ;
+</code></pre><h2 id="18-4Sum"><a href="#18-4Sum" class="headerlink" title="18. 4Sum"></a>18. 4Sum</h2><p>Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.</p>
+<p>Note: The solution set must not contain duplicate quadruplets. </p>
+<pre><code>For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.
+A solution set is:
+[
+  [-1,  0, 0, 1],
+  [-2, -1, 1, 2],
+  [-2,  0, 0, 2]
+]
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) {
+        int n = nums.size();
+        vector&lt;vector&lt;int&gt;&gt; res;
+        if(n&lt;4) return res;
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i&lt;n-3; i++){
+            for(int j = i+1; j&lt;n-2; j++){
+                int l = j+1;
+                int r = n-1;
+                while(l&lt;r){
+                    int sum = nums[i] + nums[j] + nums[l] + nums[r];
+                    if(sum == target){
+                        vector&lt;int&gt; v = {nums[i], nums[j], nums[l], nums[r]};
+                        res.push_back(v);
+                        //++l;
+                        //--r;
+                        while(++l &amp;&amp; nums[l] == nums[l-1]);
+                        while(--r &amp;&amp; nums[r] == nums[r+1]);
+                    }else if(sum&lt;target) l++;
+                    else r--;
+                }
+                while(j&lt;n-2&amp;&amp;nums[j]==nums[j+1])
+                    j++;
+            }
+            while(i&lt;n-2 &amp;&amp; nums[i] == nums[i+1])
+                i++;
+        }
+        return res;
+    }
+};
+</code></pre><h2 id="22-Generate-Parentheses"><a href="#22-Generate-Parentheses" class="headerlink" title="22. Generate Parentheses"></a>22. Generate Parentheses</h2><p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. </p>
+<pre><code>For example, given n = 3, a solution set is: 
+[
+  &quot;((()))&quot;,
+  &quot;(()())&quot;,
+  &quot;(())()&quot;,
+  &quot;()(())&quot;,
+  &quot;()()()&quot;
+]
+</code></pre><p>解答：</p>
+<p>一种很慢的方法：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;string&gt; v;
+    vector&lt;string&gt; generateParenthesis(int n) {
+        string res = &quot;(&quot;;
+        robot(1, n, res);
+        return v;
+    }
+    void robot(int idx, int n, string res){
+        if(idx == 2*n-1){
+            res += &quot;)&quot;;
+            if(isValid(res)) v.push_back(res);
+            return;
+        }
+        res += &quot;(&quot;;
+        robot(idx+1, n, res);
+        res = res.substr(0, res.length()-1);
+        res += &quot;)&quot;;
+        robot(idx+1, n, res);
+    }
+    bool isValid(string str) {
+        int n = str.length();
+        if(n == 0 || n%2 == 1) return false;
+        stack&lt;char&gt; s;
+        int i = 1;
+        int j = i;
+        s.push(str[0]);
+        while(str[i] != &apos;\0&apos;){
+            if(canPush(str[i])) {s.push(str[i]); j++;}
+            else{
+                if(!s.empty() &amp;&amp; canPop(s.top(), str[i])) {s.pop(); j++;}
+            }
+            i++;
+        }
+        if(s.empty() &amp;&amp; j==n) return true;
+        return false;
+    }
+    bool canPop(char top, char check){
+        if(top == &apos;(&apos; &amp;&amp; check == &apos;)&apos; || top == &apos;{&apos; &amp;&amp; check == &apos;}&apos; || top == &apos;[&apos; &amp;&amp; check == &apos;]&apos;)
+            return true;
+        return false;
+    }
+    bool canPush(char check){
+        if(check == &apos;(&apos; || check == &apos;{&apos; || check == &apos;[&apos;) return true;
+        return false;
+    }
+};
+</code></pre><p>快的方法：（卡特兰数）</p>
+<pre><code>class Solution {
+public:
+    vector&lt;string&gt; v;
+    vector&lt;string&gt; generateParenthesis(int n) {
+        robot(n, n, &quot;&quot;);
+        return v;
+    }
+    void robot(int l, int r, string res){
+        if(l == 0 &amp;&amp; r == 0) {
+            v.push_back(res);
+            return;
+        }
+        if( l &gt; 0) robot(l-1, r, res+&quot;(&quot;);
+        if( r&gt;0 &amp;&amp; r&gt;l) robot(l, r-1, res+&quot;)&quot;);
+    }
+};
+</code></pre>
       
     </div>
 
@@ -357,10 +536,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Ensemble
           </li>
         </ul>
       
@@ -377,7 +556,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -415,7 +594,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-3Sum-Closest"><span class="nav-number">1.1.</span> <span class="nav-text">16. 3Sum Closest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Letter-Combinations-of-a-Phone-Number"><span class="nav-number">1.2.</span> <span class="nav-text">17. Letter Combinations of a Phone Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-4Sum"><span class="nav-number">1.3.</span> <span class="nav-text">18. 4Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-Generate-Parentheses"><span class="nav-number">1.4.</span> <span class="nav-text">22. Generate Parentheses</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -446,7 +625,7 @@
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
