@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第二十九天">
 <meta property="og:url" content="http://yoursite.com/2016/10/20/第二十九天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-20T05:36:36.093Z">
+<meta property="og:description" content="leetcode">
+<meta property="og:updated_time" content="2016-10-22T02:36:07.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二十九天">
+<meta name="twitter:description" content="leetcode">
 
 
 
@@ -171,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -181,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -244,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-10-20T13:36:36+08:00" content="2016-10-20">
               2016-10-20
             </time>
@@ -273,7 +276,73 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
+<h2 id="26-Remove-Duplicates-from-Sorted-Array"><a href="#26-Remove-Duplicates-from-Sorted-Array" class="headerlink" title="26. Remove Duplicates from Sorted Array"></a>26. Remove Duplicates from Sorted Array</h2><p>Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.</p>
+<p>Do not allocate extra space for another array, you must do this in place with constant memory. </p>
+<p>For example,<br>Given input array nums = [1,1,2], </p>
+<p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. </p>
+<p>It doesn’t matter what you leave beyond the new length. </p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int removeDuplicates(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if(n ==0 || n == 1) return n;
+        int i = 0;
+        for(int j = i; j&lt;n; j++){
+            if(nums[j] != nums[i]) nums[++i] = nums[j];
+        }
+        return i+1;
+    }
+};
+</code></pre><h2 id="27-Remove-Element"><a href="#27-Remove-Element" class="headerlink" title="27. Remove Element"></a>27. Remove Element</h2><p>Given an array and a value, remove all instances of that value in place and return the new length. </p>
+<p>Do not allocate extra space for another array, you must do this in place with constant memory.</p>
+<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
+<p>Example:<br>Given input array nums = [3,2,2,3], val = 3 </p>
+<p>Your function should return length = 2, with the first two elements of nums being 2.</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int removeElement(vector&lt;int&gt;&amp; nums, int val) {
+        int n = nums.size();
+        int j = 0;
+        for(int i = 0; i&lt;n; i++)
+            if(nums[i] != val)
+                nums[j++] = nums[i];
+        return j;
+    }
+};
+</code></pre><h2 id="283-Move-Zeroes"><a href="#283-Move-Zeroes" class="headerlink" title="283. Move Zeroes"></a>283. Move Zeroes</h2><p>Given an array nums, write a function to move all 0’s to the end of it while maintaining the relative order of the non-zero elements. </p>
+<p>For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0]. </p>
+<p>Note:</p>
+<ul>
+<li>You must do this in-place without making a copy of the array.</li>
+<li>Minimize the total number of operations.</li>
+</ul>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    void moveZeroes(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        int j = 0;
+        for(int i = 0; i&lt;n; i++)
+            if(nums[i]!=0) {
+                int tmp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = tmp;
+                j++;
+            }
+    }
+};
+</code></pre><h2 id="28-Implement-strStr"><a href="#28-Implement-strStr" class="headerlink" title="28. Implement strStr()"></a>28. Implement strStr()</h2><p>Implement strStr(). </p>
+<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. </p>
+<p>解答一：</p>
+<pre><code>public class Solution {
+    public int strStr(String haystack, String needle) {
+        return haystack.indexOf(needle);
+    }
+}
+</code></pre>
       
     </div>
 
@@ -357,10 +426,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -377,7 +446,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">37</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -387,7 +456,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -415,7 +484,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#26-Remove-Duplicates-from-Sorted-Array"><span class="nav-number">1.1.</span> <span class="nav-text">26. Remove Duplicates from Sorted Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-Remove-Element"><span class="nav-number">1.2.</span> <span class="nav-text">27. Remove Element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#283-Move-Zeroes"><span class="nav-number">1.3.</span> <span class="nav-text">283. Move Zeroes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-Implement-strStr"><span class="nav-number">1.4.</span> <span class="nav-text">28. Implement strStr()</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -442,11 +511,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
