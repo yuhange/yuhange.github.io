@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/20/第二十九天/index.html">
 <meta property="og:site_name" content="Future Seeking">
 <meta property="og:description" content="leetcode">
-<meta property="og:updated_time" content="2016-10-22T02:36:07.817Z">
+<meta property="og:updated_time" content="2016-10-22T07:58:17.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二十九天">
 <meta name="twitter:description" content="leetcode">
@@ -174,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -184,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -247,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-10-20T13:36:36+08:00" content="2016-10-20">
               2016-10-20
             </time>
@@ -277,7 +277,108 @@
 
       
         <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
-<h2 id="26-Remove-Duplicates-from-Sorted-Array"><a href="#26-Remove-Duplicates-from-Sorted-Array" class="headerlink" title="26. Remove Duplicates from Sorted Array"></a>26. Remove Duplicates from Sorted Array</h2><p>Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.</p>
+<h2 id="24-Swap-Nodes-in-Pairs"><a href="#24-Swap-Nodes-in-Pairs" class="headerlink" title="24. Swap Nodes in Pairs"></a>24. Swap Nodes in Pairs</h2><p>Given a linked list, swap every two adjacent nodes and return its head. </p>
+<p>For example,<br>Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. </p>
+<p>Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. </p>
+<p>解答：</p>
+<pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode* pre = NULL;
+        ListNode* cur = head;
+        ListNode* next = NULL;
+        ListNode* start = NULL;
+        int count = 1;
+        while(cur!=NULL){
+            next = cur-&gt;next;
+            if(count == 2){
+                start = pre == NULL?head : pre-&gt;next;
+                head = pre == NULL?cur:head;
+                swap(pre, start, cur, next);
+                pre = start;
+                count = 0;
+            }
+            count++;
+            cur = next;
+        }
+        return head;
+    }
+    void swap(ListNode* left, ListNode* start, ListNode* end, ListNode* right){
+        ListNode* next = NULL;
+        ListNode* pre = start;
+        ListNode* cur = start-&gt;next;
+        while(cur!=right){
+            next = cur-&gt;next;
+            cur-&gt;next = pre;
+            pre = cur;
+            cur = next;
+        }
+        if(left != NULL) left-&gt;next = end;
+        start-&gt;next = right;
+    }
+};
+</code></pre><h2 id="25-Reverse-Nodes-in-k-Group"><a href="#25-Reverse-Nodes-in-k-Group" class="headerlink" title="25. Reverse Nodes in k-Group"></a>25. Reverse Nodes in k-Group</h2><p>Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. </p>
+<p>If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.</p>
+<p>You may not alter the values in the nodes, only nodes itself may be changed.</p>
+<p>Only constant memory is allowed.</p>
+<p>For example,</p>
+<pre><code>Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5 
+For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5 
+For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5 
+</code></pre><p>解答：</p>
+<pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* pre = NULL;
+        ListNode* cur = head;
+        ListNode* next = NULL;
+        ListNode* start = NULL;
+        int count = 1;
+        while(cur!=NULL){
+            next = cur-&gt;next;
+            if(count == k){
+                start = pre == NULL?head : pre-&gt;next;
+                head = pre == NULL?cur:head;
+                swap(pre, start, cur, next);
+                pre = start;
+                count = 0;
+            }
+            count++;
+            cur = next;
+        }
+        return head;
+    }
+    void swap(ListNode* left, ListNode* start, ListNode* end, ListNode* right){
+        ListNode* next = NULL;
+        ListNode* pre = start;
+        ListNode* cur = start-&gt;next;
+        while(cur!=right){
+            next = cur-&gt;next;
+            cur-&gt;next = pre;
+            pre = cur;
+            cur = next;
+        }
+        if(left != NULL) left-&gt;next = end;
+        start-&gt;next = right;
+    }
+};
+</code></pre><h2 id="26-Remove-Duplicates-from-Sorted-Array"><a href="#26-Remove-Duplicates-from-Sorted-Array" class="headerlink" title="26. Remove Duplicates from Sorted Array"></a>26. Remove Duplicates from Sorted Array</h2><p>Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.</p>
 <p>Do not allocate extra space for another array, you must do this in place with constant memory. </p>
 <p>For example,<br>Given input array nums = [1,1,2], </p>
 <p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. </p>
@@ -426,10 +527,10 @@ public:
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table Des Matières
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Ensemble
+            Übersicht
           </li>
         </ul>
       
@@ -446,7 +547,7 @@ public:
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">37</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -456,7 +557,7 @@ public:
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -484,7 +585,7 @@ public:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#26-Remove-Duplicates-from-Sorted-Array"><span class="nav-number">1.1.</span> <span class="nav-text">26. Remove Duplicates from Sorted Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-Remove-Element"><span class="nav-number">1.2.</span> <span class="nav-text">27. Remove Element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#283-Move-Zeroes"><span class="nav-number">1.3.</span> <span class="nav-text">283. Move Zeroes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-Implement-strStr"><span class="nav-number">1.4.</span> <span class="nav-text">28. Implement strStr()</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#24-Swap-Nodes-in-Pairs"><span class="nav-number">1.1.</span> <span class="nav-text">24. Swap Nodes in Pairs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-Reverse-Nodes-in-k-Group"><span class="nav-number">1.2.</span> <span class="nav-text">25. Reverse Nodes in k-Group</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-Remove-Duplicates-from-Sorted-Array"><span class="nav-number">1.3.</span> <span class="nav-text">26. Remove Duplicates from Sorted Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-Remove-Element"><span class="nav-number">1.4.</span> <span class="nav-text">27. Remove Element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#283-Move-Zeroes"><span class="nav-number">1.5.</span> <span class="nav-text">283. Move Zeroes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-Implement-strStr"><span class="nav-number">1.6.</span> <span class="nav-text">28. Implement strStr()</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -511,11 +612,11 @@ public:
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
