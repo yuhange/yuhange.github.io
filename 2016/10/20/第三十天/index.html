@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="STL源码剖析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第三十天">
 <meta property="og:url" content="http://yoursite.com/2016/10/20/第三十天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-20T05:36:48.641Z">
+<meta property="og:description" content="STL源码剖析">
+<meta property="og:updated_time" content="2016-10-23T07:18:18.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三十天">
+<meta name="twitter:description" content="STL源码剖析">
 
 
 
@@ -171,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -181,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -244,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-10-20T13:36:48+08:00" content="2016-10-20">
               2016-10-20
             </time>
@@ -273,7 +276,104 @@
       
 
       
-        
+        <h1 id="STL源码剖析"><a href="#STL源码剖析" class="headerlink" title="STL源码剖析"></a>STL源码剖析</h1><a id="more"></a>
+<h2 id="源码面前，了无秘密"><a href="#源码面前，了无秘密" class="headerlink" title="源码面前，了无秘密"></a>源码面前，了无秘密</h2><p>STL的源码是目前写作水平最高的代码。</p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ul>
+<li>容器 container。</li>
+<li>算法 algorithm</li>
+<li>迭代器 iterator 容器和算法的桥梁</li>
+<li>空间配置器 allocator</li>
+<li>仿函数 functor</li>
+<li>各种配接器 iterator adaptor</li>
+</ul>
+<p>交互关系：Container通过Allocator取得数据存储空间、Algorithm通过Iterator取得Container内容，Functor可以协助Algorithm完成策略变化，Adapter可以修饰或套接Functor。</p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>所有的STL算法都作用在迭代器标明的一个起始值与结束值之间的范围里。这个范围通常是左闭右开的。</p>
+<p>所有泛型算法的前两个参数均是一对迭代器。</p>
+<p>算法分为两种，一种是in-place的，就地改变操作对象，一种是复制的，将操作对象的内容复制一个副本。复制型的算法名字里都带有copy字样。</p>
+<h3 id="数值运算"><a href="#数值运算" class="headerlink" title="数值运算"></a>数值运算</h3><h4 id="accumulate-累加器"><a href="#accumulate-累加器" class="headerlink" title="accumulate 累加器"></a>accumulate 累加器</h4><pre><code>template &lt;class InputIterator, class T&gt;
+T accumulate(InputIterator first, InputIterator last, T init){
+    for(; first!=last; ++first)
+        init  = init + *first;
+    return init;
+
+}
+</code></pre><p>算法accumulate用来计算init和[first, last)之间的所有元素的总和。需要init是因为在[first, last)为空区间时仍能获得一个明确的结果。</p>
+<h4 id="adjacent-difference"><a href="#adjacent-difference" class="headerlink" title="adjacent_difference"></a>adjacent_difference</h4><p>adjacent_difference用来计算[first, last)间相邻元素的差值。</p>
+<pre><code>template &lt;class InputIterator, class OUtputIterator&gt;
+OutputIterator adjacent_difference(InputIterator first, InputIterator last, OutputIterator result){
+    if(first == last) return result;
+    *result = *first;
+    iterator_traits&lt;InputIterator&gt;::value_type value = *first;
+    while(++first != last){
+        T tmp = *first;
+        *++result = tmp - value;
+        value = tmp;
+    }
+    return ++result;
+}
+</code></pre><h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><h2 id="29-Divide-Two-Integers"><a href="#29-Divide-Two-Integers" class="headerlink" title="29. Divide Two Integers"></a>29. Divide Two Integers</h2><p>Divide two integers without using multiplication, division and mod operator. </p>
+<p>If it is overflow, return MAX_INT. </p>
+<p>解答：</p>
+<pre><code>public class Solution {
+    public int divide(int dividend, int divisor) {
+        if(divisor==0||dividend==Integer.MIN_VALUE&amp;&amp;divisor==-1) return Integer.MAX_VALUE;
+        int res=0,sign=(dividend&lt;0)^(divisor&lt;0)?-1:1;
+        long dvd=Math.abs((long)dividend),dvs=Math.abs((long)divisor);
+        while(dvd&gt;=dvs){
+            long mul=1,temp=dvs;
+            while(dvd&gt;=temp&lt;&lt;1){temp&lt;&lt;=1;mul&lt;&lt;=1;}
+            dvd-=temp;res+=mul;
+        }
+        return res*sign;
+    }
+}
+</code></pre><h2 id="31-Next-Permutation"><a href="#31-Next-Permutation" class="headerlink" title="31. Next Permutation"></a>31. Next Permutation</h2><p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers. </p>
+<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order). </p>
+<p>The replacement must be in-place, do not allocate extra memory. </p>
+<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.</p>
+<pre><code>1,2,3 → 1,3,2
+3,2,1 → 1,2,3
+1,1,5 → 1,5,1
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    void nextPermutation(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if(n == 0 || n == 1) return;
+        int i = n-2, k;
+        for(; i&gt;=0; i--)
+            if(nums[i]&lt;nums[i+1])
+                break;
+        if(i&lt;0){
+            reverse(nums.begin(), nums.end());
+            return;
+        }
+        for (k = nums.size() - 1; i &gt;= 0 &amp;&amp; k &gt; i ; --k)
+            if (nums[i] &lt; nums[k]) 
+                break;
+        if (i &gt;= 0) {
+            swap(nums[i], nums[k]);
+            sort(nums.begin() + i + 1, nums.end());
+            return;
+        }
+    }
+};
+</code></pre><h2 id="被第30题一道题给干崩溃了。。。放弃。"><a href="#被第30题一道题给干崩溃了。。。放弃。" class="headerlink" title="被第30题一道题给干崩溃了。。。放弃。"></a>被第30题一道题给干崩溃了。。。放弃。</h2><h1 id="总结一下前30天的情况"><a href="#总结一下前30天的情况" class="headerlink" title="总结一下前30天的情况"></a>总结一下前30天的情况</h1><p>这个博客当初是受了高盛实习招聘的刺激而开的。当时觉得自己什么也不会，怎么可能去面试。但是现在的结果是，我放弃了高盛的实习生招聘，因为实在不喜欢那家公司（虽然它确实很厉害）。</p>
+<p>这一个月刷题换了好几个阵地，从一开始的牛客到现在的leetcode，总体来说，进步有几个方面：</p>
+<ul>
+<li>简单的算法基本上都可以不用提示直接写，而且可以保证不错</li>
+<li>对时间复杂度有了自发的追求，不再单纯地追求做出来。现在做出来结果会十分想知道自己的代码跑得有多快。</li>
+<li>对难题不再害怕，觉得自己是可以做出来的。（事实证明那个。。。是做不出来的）</li>
+<li>中等难度的题目，仔细地仔细地仔细地想是可以做出来的。虽然可能时间不够快，但是是正确的解法。</li>
+</ul>
+<p>不足的话，当然有更多。。。主要是：</p>
+<ul>
+<li>难题的话还是有很多题连思路都没有，或者思路是错的。</li>
+<li>写完复杂算法之后虽然很想简化，但是往往自己想不到优化算法。</li>
+<li>做的题还是太少。</li>
+</ul>
+<p>希望下一个30天优点可以继续保持，缺点也能一点点弥补。虽然我知道能力的提升是一个螺旋上升的过程，很可能下一个周期会有很明显的退步，希望自己能挺住。挺过去，会变得比现在更强！</p>
+
       
     </div>
 
@@ -357,10 +457,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -377,7 +477,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">37</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -387,7 +487,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -415,7 +515,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL源码剖析"><span class="nav-number">1.</span> <span class="nav-text">STL源码剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#源码面前，了无秘密"><span class="nav-number">1.1.</span> <span class="nav-text">源码面前，了无秘密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型"><span class="nav-number">1.2.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值运算"><span class="nav-number">1.3.1.</span> <span class="nav-text">数值运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#accumulate-累加器"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">accumulate 累加器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#adjacent-difference"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">adjacent_difference</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">2.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#29-Divide-Two-Integers"><span class="nav-number">2.1.</span> <span class="nav-text">29. Divide Two Integers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-Next-Permutation"><span class="nav-number">2.2.</span> <span class="nav-text">31. Next Permutation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#被第30题一道题给干崩溃了。。。放弃。"><span class="nav-number">2.3.</span> <span class="nav-text">被第30题一道题给干崩溃了。。。放弃。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结一下前30天的情况"><span class="nav-number">3.</span> <span class="nav-text">总结一下前30天的情况</span></a></li></ol></div>
             
           </div>
         </section>
@@ -442,7 +542,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
