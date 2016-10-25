@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="leetcode">
+<meta name="description" content="途牛前端工程师讲演">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第二十五天">
-<meta property="og:url" content="http://yoursite.com/2016/10/14/第二十五天/index.html">
+<meta property="og:title" content="途牛前端讲座">
+<meta property="og:url" content="http://yoursite.com/2016/10/25/途牛前端讲座/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:description" content="leetcode">
-<meta property="og:updated_time" content="2016-10-18T11:26:40.906Z">
+<meta property="og:description" content="途牛前端工程师讲演">
+<meta property="og:updated_time" content="2016-10-25T14:32:06.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第二十五天">
-<meta name="twitter:description" content="leetcode">
+<meta name="twitter:title" content="途牛前端讲座">
+<meta name="twitter:description" content="途牛前端工程师讲演">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/14/第二十五天/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/25/途牛前端讲座/"/>
 
-  <title> 第二十五天 | Future Seeking </title>
+  <title> 途牛前端讲座 | Future Seeking </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -236,7 +236,7 @@
             
             
               
-                第二十五天
+                途牛前端讲座
               
             
           </h1>
@@ -248,8 +248,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-10-14T12:46:31+08:00" content="2016-10-14">
-              2016-10-14
+            <time itemprop="dateCreated" datetime="2016-10-25T22:31:27+08:00" content="2016-10-25">
+              2016-10-25
             </time>
           </span>
 
@@ -276,151 +276,77 @@
       
 
       
-        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
-<h2 id="10-Regular-Expression-Matching"><a href="#10-Regular-Expression-Matching" class="headerlink" title="10. Regular Expression Matching"></a>10. Regular Expression Matching</h2><p>Implement regular expression matching with support for ‘.’ and ‘*’.</p>
-<pre><code>&apos;.&apos; Matches any single character.
-&apos;*&apos; Matches zero or more of the preceding element.
-
-The matching should cover the entire input string (not partial).
-
-The function prototype should be:
-bool isMatch(const char *s, const char *p)
-
-Some examples:
-isMatch(&quot;aa&quot;,&quot;a&quot;) → false
-isMatch(&quot;aa&quot;,&quot;aa&quot;) → true
-isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false
-isMatch(&quot;aa&quot;, &quot;a*&quot;) → true
-isMatch(&quot;aa&quot;, &quot;.*&quot;) → true
-isMatch(&quot;ab&quot;, &quot;.*&quot;) → true
-isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true
-</code></pre><p>解答：</p>
-<pre><code>class Solution {
-public:
-    bool isMatch(string s, string p) {
-       return isMatch(s.c_str(), p.c_str());
-    }
-    bool isMatch(const char *s, const char *p) {
-      assert(s &amp;&amp; p);//判断s和p是否全不为空。
-      if (*p == &apos;\0&apos;) return *s == &apos;\0&apos;;//如果p长度为0，那么如果s长度不为零，则错误。
-
-      // next char is not &apos;*&apos;: must match current character
-      if (*(p+1) != &apos;*&apos;) {
-        assert(*p != &apos;*&apos;);
-        return ((*p == *s) || (*p == &apos;.&apos; &amp;&amp; *s != &apos;\0&apos;)) &amp;&amp; isMatch(s+1, p+1);
-      }
-      // next char is &apos;*&apos;
-      while ((*p == *s) || (*p == &apos;.&apos; &amp;&amp; *s != &apos;\0&apos;)) {
-        if (isMatch(s, p+2)) return true;
-        s++;
-      }
-      return isMatch(s, p+2);
-    }
-};
-</code></pre><h2 id="11-Container-With-Most-Water"><a href="#11-Container-With-Most-Water" class="headerlink" title="11. Container With Most Water"></a>11. Container With Most Water</h2><p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. </p>
-<p>Note: You may not slant the container. </p>
-<p>解答：</p>
-<pre><code>class Solution {
-public:
-    int maxArea(vector&lt;int&gt;&amp; nums) {
-        int n = nums.size();
-        if(n ==0 || n == 1) return 0;
-        int i = 0;
-        int j = n-1;
-        int max_S = 0;
-        while(i&lt;j){
-            max_S = max(max_S, min(nums[i], nums[j])*(j-i));
-            if(nums[i]&gt;nums[j]) j--;
-            else i++;
-            cout&lt;&lt;max_S;
-        }
-        return max_S;
-    }
-};
-</code></pre><h2 id="12-Integer-to-Roman"><a href="#12-Integer-to-Roman" class="headerlink" title="12. Integer to Roman"></a>12. Integer to Roman</h2><p>Given an integer, convert it to a roman numeral. </p>
-<p>Input is guaranteed to be within the range from 1 to 3999.</p>
-<p>解答：</p>
-<pre><code>class Solution {
-public:
-    string intToRoman(int num) {
-        char*c[4][10]={
-            {&quot;&quot;,&quot;I&quot;,&quot;II&quot;,&quot;III&quot;,&quot;IV&quot;,&quot;V&quot;,&quot;VI&quot;,&quot;VII&quot;,&quot;VIII&quot;,&quot;IX&quot;},
-            {&quot;&quot;,&quot;X&quot;,&quot;XX&quot;,&quot;XXX&quot;,&quot;XL&quot;,&quot;L&quot;,&quot;LX&quot;,&quot;LXX&quot;,&quot;LXXX&quot;,&quot;XC&quot;},
-            {&quot;&quot;,&quot;C&quot;,&quot;CC&quot;,&quot;CCC&quot;,&quot;CD&quot;,&quot;D&quot;,&quot;DC&quot;,&quot;DCC&quot;,&quot;DCCC&quot;,&quot;CM&quot;},
-            {&quot;&quot;,&quot;M&quot;,&quot;MM&quot;,&quot;MMM&quot;}
-        };
-        string roman;
-        roman.append(c[3][num/1000%10]);
-        roman.append(c[2][num/100%10]);
-        roman.append(c[1][num/10%10]);
-        roman.append(c[0][num%10]);
-
-        return roman;
-    }
-};
-</code></pre><h2 id="14-Longest-Common-Prefix"><a href="#14-Longest-Common-Prefix" class="headerlink" title="14. Longest Common Prefix"></a>14. Longest Common Prefix</h2><p>Write a function to find the longest common prefix string amongst an array of strings. </p>
-<p>解答：</p>
-<pre><code>public class Solution {
-    public String longestCommonPrefix(String[] strs) {
-        if(strs.length == 0) return &quot;&quot;;
-        if(strs.length == 1) return strs[0];
-        String res = &quot;&quot;;
-        int min = Integer.MAX_VALUE;
-        for(int i = 0; i&lt;strs.length; i++) min = Math.min(min, strs[i].length());
-        for(int i = 0; i&lt;min; i++){
-            char c = strs[0].charAt(i);
-            boolean ok = true;
-            for(int j = 1; j&lt;strs.length; j++){
-                if(c!=strs[j].charAt(i)){
-                    ok = false;
-                    break;
-                }
-            }
-            if(!ok) break;
-            if(ok) res += c;
-        }
-        return res;
-    }
-}
-</code></pre><h2 id="15-3Sum"><a href="#15-3Sum" class="headerlink" title="15. 3Sum"></a>15. 3Sum</h2><p>Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.</p>
-<p>Note: The solution set must not contain duplicate triplets.</p>
-<p>For example, given array S = [-1, 0, 1, 2, -1, -4],</p>
-<pre><code>A solution set is:
-[
-  [-1, 0, 1],
-  [-1, -1, 2]
-]
-</code></pre><p>解答：</p>
-<pre><code>public class Solution {
-    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
-        Arrays.sort(nums);
-        List&lt;List&lt;Integer&gt;&gt; lists = new ArrayList&lt;List&lt;Integer&gt;&gt;();
-        int n = nums.length;
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();
-        for(int i = 0; i &lt; n - 2 &amp;&amp; nums[i] &lt;= 0; i++){
-            if(i&gt;0 &amp;&amp; nums[i] == nums[i-1]) continue;
-            int target = 0-nums[i];
-            int l = i+1;
-            int r = n-1;
-            while(l&lt;r){
-                List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
-                int sum = nums[l]+nums[r];
-                if(sum == target) {
-                    list.add(nums[i]);
-                    list.add(nums[l]);
-                    list.add(nums[r]);
-                    lists.add(list);
-                    while(++ l &lt; r &amp;&amp; nums[l] == nums[l - 1]); // 跳过重复元素
-                    while(l &lt; -- r &amp;&amp; nums[r] == nums[r + 1]); // 跳过重复元素
-                }
-                else if(sum&gt;target) r--;
-                else l++;
-            }
-        }
-        return lists;
-    }
-}
-</code></pre>
+        <h1 id="途牛前端工程师讲演"><a href="#途牛前端工程师讲演" class="headerlink" title="途牛前端工程师讲演"></a>途牛前端工程师讲演</h1><a id="more"></a>
+<h2 id="你好，前端"><a href="#你好，前端" class="headerlink" title="你好，前端"></a>你好，前端</h2><p>设计</p>
+<p>交互</p>
+<p>用户体验</p>
+<p>技术</p>
+<p>代码</p>
+<h3 id="职业性格"><a href="#职业性格" class="headerlink" title="职业性格"></a>职业性格</h3><p>活力</p>
+<p>热情</p>
+<p>开朗</p>
+<p>包容</p>
+<h3 id="高收入"><a href="#高收入" class="headerlink" title="高收入"></a>高收入</h3><p>IT 互联网 供求比</p>
+<h3 id="年轻的职业"><a href="#年轻的职业" class="headerlink" title="年轻的职业"></a>年轻的职业</h3><h2 id="如何成为一名合格的前端工程师"><a href="#如何成为一名合格的前端工程师" class="headerlink" title="如何成为一名合格的前端工程师"></a>如何成为一名合格的前端工程师</h2><p>Vue</p>
+<p>React</p>
+<p>Mobile</p>
+<p>Chrome devTools</p>
+<p>Angular</p>
+<p>cross-platform</p>
+<p>node.js</p>
+<h3 id="模拟面试"><a href="#模拟面试" class="headerlink" title="模拟面试"></a>模拟面试</h3><ul>
+<li>自我介绍</li>
+<li>在html5标准下，<p>中可以嵌<div>吗？</div></p></li>
+<li><a>标签里能放<p></p></a></li>
+<li><strong>标签和<em>标签有什么区别<br>  都用作强调</em></strong></li>
+<li>css中父元素和子元素</li>
+<li>js倒计时之后放个礼花</li>
+</ul>
+<h3 id="初级前端工程师"><a href="#初级前端工程师" class="headerlink" title="初级前端工程师"></a>初级前端工程师</h3><ul>
+<li>知道常用html标签和他们的属性。</li>
+<li>熟练地使用CSS来绘制页面</li>
+<li>熟练的使用JQuery来完成页面的简单交互</li>
+</ul>
+<h3 id="中级前端工程师"><a href="#中级前端工程师" class="headerlink" title="中级前端工程师"></a>中级前端工程师</h3><ul>
+<li>语义化使用标签、对文档标准有所了解</li>
+<li>对CSS3有足够的理解，css的兼容性问题都能搞定</li>
+<li>对事件、DOM有深入的理解</li>
+</ul>
+<p>技能储备：</p>
+<ul>
+<li>调试和测试</li>
+<li>网络安全知识</li>
+<li>HTTP</li>
+<li>React、Vue</li>
+<li>Node.js</li>
+</ul>
+<h3 id="高级前端工程师"><a href="#高级前端工程师" class="headerlink" title="高级前端工程师"></a>高级前端工程师</h3><ul>
+<li>熟悉文档标准、对渲染原理有了解</li>
+<li>深入理解CSS背后的浏览器工作</li>
+<li>对浏览器JS引擎有一定的理解 V8引擎</li>
+</ul>
+<p>技能储备：</p>
+<ul>
+<li>框架能力</li>
+<li>设计能力</li>
+<li>管理能力</li>
+<li>职业方向</li>
+</ul>
+<h3 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h3><ul>
+<li>看书，写个页面</li>
+<li>给这个页面做好浏览器兼容</li>
+<li>规范化代码编写，让代码整洁</li>
+<li>关注代码重用，语义化</li>
+<li>关注代码性能与安全</li>
+<li>设计提升开发效率</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li>学习一门后端语言 node php</li>
+<li>学习用户体验设计</li>
+<li>学习全栈</li>
+</ul>
+<h2 id="前端工程师的未来"><a href="#前端工程师的未来" class="headerlink" title="前端工程师的未来"></a>前端工程师的未来</h2>
       
     </div>
 
@@ -445,17 +371,13 @@ public:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/14/第二十四天/" rel="next" title="第二十四天">
-                <i class="fa fa-chevron-left"></i> 第二十四天
+              <a href="/2016/10/20/第三十四天/" rel="next" title="第三十四天">
+                <i class="fa fa-chevron-left"></i> 第三十四天
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/14/第二十六天/" rel="prev" title="第二十六天">
-                第二十六天 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -562,7 +484,7 @@ public:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Regular-Expression-Matching"><span class="nav-number">1.1.</span> <span class="nav-text">10. Regular Expression Matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Container-With-Most-Water"><span class="nav-number">1.2.</span> <span class="nav-text">11. Container With Most Water</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Integer-to-Roman"><span class="nav-number">1.3.</span> <span class="nav-text">12. Integer to Roman</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Longest-Common-Prefix"><span class="nav-number">1.4.</span> <span class="nav-text">14. Longest Common Prefix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-3Sum"><span class="nav-number">1.5.</span> <span class="nav-text">15. 3Sum</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#途牛前端工程师讲演"><span class="nav-number">1.</span> <span class="nav-text">途牛前端工程师讲演</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#你好，前端"><span class="nav-number">1.1.</span> <span class="nav-text">你好，前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#职业性格"><span class="nav-number">1.1.1.</span> <span class="nav-text">职业性格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高收入"><span class="nav-number">1.1.2.</span> <span class="nav-text">高收入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#年轻的职业"><span class="nav-number">1.1.3.</span> <span class="nav-text">年轻的职业</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何成为一名合格的前端工程师"><span class="nav-number">1.2.</span> <span class="nav-text">如何成为一名合格的前端工程师</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟面试"><span class="nav-number">1.2.1.</span> <span class="nav-text">模拟面试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初级前端工程师"><span class="nav-number">1.2.2.</span> <span class="nav-text">初级前端工程师</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中级前端工程师"><span class="nav-number">1.2.3.</span> <span class="nav-text">中级前端工程师</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级前端工程师"><span class="nav-number">1.2.4.</span> <span class="nav-text">高级前端工程师</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习路线"><span class="nav-number">1.2.5.</span> <span class="nav-text">学习路线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端工程师的未来"><span class="nav-number">1.3.</span> <span class="nav-text">前端工程师的未来</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
