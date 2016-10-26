@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/19/软件工程管理/index.html">
 <meta property="og:site_name" content="Future Seeking">
 <meta property="og:description" content="软件工程管理 容国平 CMM/CMMI">
-<meta property="og:updated_time" content="2016-10-19T14:37:10.374Z">
+<meta property="og:updated_time" content="2016-10-26T12:38:46.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件工程管理">
 <meta name="twitter:description" content="软件工程管理 容国平 CMM/CMMI">
@@ -277,6 +277,7 @@
 
       
         <h1 id="软件工程管理-容国平-CMM-CMMI"><a href="#软件工程管理-容国平-CMM-CMMI" class="headerlink" title="软件工程管理 容国平 CMM/CMMI"></a>软件工程管理 容国平 CMM/CMMI</h1><a id="more"></a>
+<p><strong>CCMI不是敏捷的对立面。所有的商业项目都是有计划的。不能认为敏捷没有计划。</strong></p>
 <h2 id="CMM与CMMI"><a href="#CMM与CMMI" class="headerlink" title="CMM与CMMI"></a>CMM与CMMI</h2><p>CMM1993年提出，现已弃用。</p>
 <h2 id="一种模式"><a href="#一种模式" class="headerlink" title="一种模式"></a>一种模式</h2><p>一种过程改进的路线图，一个评估模式，不是开发模式。是帮助改进开发的。</p>
 <p>不是一个标准</p>
@@ -464,19 +465,147 @@
 <li>验证式：公司提供材料（文档），由评估小组检查。</li>
 </ul>
 <p>验证式更省事，所以大部分评估都采用文档验收。</p>
-<h2 id="具体过程域"><a href="#具体过程域" class="headerlink" title="具体过程域"></a>具体过程域</h2><ul>
+<h2 id="所有过程域的GP"><a href="#所有过程域的GP" class="headerlink" title="所有过程域的GP"></a>所有过程域的GP</h2><ul>
 <li>GP2.1：建立指导原则。</li>
-<li>GP2.2：建立规划。</li>
+<li>GP2.2：为某一个过程域的开展进行策划。建立规划。</li>
 <li>GP2.3：资源</li>
 <li>GP2.4：清晰的角色分配</li>
 <li>GP2.5：培训</li>
 <li>GP2.6：管理变更</li>
 <li>GP2.7：干系人如何协作</li>
-<li>GP2.8：按照规划检查</li>
+<li>GP2.8：按照规划检查 监控</li>
 <li>GP2.9：过程域开展实施状况的客观检查（第三方检查）</li>
 <li>GP2.10：高级管理者参与</li>
 <li>GP3.1：组织级的规范</li>
 <li>GP3.2：结果保存，变成组织级的资产。支持后续过程改进</li>
+</ul>
+<h2 id="具体过程域"><a href="#具体过程域" class="headerlink" title="具体过程域"></a>具体过程域</h2><h3 id="PP-project-planning-项目策划"><a href="#PP-project-planning-项目策划" class="headerlink" title="PP project planning 项目策划"></a>PP project planning 项目策划</h3><p>项目管理、二级</p>
+<ul>
+<li><p>SG1: Establish Estimate<br>  估算</p>
+<p>  <strong>估算是为了得出计划</strong></p>
+<p>  和方法无关，但要有。可以用重量级的也可以用轻量级的开发方法，但是一定要有一个估算。</p>
+<p>  估算内容：</p>
+<ul>
+<li>定义（估算）项目范围 scope Typical Work Product 会产生一个工作分解结构(WPS)</li>
+<li>定义项目生命周期 可能会用几个迭代，如何定义每个阶段 决定了计划的结构 决定了项目计划的样子 不同迭代的计划会不一样</li>
+<li>工作产品和任务的属性</li>
+<li><p>需要付出的工时是多少</p>
+<p>COCOMO模型–估算方法</p>
+<p>估算方程： y = ax^c + d</p>
+<p>其中，y是时间（人天/人月），X是规模（代码行，功能点）a\c\d是系数</p>
+<p>Scrum的估算结果是一个Scrum Point 一个scrum point具体是什么已经<em>被虚拟化了</em>，只是一个相对大小的比较。是指不同的两个工作量之间的差值。比如一个小房间需要3个point的油漆，比它大的需要4个。定义某一项工作有无数种选择。用费波纳契亚数列来估算，里面每一个都是可以的，都是正确的。</p>
+<p>PSP里面支持五种：非常小，小，中等，大，非常大。</p>
+<p>可以看出，估算都是很模糊的，不精确的，不能估算地太准确。由软件开发的性质决定。在传统行业中可以把工作理解为几乎完全一样的动作（过程）的重复，当动作稳定后，波动是非常小的。但是软件不是这样的。大模块不是小模块的线性叠加。因为里面有人类的思维过程。</p>
+<p><strong>如何估算？？只要估算出的数字大家都会接受，就可以了。</strong></p>
+<p>估算结果的获得：</p>
+</li>
+<li>上面的公式  y = ax^c + d </li>
+<li><p>直接猜测 和公式没有统计上的差别 乔布斯 现实扭曲力场</p>
+<p>冒泡排序：一个函数和两个函数的估算哪个会更准确？=&gt;倾向于两个方法更准确，因此按照两个函数来估算，因为大家都这么以为。</p>
+<p>估算不是追求一个客观真实的结果，而是为了一个大家都相信的数字</p>
+</li>
+</ul>
+</li>
+<li><p>SG2: Develop a Project Plan 制定计划</p>
+<ul>
+<li>预算和日程计划</li>
+<li>项目风险</li>
+<li><p>项目数据管理计划</p>
+<p>  配置管理是其中的一部分 </p>
+<p>  项目的熵在不断增加，会越来越混乱，需要配置管理</p>
+</li>
+<li><p>项目资源规划 （人力资源，<strong>有效时间</strong>）</p>
+<p>  有效工作时间会比直观的感觉低很多。有效时间：做的工作可以直接对应到日程表上的任务。处理变更不算有效时间，因为它不在日程表上。修改错误的时间也不算有效时间。</p>
+</li>
+<li><p>培训计划 相关干系人的参与计划（客户和高级管理者）</p>
+<p>  在<strong>项目里程碑</strong>的时候邀请干系人参与</p>
+</li>
+</ul>
+</li>
+<li><p>SG3: Obtain Commitment to the Plan 评审</p>
+<ul>
+<li>对计划和相关参与人进行Review，使大家都认可。为了追求一种信任感</li>
+<li>协调内容和资源水平</li>
+<li>获得一致认可</li>
+</ul>
+</li>
+</ul>
+<h4 id="PP的GP2-2是什么？有什么现实意义？"><a href="#PP的GP2-2是什么？有什么现实意义？" class="headerlink" title="PP的GP2.2是什么？有什么现实意义？"></a>PP的GP2.2是什么？有什么现实意义？</h4><p>为计划做计划。需要协调人员时间和资源。</p>
+<p>现实中，项目计划的计划不是临时定义的计划，是固定好的一个模板。规定了会议等的时间和流程，以提前协调人员。</p>
+<p>因此是有现实意义的。</p>
+<p><em>看PPT图</em></p>
+<p><strong>要注意，以上数字不代表先后顺序</strong></p>
+<h3 id="PMC-Project-Monitoring-and-Control-项目管理与监控-二级"><a href="#PMC-Project-Monitoring-and-Control-项目管理与监控-二级" class="headerlink" title="PMC Project Monitoring and Control 项目管理与监控 二级"></a>PMC Project Monitoring and Control 项目管理与监控 二级</h3><p>状态跟踪与纠正</p>
+<p>识别偏差-&gt;纠正</p>
+<p>如何识别偏差：与计划相比较</p>
+<ul>
+<li><p>SG1：MOnitor Project Against Plan</p>
+<p>  与计划的偏差</p>
+<ul>
+<li><p>Monitor Project Planning Parameters 项目策划的参数</p>
+<p>  范围、资源水平、估算规模、</p>
+</li>
+<li><p>Monitor Commitments</p>
+<p>  尤其是程序员的承诺，程序员往往过于乐观。</p>
+</li>
+<li><p>Monitor Project Risks</p>
+<p>  见风险管理</p>
+</li>
+<li><p>Monitor Data Managemeng</p>
+<p>  有效的降低熵的手段 文件结构清晰、命名清晰</p>
+</li>
+<li><p>Conduct Milestones Reviews</p>
+<p>  里程碑评审</p>
+<p>  这个项目能否进展到下一步</p>
+</li>
+<li><p>Conduct Progress Reviews</p>
+<p>  进度评审</p>
+<p>  判断项目是否在按照计划进展，要关心质量、日程、风险等等的进度</p>
+<p>  <strong>如何分清上面两个的区别？</strong></p>
+<ul>
+<li>实际进展和计划相比较是否正常=&gt;项目进度 范围小，频率高 小组例会即可，不需要包括客户等等人员，会议里需要回答上一周期完成了什么，下一周期要实现什么</li>
+<li>这个项目需不需要进行下去=&gt;里程碑 需要客户和高级经理参与 范围大，频率小 比如需求结束以后，发现出现了很多错误。因此需求这个里程碑完成但是质量不好，不可以进入下一个阶段，需要推倒重来。不可以项目经理一个人定的，需要高级经理和客户决定。关系到项目是否延期和是否直接结束。</li>
+<li>它们关心的内容是很接近的。</li>
+</ul>
+</li>
+<li><p>Monitor Stakeholder Involvement</p>
+<p>  相关干系人的参与</p>
+</li>
+</ul>
+</li>
+<li><p>SG2: Manage Corrective Action to Closure</p>
+<p>  纠正偏差</p>
+<ul>
+<li><p>Analyze Issues</p>
+<p>  分析问题的根源。弄明白根本原因，对症下药。</p>
+<p>  不同的场景下的原因是不同的。</p>
+<p>  比如一个项目的进度落后了，原因有哪些？</p>
+<ul>
+<li>需求变更</li>
+<li>估算过于乐观（加班可能没有用了；或者人力投入不足）</li>
+</ul>
+</li>
+<li><p>Take Corrective Action</p>
+</li>
+<li>Manage Corrective Action 管理纠偏的措施</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>   向一个已经进度落后的项目里增加人员只会导致项目进一步落后 ——《人月神话》</p>
+</blockquote>
+<h4 id="PMC的GP2-8是什么？有什么现实意义？"><a href="#PMC的GP2-8是什么？有什么现实意义？" class="headerlink" title="PMC的GP2.8是什么？有什么现实意义？"></a>PMC的GP2.8是什么？有什么现实意义？</h4><p>监控的监控。</p>
+<ul>
+<li>原本定好的活动不再做了，需要监控。</li>
+</ul>
+<p>现实中，很可能虽然有周例会这种制度，但是已经不再开了。需要有一个制度来监控是否进行了周例会。</p>
+<ul>
+<li>针对已发现的问题的分析，统计和管理</li>
+</ul>
+<p><strong>什么时候开展PMC的GP2.8？由谁来做？</strong></p>
+<ul>
+<li>里程碑的时候进行GP2.8. 可以提出周例会等问题。</li>
+<li></li>
 </ul>
 
       
@@ -581,7 +710,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -620,7 +749,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#软件工程管理-容国平-CMM-CMMI"><span class="nav-number">1.</span> <span class="nav-text">软件工程管理 容国平 CMM/CMMI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CMM与CMMI"><span class="nav-number">1.1.</span> <span class="nav-text">CMM与CMMI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一种模式"><span class="nav-number">1.2.</span> <span class="nav-text">一种模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种表现形式"><span class="nav-number">1.3.</span> <span class="nav-text">两种表现形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阶段式"><span class="nav-number">1.3.1.</span> <span class="nav-text">阶段式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续式"><span class="nav-number">1.3.2.</span> <span class="nav-text">连续式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种不同的应用领域"><span class="nav-number">1.4.</span> <span class="nav-text">三种不同的应用领域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-DEV-CMMI-for-development"><span class="nav-number">1.4.1.</span> <span class="nav-text">CMMI-DEV(CMMI for development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-SVC-CMMI-for-Service"><span class="nav-number">1.4.2.</span> <span class="nav-text">CMMI-SVC(CMMI for Service)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-ACQ-采购"><span class="nav-number">1.4.3.</span> <span class="nav-text">CMMI-ACQ(采购)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每一个项目不一定仅仅只包括上面的某一种。"><span class="nav-number">1.4.4.</span> <span class="nav-text">每一个项目不一定仅仅只包括上面的某一种。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三个模型共享十六个核心过程域"><span class="nav-number">1.4.5.</span> <span class="nav-text">三个模型共享十六个核心过程域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个类别"><span class="nav-number">1.5.</span> <span class="nav-text">四个类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目管理类型-project-management"><span class="nav-number">1.5.1.</span> <span class="nav-text">项目管理类型 project management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程管理类型-process-management"><span class="nav-number">1.5.2.</span> <span class="nav-text">过程管理类型 process management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工程实践类型-engineering"><span class="nav-number">1.5.3.</span> <span class="nav-text">工程实践类型 engineering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持类型-support"><span class="nav-number">1.5.4.</span> <span class="nav-text">支持类型 support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域一定唯一的属于某个类别"><span class="nav-number">1.5.5.</span> <span class="nav-text">一个过程域一定唯一的属于某个类别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个级别"><span class="nav-number">1.6.</span> <span class="nav-text">四个级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级：没有任何过程域"><span class="nav-number">1.6.1.</span> <span class="nav-text">一级：没有任何过程域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二级"><span class="nav-number">1.6.2.</span> <span class="nav-text">二级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三级"><span class="nav-number">1.6.3.</span> <span class="nav-text">三级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四级"><span class="nav-number">1.6.4.</span> <span class="nav-text">四级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么进度落后要加班？"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">为什么进度落后要加班？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#凭什么确定预测模型是正确的？"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">凭什么确定预测模型是正确的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论："><span class="nav-number">1.6.4.3.</span> <span class="nav-text">结论：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何让模型更可靠？"><span class="nav-number">1.6.4.4.</span> <span class="nav-text">如何让模型更可靠？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五级"><span class="nav-number">1.6.5.</span> <span class="nav-text">五级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.6.6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域唯一的属于某个级别"><span class="nav-number">1.6.7.</span> <span class="nav-text">一个过程域唯一的属于某个级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六个连续式表现形式下的能力水平"><span class="nav-number">1.7.</span> <span class="nav-text">六个连续式表现形式下的能力水平</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0级"><span class="nav-number">1.7.1.</span> <span class="nav-text">0级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1级"><span class="nav-number">1.7.2.</span> <span class="nav-text">1级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#至此模型会严重不一致"><span class="nav-number">1.8.</span> <span class="nav-text">至此模型会严重不一致</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么？"><span class="nav-number">1.8.1.</span> <span class="nav-text">为什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程域"><span class="nav-number">1.9.</span> <span class="nav-text">过程域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估方法"><span class="nav-number">1.10.</span> <span class="nav-text">评估方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体过程域"><span class="nav-number">1.11.</span> <span class="nav-text">具体过程域</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#软件工程管理-容国平-CMM-CMMI"><span class="nav-number">1.</span> <span class="nav-text">软件工程管理 容国平 CMM/CMMI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CMM与CMMI"><span class="nav-number">1.1.</span> <span class="nav-text">CMM与CMMI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一种模式"><span class="nav-number">1.2.</span> <span class="nav-text">一种模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种表现形式"><span class="nav-number">1.3.</span> <span class="nav-text">两种表现形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阶段式"><span class="nav-number">1.3.1.</span> <span class="nav-text">阶段式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续式"><span class="nav-number">1.3.2.</span> <span class="nav-text">连续式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种不同的应用领域"><span class="nav-number">1.4.</span> <span class="nav-text">三种不同的应用领域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-DEV-CMMI-for-development"><span class="nav-number">1.4.1.</span> <span class="nav-text">CMMI-DEV(CMMI for development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-SVC-CMMI-for-Service"><span class="nav-number">1.4.2.</span> <span class="nav-text">CMMI-SVC(CMMI for Service)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMMI-ACQ-采购"><span class="nav-number">1.4.3.</span> <span class="nav-text">CMMI-ACQ(采购)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每一个项目不一定仅仅只包括上面的某一种。"><span class="nav-number">1.4.4.</span> <span class="nav-text">每一个项目不一定仅仅只包括上面的某一种。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三个模型共享十六个核心过程域"><span class="nav-number">1.4.5.</span> <span class="nav-text">三个模型共享十六个核心过程域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个类别"><span class="nav-number">1.5.</span> <span class="nav-text">四个类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目管理类型-project-management"><span class="nav-number">1.5.1.</span> <span class="nav-text">项目管理类型 project management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程管理类型-process-management"><span class="nav-number">1.5.2.</span> <span class="nav-text">过程管理类型 process management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工程实践类型-engineering"><span class="nav-number">1.5.3.</span> <span class="nav-text">工程实践类型 engineering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持类型-support"><span class="nav-number">1.5.4.</span> <span class="nav-text">支持类型 support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域一定唯一的属于某个类别"><span class="nav-number">1.5.5.</span> <span class="nav-text">一个过程域一定唯一的属于某个类别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个级别"><span class="nav-number">1.6.</span> <span class="nav-text">四个级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级：没有任何过程域"><span class="nav-number">1.6.1.</span> <span class="nav-text">一级：没有任何过程域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二级"><span class="nav-number">1.6.2.</span> <span class="nav-text">二级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三级"><span class="nav-number">1.6.3.</span> <span class="nav-text">三级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四级"><span class="nav-number">1.6.4.</span> <span class="nav-text">四级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么进度落后要加班？"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">为什么进度落后要加班？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#凭什么确定预测模型是正确的？"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">凭什么确定预测模型是正确的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论："><span class="nav-number">1.6.4.3.</span> <span class="nav-text">结论：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何让模型更可靠？"><span class="nav-number">1.6.4.4.</span> <span class="nav-text">如何让模型更可靠？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五级"><span class="nav-number">1.6.5.</span> <span class="nav-text">五级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.6.6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个过程域唯一的属于某个级别"><span class="nav-number">1.6.7.</span> <span class="nav-text">一个过程域唯一的属于某个级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六个连续式表现形式下的能力水平"><span class="nav-number">1.7.</span> <span class="nav-text">六个连续式表现形式下的能力水平</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0级"><span class="nav-number">1.7.1.</span> <span class="nav-text">0级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1级"><span class="nav-number">1.7.2.</span> <span class="nav-text">1级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#至此模型会严重不一致"><span class="nav-number">1.8.</span> <span class="nav-text">至此模型会严重不一致</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么？"><span class="nav-number">1.8.1.</span> <span class="nav-text">为什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程域"><span class="nav-number">1.9.</span> <span class="nav-text">过程域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估方法"><span class="nav-number">1.10.</span> <span class="nav-text">评估方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有过程域的GP"><span class="nav-number">1.11.</span> <span class="nav-text">所有过程域的GP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体过程域"><span class="nav-number">1.12.</span> <span class="nav-text">具体过程域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PP-project-planning-项目策划"><span class="nav-number">1.12.1.</span> <span class="nav-text">PP project planning 项目策划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PP的GP2-2是什么？有什么现实意义？"><span class="nav-number">1.12.1.1.</span> <span class="nav-text">PP的GP2.2是什么？有什么现实意义？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PMC-Project-Monitoring-and-Control-项目管理与监控-二级"><span class="nav-number">1.12.2.</span> <span class="nav-text">PMC Project Monitoring and Control 项目管理与监控 二级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PMC的GP2-8是什么？有什么现实意义？"><span class="nav-number">1.12.2.1.</span> <span class="nav-text">PMC的GP2.8是什么？有什么现实意义？</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

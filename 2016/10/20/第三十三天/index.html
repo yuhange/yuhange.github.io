@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第三十三天">
 <meta property="og:url" content="http://yoursite.com/2016/10/20/第三十三天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-20T05:37:15.510Z">
+<meta property="og:description" content="leetcode">
+<meta property="og:updated_time" content="2016-10-26T12:39:58.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三十三天">
+<meta name="twitter:description" content="leetcode">
 
 
 
@@ -273,7 +276,164 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
+<h2 id="38-Count-and-Say"><a href="#38-Count-and-Say" class="headerlink" title="38. Count and Say"></a>38. Count and Say</h2><p>The count-and-say sequence is the sequence of integers beginning as follows:</p>
+<p>1, 11, 21, 1211, 111221, … </p>
+<p>1 is read off as “one 1” or 11.</p>
+<p>11 is read off as “two 1s” or 21.</p>
+<p>21 is read off as “one 2, then one 1” or 1211.</p>
+<p>Given an integer n, generate the nth sequence. </p>
+<p>Note: The sequence of integers will be represented as a string. </p>
+<p>这道题做出来了我还是比较满意的。毕竟第一次放弃了</p>
+<p>解答：</p>
+<pre><code>public class Solution {
+    public String countAndSay(int n) {
+        if(n == 1) return &quot;1&quot;;
+        if(n == 2) return &quot;11&quot;;
+        if(n == 3) return &quot;21&quot;;
+        if(n == 4) return &quot;1211&quot;;
+        if(n == 5) return &quot;111221&quot;;
+        String[] tmp = new String[n+1];
+        tmp[0] = &quot;1&quot;;
+        tmp[1] = &quot;11&quot;;
+        tmp[2] = &quot;21&quot;;
+        tmp[3] = &quot;1211&quot;;
+        tmp[4] = &quot;111221&quot;;
+        for(int i = 5; i&lt;n; i++){
+            String pre = tmp[i-1];
+            String cur = &quot;&quot;;
+            int count = 1;
+            int j = 1;
+            for(;j&lt;pre.length(); j++){
+                if(pre.charAt(j) == pre.charAt(j-1)) count++;
+                else {
+                    cur += count;
+                    cur += pre.charAt(j-1);
+                    count = 1;
+                }
+            }
+            cur += count;
+            cur += pre.charAt(j-1);
+            tmp[i] = cur;
+        }
+        return tmp[n-1];
+    }
+}
+</code></pre><h2 id="36-Valid-Sudoku"><a href="#36-Valid-Sudoku" class="headerlink" title="36. Valid Sudoku"></a>36. Valid Sudoku</h2><p>Determine if a Sudoku is valid</p>
+<p>借鉴了别人的部分代码，就是判断每个小格子是否合法的部分</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    bool isValidSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
+        vector&lt;unordered_map&lt;char, int&gt;&gt; mapV;
+        for(int i = 0; i&lt;9; i++){
+            unordered_map&lt;char, int&gt; map;
+            vector&lt;char&gt; v = board[i];
+            for(int j = 0; j&lt;9; j++)
+                if(v[i]!=&apos;.&apos;) map[v[i]] ++;
+            mapV.push_back(map);
+        }
+        for(int i = 0; i&lt;9; i++){
+            unordered_map&lt;char, int&gt; map = mapV[i];
+            for(int j = 0; j&lt;9; j++){
+                cout&lt;&lt;map[j+1]&lt;&lt;&quot; &quot;;
+                if(map[j+1] &gt;= 2) return false;
+            }
+            cout&lt;&lt;endl;
+        }
+        return true;
+    }
+};
+</code></pre><h2 id="39-Combination-Sum"><a href="#39-Combination-Sum" class="headerlink" title="39. Combination Sum"></a>39. Combination Sum</h2><p>Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T. </p>
+<p>The same repeated number may be chosen from C unlimited number of times. </p>
+<p>Note:</p>
+<p>All numbers (including target) will be positive integers.</p>
+<p>The solution set must not contain duplicate combinations.</p>
+<p>For example, given candidate set [2, 3, 6, 7] and target 7, </p>
+<pre><code>A solution set is: 
+[
+  [7],
+  [2, 2, 3]
+]
+</code></pre><p>还是没做出来T_T</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    int path[100] = {0};
+    int len = 0;
+    vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) {
+        int n = candidates.size();
+        if(n == 0) return res;
+        robot(0, candidates, target);
+        return res;
+    }
+    void robot(int idx, vector&lt;int&gt;&amp; candidates, int target) {
+        if(target == 0){
+            vector&lt;int&gt; v;
+            for(int i = 0; i&lt;len; i++) 
+                v.push_back(path[i]);
+            res.push_back(v);
+            return;
+        }
+        if(target&lt;0 || idx &gt;= candidates.size()){
+            return;
+        }
+        path[len++] = candidates[idx];
+        robot(idx, candidates, target-candidates[idx]);
+        len--;
+        robot(idx+1, candidates, target);
+    }
+};
+</code></pre><h1 id="第一章-js入门"><a href="#第一章-js入门" class="headerlink" title="第一章 js入门"></a>第一章 js入门</h1><h2 id="js的对象和数组"><a href="#js的对象和数组" class="headerlink" title="js的对象和数组"></a>js的对象和数组</h2><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>对象是名/值对的集合，或字符串到值映射的集合</p>
+<pre><code>var book = {
+    topic: &quot;JS&quot;,
+    fat: ture
+};
+</code></pre><p>对象的访问：通过. 或者[]来获得</p>
+<ul>
+<li>book.topic</li>
+<li>book[“fat”]</li>
+</ul>
+<p>属性的新建：.</p>
+<ul>
+<li>book.author = “Flangon”; //通过赋值来新建一个属性</li>
+<li>book.contents = {}; // {}是一个没有名字的空对象，它没有属性</li>
+</ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组是以数字为索引的列表</p>
+<pre><code>var primes = [1,3,4,5];
+primes[0]               //-&gt;1
+primes.length           //=&gt;4
+primes[primes.length-1] //=&gt;5
+primes[4] = 9;  //通过赋值添加元素
+primes[4] = 11; //通过赋值改变元素
+var empty = []; //[]是空数组，它有0个元素
+empty.length //=&gt;0
+</code></pre><h3 id="对象与数组"><a href="#对象与数组" class="headerlink" title="对象与数组"></a>对象与数组</h3><p>数组和对象中都可以包含另一个数组和对象</p>
+<pre><code>var points = [{x: 0, y:0}, {x:1, y:1}];
+var datas = {trial1: [[1,2], [3,4]], trial2: [[2,3],[4,5]]};
+</code></pre><p>上面这种通过花括号定义对象元素和通过方括号定义数组元素的方法称为初始化表达式。</p>
+<p>表达式是JS中的一个短语，这个短语可以通过运算得出一个值。</p>
+<p>通过.或者[]来引用对象属性或数组元素就是一个表达式。</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>包括：</p>
+<ul>
+<li>1+2</li>
+<li>2-1</li>
+<li>2*1</li>
+<li>1/2</li>
+<li>points.[1]+points.[2]</li>
+<li>字符串连接： “1”+”2” //=&gt;“12”</li>
+<li>加减乘除等可以进行缩写</li>
+<li><p>相等关系</p>
+<p>  通过相等运算符判断</p>
+</li>
+</ul>
+<pre><code>    var x = 2, y = 3;
+    x == y; // false
+    &quot;two&quot; == &quot;three&quot;; //false
+
+看到第23页
+</code></pre>
       
     </div>
 
@@ -376,7 +536,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -415,7 +575,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#38-Count-and-Say"><span class="nav-number">1.1.</span> <span class="nav-text">38. Count and Say</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-Valid-Sudoku"><span class="nav-number">1.2.</span> <span class="nav-text">36. Valid Sudoku</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-Combination-Sum"><span class="nav-number">1.3.</span> <span class="nav-text">39. Combination Sum</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-js入门"><span class="nav-number">2.</span> <span class="nav-text">第一章 js入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js的对象和数组"><span class="nav-number">2.1.</span> <span class="nav-text">js的对象和数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">2.1.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">2.1.2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象与数组"><span class="nav-number">2.1.3.</span> <span class="nav-text">对象与数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符"><span class="nav-number">2.1.4.</span> <span class="nav-text">运算符</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
