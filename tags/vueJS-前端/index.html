@@ -84,16 +84,12 @@
 
 
 
-<meta name="description" content="刷题至今的一点经验题目一定要自己做！！！一定要自己做！！！！一定要自己做！！！！">
-<meta property="og:type" content="article">
-<meta property="og:title" content="第二十二天">
-<meta property="og:url" content="http://yoursite.com/2016/10/14/第二十二天/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Future Seeking">
+<meta property="og:url" content="http://yoursite.com/tags/vueJS-前端/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:description" content="刷题至今的一点经验题目一定要自己做！！！一定要自己做！！！！一定要自己做！！！！">
-<meta property="og:updated_time" content="2016-10-15T03:06:49.740Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第二十二天">
-<meta name="twitter:description" content="刷题至今的一点经验题目一定要自己做！！！一定要自己做！！！！一定要自己做！！！！">
+<meta name="twitter:title" content="Future Seeking">
 
 
 
@@ -114,9 +110,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/14/第二十二天/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/vueJS-前端/"/>
 
-  <title> 第二十二天 | Future Seeking </title>
+  <title> Tag: vueJS 前端 | Future Seeking </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -137,7 +133,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,152 +211,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        vueJS 前端
+        <small>Tag</small>
+      </h2>
+    </div>
 
     
-      <header class="post-header">
+      
 
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/10/29/VueJS/" itemprop="url">
               
-                第二十二天
+                <span itemprop="name">VueJS</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-14T12:46:04+08:00" content="2016-10-14">
-              2016-10-14
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-10-29T14:21:31+08:00"
+              content="2016-10-29" >
+          10-29
+        </time>
+      </div>
 
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="刷题至今的一点经验"><a href="#刷题至今的一点经验" class="headerlink" title="刷题至今的一点经验"></a>刷题至今的一点经验</h1><p>题目一定要自己做！！！一定要自己做！！！！一定要自己做！！！！</p>
-<a id="more"></a>
-<p>当我发现直到昨天我连插入排序和归并排序都会写的时候。。。。</p>
-<p>我就只好学会了。。。。</p>
-<h1 id="排序算法-三"><a href="#排序算法-三" class="headerlink" title="排序算法 三"></a>排序算法 三</h1><h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><pre><code>public class HeapSort {
-    static void adjust(int[] A, int i, int n){
-        int tmp = A[i];
-        int j = 2*i + 1;
-        while(j&lt;n){
-            if( j&lt;n-1 &amp;&amp; A[j]&lt;A[j+1] ) j++;
-            if( tmp &gt; A[j] ) break;
-            A[i] = A[j];
-            i = j;
-            j = 2*j + 1;
-        }
-        A[i] = tmp;
-    }
-    static void build(int[] A, int n){
-        for(int i = n/2; i&gt;=0; i--){
-            adjust(A, i, n);
-        }
-    }
-    static int[] heapSort(int[] A, int n){
-        build(A, n);
-        for(int i = n-1; i&gt;=0; i--){
-            int tmp = A[0];
-            A[0] = A[i];
-            A[i] = tmp;
-            adjust(A, 0, i);
-        }
-        return A;
-    }
-}
-</code></pre>
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/10/14/第二十一天/" rel="next" title="第二十一天">
-                <i class="fa fa-chevron-left"></i> 第二十一天
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/14/第二十三天/" rel="prev" title="第二十三天">
-                第二十三天 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -368,10 +258,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -391,17 +277,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -444,17 +321,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刷题至今的一点经验"><span class="nav-number">1.</span> <span class="nav-text">刷题至今的一点经验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排序算法-三"><span class="nav-number">2.</span> <span class="nav-text">排序算法 三</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆排序"><span class="nav-number">2.1.</span> <span class="nav-text">堆排序</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -551,10 +417,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
