@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第三十五天">
 <meta property="og:url" content="http://yoursite.com/2016/10/27/第三十五天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-27T11:38:01.028Z">
+<meta property="og:description" content="leetcode">
+<meta property="og:updated_time" content="2016-10-29T11:23:25.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三十五天">
+<meta name="twitter:description" content="leetcode">
 
 
 
@@ -273,7 +276,164 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
+<h2 id="46-Permutations"><a href="#46-Permutations" class="headerlink" title="46. Permutations"></a>46. Permutations</h2><p>Given a collection of distinct numbers, return all possible permutations. </p>
+<p>For example,</p>
+<p>[1,2,3] have the following permutations:</p>
+<pre><code>[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+</code></pre><p>交换的解法和STL的解法.</p>
+<p>解答一：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    vector&lt;vector&lt;int&gt;&gt; permute(vector&lt;int&gt;&amp; nums) {
+        robot(0, nums);
+        return res;
+    }
+    void robot(int idx, vector&lt;int&gt;&amp; n){
+        if(idx==n.size()-1){
+            res.push_back(n);
+            return;
+        }
+        for(int i = idx; i&lt;n.size(); i++){
+            swap(n[i], n[idx]);
+            robot(idx+1, n);
+            swap(n[i], n[idx]);
+        }
+    }
+};
+</code></pre><p>解答二：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    vector&lt;vector&lt;int&gt;&gt; permute(vector&lt;int&gt;&amp; nums) {
+        // robot(0, nums);
+        sort(nums.begin(), nums.end());
+        res.push_back(nums);
+        while(next_permutation(nums.begin(), nums.end())){
+            res.push_back(nums);
+        }
+        return res;
+    }
+};
+</code></pre><h2 id="50-Pow-x-n"><a href="#50-Pow-x-n" class="headerlink" title="50. Pow(x, n)"></a>50. Pow(x, n)</h2><p>Implement pow(x, n). </p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    double myPow(double x, int n) {
+  bool if_neg = false;
+  long long lln = n;
+  if (lln &lt; 0) {
+    lln *= -1;
+    if_neg = true;
+  }
+  double ans = 1;
+  while (lln) {
+    if (lln % 2 == 1)
+      ans *= x;
+    x *= x;
+    lln &gt;&gt;= 1;
+  }
+  if (if_neg) return 1 / ans;
+  else return ans;
+}
+};
+</code></pre><h2 id="55-Jump-Game"><a href="#55-Jump-Game" class="headerlink" title="55. Jump Game"></a>55. Jump Game</h2><p>Given an array of non-negative integers, you are initially positioned at the first index of the array. </p>
+<p>Each element in the array represents your maximum jump length at that position. </p>
+<p>Determine if you are able to reach the last index. </p>
+<p>For example:</p>
+<pre><code>A = [2,3,1,1,4], return true. 
+A = [3,2,1,0,4], return false. 
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    bool canJump(vector&lt;int&gt;&amp; nums) {
+        int maxJ = -1;
+        if(nums.size()&lt;=0) return false;
+        for(int i = 0; i&lt;nums.size(); i++){
+            if(maxJ&lt;nums[i]) maxJ = nums[i];
+            if(maxJ&gt;=nums.size()-i-1) return true;
+            if(maxJ == 0) return false;
+            maxJ --;
+        }
+        return true;
+    }
+};
+</code></pre><h2 id="45-Jump-Game-II"><a href="#45-Jump-Game-II" class="headerlink" title="45. Jump Game II"></a>45. Jump Game II</h2><p>Given an array of non-negative integers, you are initially positioned at the first index of the array.<br>Each element in the array represents your maximum jump length at that position. </p>
+<p>Your goal is to reach the last index in the minimum number of jumps. </p>
+<p>For example:</p>
+<p>Given array A = [2,3,1,1,4] </p>
+<p>The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.) </p>
+<p>Note:<br>You can assume that you can always reach the last index.</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int jump(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        int res = 0;
+        int curJ = 0;
+        int curM = 0;
+        for(int i = 0; i&lt;n; i++){
+            if(curJ &lt; i){
+                res ++;
+                curJ = curM;
+            }
+            curM = max(curM, nums[i]+i);
+        }
+        return res;
+    }
+};
+</code></pre><h2 id="136-Single-Number"><a href="#136-Single-Number" class="headerlink" title="136. Single Number"></a>136. Single Number</h2><p>Given an array of integers, every element appears twice except for one. Find that single one.</p>
+<p>Note:</p>
+<p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? </p>
+<p>用了额外空间的解法。</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int singleNumber(vector&lt;int&gt;&amp; nums) {
+        unordered_map&lt;int, int&gt; m;
+        for(int i = 0; i&lt;nums.size(); i++){
+            m[nums[i]]++;
+        }
+        for(int i = 0; i&lt;nums.size(); i++){
+            if(m[nums[i]]!=2) return nums[i];
+        }
+        return 0;
+    }
+};
+</code></pre><h2 id="392-Is-Subsequence"><a href="#392-Is-Subsequence" class="headerlink" title="392. Is Subsequence"></a>392. Is Subsequence</h2><p>Given a string s and a string t, check if s is subsequence of t. </p>
+<p>You may assume that there is only lower case English letters in both s and t. t is potentially a very long (length ~= 500,000) string, and s is a short string (&lt;=100). </p>
+<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, “ace” is a subsequence of “abcde” while “aec” is not). </p>
+<p>Example 1:</p>
+<p>s = “abc”, t = “ahbgdc” Return true. </p>
+<p>Example 2:</p>
+<p>s = “axc”, t = “ahbgdc” Return false. </p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int hashmap[256] = {0};
+        int n = s.length();
+        int m = t.length();
+        //two pointers 不是 hashmap
+        int i = 0;
+        int j = 0;
+        while(i&lt;n &amp;&amp; j&lt;m){
+            if(t[j] == s[i]) i++;
+            j++;
+        }
+        if(i!=n) return false;
+        return true;
+    }
+};
+</code></pre>
       
     </div>
 
@@ -292,6 +452,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag">#leetcode</a>
+          
+        </div>
       
 
       
@@ -386,7 +552,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -415,7 +581,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#46-Permutations"><span class="nav-number">1.1.</span> <span class="nav-text">46. Permutations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#50-Pow-x-n"><span class="nav-number">1.2.</span> <span class="nav-text">50. Pow(x, n)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#55-Jump-Game"><span class="nav-number">1.3.</span> <span class="nav-text">55. Jump Game</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#45-Jump-Game-II"><span class="nav-number">1.4.</span> <span class="nav-text">45. Jump Game II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#136-Single-Number"><span class="nav-number">1.5.</span> <span class="nav-text">136. Single Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#392-Is-Subsequence"><span class="nav-number">1.6.</span> <span class="nav-text">392. Is Subsequence</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
