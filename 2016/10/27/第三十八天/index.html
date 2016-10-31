@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第三十八天">
 <meta property="og:url" content="http://yoursite.com/2016/10/27/第三十八天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-27T11:39:03.481Z">
+<meta property="og:description" content="leetcode">
+<meta property="og:updated_time" content="2016-10-31T11:55:42.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三十八天">
+<meta name="twitter:description" content="leetcode">
 
 
 
@@ -273,7 +276,243 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
+<h2 id="59-Spiral-Matrix-II"><a href="#59-Spiral-Matrix-II" class="headerlink" title="59. Spiral Matrix II"></a>59. Spiral Matrix II</h2><p>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
+<p>For example,</p>
+<p>Given n = 3,<br>You should return the following matrix: </p>
+<pre><code>[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+</code></pre><p>循环生成数组，和循环打印数组没有本质区别。</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int idx = 0;
+    vector&lt;vector&lt;int&gt;&gt; generateMatrix(int n) {
+        idx = 1;
+        vector&lt;vector&lt;int&gt;&gt; res;
+        for(int i = 0; i&lt;n; i++){
+            vector&lt;int&gt; v(n, 0);
+            res.push_back(v);
+        }
+        int start = 0;
+        while(start*2 &lt; n){
+            helper(res, start, n-1-start);
+            start ++ ;
+        }
+        return res;
+    }
+    void helper(vector&lt;vector&lt;int&gt;&gt; &amp;res, int start, int end){
+        cout&lt;&lt;start&lt;&lt;&quot; &quot;&lt;&lt;end&lt;&lt;endl;
+        for(int i = start; i&lt;=end; i++) res[start][i] = idx++;
+        //if(start&lt;end) 
+            for(int i = start+1; i&lt;=end; i++) res[i][end] = idx++;
+        //if(start&lt;end-1) 
+            for(int i = end-1; i&gt;=start; i--) res[end][i] = idx++;
+        //if(start&lt;end-1) 
+            for(int i = end-1; i&gt;=start+1; i--) res[i][start] = idx++;
+    }
+};
+</code></pre><h2 id="61-Rotate-List"><a href="#61-Rotate-List" class="headerlink" title="61. Rotate List"></a>61. Rotate List</h2><p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
+<p>For example:</p>
+<p>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2,<br>return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
+<p>还是比较简单的。</p>
+<p>解答：</p>
+<pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(k == 0 || head == NULL) return head;
+        ListNode* fast = head?head : NULL;
+        ListNode* slow = head?head : NULL;
+        ListNode* pre = NULL;
+        int len = 0;
+        while(fast) {
+            fast = fast-&gt;next;
+            len++;
+        }
+        fast = head;
+        k %= len;
+        k--;
+        while(fast &amp;&amp; k--) {
+            fast = fast-&gt;next;
+        }
+        //cout&lt;&lt;fast-&gt;val&lt;&lt;endl;
+        while(fast &amp;&amp; fast-&gt;next) {
+            fast = fast-&gt;next;
+            pre = slow;
+            slow = slow-&gt;next;
+        }
+        if(slow == head) return head;
+        if(pre) {
+            pre-&gt;next = fast-&gt;next;
+            fast-&gt;next = head;
+        }
+        return slow;
+    }
+};
+</code></pre><h2 id="64-Minimum-Path-Sum"><a href="#64-Minimum-Path-Sum" class="headerlink" title="64. Minimum Path Sum"></a>64. Minimum Path Sum</h2><p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.</p>
+<p>动态规划的基础问题。</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int minPathSum(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int m = grid.size();
+        if(m == 0) return 0;
+        int n = grid[0].size();
+        vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(n, 0));
+        dp[0][0] = grid[0][0];
+        for(int i = 1; i&lt;n; i++){
+            dp[0][i] = dp[0][i-1] + grid[0][i];
+        }
+        for(int i = 1; i&lt;m; i++){
+            dp[i][0] = dp[i-1][0] + grid[i][0];
+        }
+        for(int i = 1; i&lt;m; i++){
+            for(int j = 1; j&lt;n; j++){
+                dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];            
+            }
+        }
+
+        return dp[m-1][n-1];
+    }
+};
+</code></pre><h2 id="62-Unique-Paths"><a href="#62-Unique-Paths" class="headerlink" title="62. Unique Paths"></a>62. Unique Paths</h2><p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
+<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
+<p>How many possible unique paths are there?</p>
+<p>动态规划的问题。</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector&lt;vector&lt;int&gt;&gt; path(m, vector&lt;int&gt;(n, 1));
+        for(int i = 1; i&lt;m; i++) {
+            for(int j = 1; j&lt;n; j++) {
+                path[i][j] = path[i-1][j] + path[i][j-1];
+            }
+        }
+        return path[m-1][n-1];
+    }
+};
+</code></pre><h2 id="63-Unique-Paths-II"><a href="#63-Unique-Paths-II" class="headerlink" title="63. Unique Paths II"></a>63. Unique Paths II</h2><p>Follow up for “Unique Paths”:<br>Now consider if some obstacles are added to the grids. How many unique paths would there be?</p>
+<p>An obstacle and empty space is marked as 1 and 0 respectively in the grid.</p>
+<p>For example,<br>There is one obstacle in the middle of a 3x3 grid as illustrated below.</p>
+<pre><code>[
+  [0,0,0],
+  [0,1,0],
+  [0,0,0]
+]
+</code></pre><p>The total number of unique paths is 2.</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int uniquePathsWithObstacles(vector&lt;vector&lt;int&gt;&gt;&amp; obstacleGrid) {
+        int m = obstacleGrid.size();
+        if( m == 0) return 0;
+        int n = obstacleGrid[0].size();
+        vector&lt;vector&lt;int&gt; &gt; path(m, vector&lt;int&gt;(n, 0));
+        for(int i = 0; i&lt;m; i++){
+            if(obstacleGrid[i][0] != 1) path[i][0] = 1;
+            else break;
+        }
+        for(int i = 0; i&lt;n; i++){
+            if(obstacleGrid[0][i] != 1) path[0][i] = 1;
+            else break;
+        }
+        for(int i = 1; i &lt; m; i ++){
+            for(int j = 1; j &lt; n; j ++) {
+                if(obstacleGrid[i][j]) path[i][j] = 0;
+                else path[i][j] = path[i-1][j] + path[i][j-1];
+            }
+        }
+        return path[m-1][n-1];
+    }
+};
+</code></pre><h2 id="65-Valid-Number"><a href="#65-Valid-Number" class="headerlink" title="65. Valid Number"></a>65. Valid Number</h2><p>Validate if a given string is numeric.</p>
+<p>Some examples:</p>
+<pre><code>&quot;0&quot; =&gt; true
+&quot; 0.1 &quot; =&gt; true
+&quot;abc&quot; =&gt; false
+&quot;1 a&quot; =&gt; false
+&quot;2e10&quot; =&gt; true
+</code></pre><p>Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one. </p>
+<p>很烦~~</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    bool isNumber(string s) {
+        int size = s.size();
+        if(size == 0){
+            return false;
+        }//if
+        // 前导0
+        int start = 0;
+        while(s[start] == &apos; &apos;){
+            ++start;
+        }//while
+        // 后导0
+        int end = size - 1;
+        while(s[end] == &apos; &apos;){
+            --end;
+        }//while
+        bool hasNum = false,hasPoint = false,hasE = false;
+        for(int i = start;i &lt;= end;++i){
+            if(s[i] == &apos;.&apos;){
+                // 如果前面已经有了&apos;.&apos; 或者 &apos;e&apos;
+                if(hasPoint || hasE){
+                    return false;
+                }//if
+                hasPoint = true;
+            }//if
+            else if(s[i] == &apos;e&apos;){
+                // 如果前面已经有了&apos;e&apos; 或者 没数字
+                if(hasE || !hasNum){
+                    return false;
+                }//if
+                hasE = true;
+            }//else
+            else if(s[i] &lt; &apos;0&apos; || s[i] &gt; &apos;9&apos;){
+                // +2
+                if(i == start &amp;&amp; (s[i] == &apos;+&apos; || s[i] == &apos;-&apos;)){
+                    continue;
+                }//if
+                // 1e-2
+                else if((i != 0 &amp;&amp; s[i-1] == &apos;e&apos;) &amp;&amp; (s[i] == &apos;+&apos; || s[i] == &apos;-&apos;)){
+                    continue;
+                }
+                else{
+                    return false;
+                }//else
+            }//else
+            else{
+                hasNum = true;
+            }//else
+        }//for
+        // 最后有效位不能是&apos;e+-&apos;
+        if(s[end] == &apos;e&apos; || s[end] == &apos;+&apos; || s[end] == &apos;-&apos;){
+            return false;
+        }//if
+        // &apos;.&apos;
+        if(!hasNum &amp;&amp; hasPoint){
+            return false;
+        }//if
+        // 全是空格
+        if(end == -1){
+            return false;
+        }//if
+        return true;
+    }
+};
+</code></pre>
       
     </div>
 
@@ -292,6 +531,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag">#leetcode</a>
+          
+        </div>
       
 
       
@@ -376,7 +621,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -386,7 +631,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -415,7 +660,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#59-Spiral-Matrix-II"><span class="nav-number">1.1.</span> <span class="nav-text">59. Spiral Matrix II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#61-Rotate-List"><span class="nav-number">1.2.</span> <span class="nav-text">61. Rotate List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#64-Minimum-Path-Sum"><span class="nav-number">1.3.</span> <span class="nav-text">64. Minimum Path Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#62-Unique-Paths"><span class="nav-number">1.4.</span> <span class="nav-text">62. Unique Paths</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#63-Unique-Paths-II"><span class="nav-number">1.5.</span> <span class="nav-text">63. Unique Paths II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#65-Valid-Number"><span class="nav-number">1.6.</span> <span class="nav-text">65. Valid Number</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
