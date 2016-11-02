@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第三十九天">
 <meta property="og:url" content="http://yoursite.com/2016/10/27/第三十九天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-10-27T11:39:14.796Z">
+<meta property="og:description" content="leetcode">
+<meta property="og:updated_time" content="2016-11-02T12:09:28.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三十九天">
+<meta name="twitter:description" content="leetcode">
 
 
 
@@ -273,7 +276,121 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
+<h2 id="60-Permutation-Sequence"><a href="#60-Permutation-Sequence" class="headerlink" title="60. Permutation Sequence"></a>60. Permutation Sequence</h2><p>The set [1,2,3,…,n] contains a total of n! unique permutations.</p>
+<p>By listing and labeling all of the permutations in order,<br>We get the following sequence (ie, for n = 3): </p>
+<pre><code>&quot;123&quot;
+&quot;132&quot;
+&quot;213&quot;
+&quot;231&quot;
+&quot;312&quot;
+&quot;321&quot;
+</code></pre><p>Given n and k, return the kth permutation sequence.<br>Note: Given n will be between 1 and 9 inclusive.</p>
+<p>自己想的基于STL的next_permutation的解法超时了，郁闷。</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    string getPermutation(int n, int k) {
+        string ret;
+        vector&lt;int&gt; v(n);
+        for(int i = 0; i &lt; n; i ++)
+            v[i] = i+1;
+        while(n) {
+            int ind = (k-1) / fac(n-1);
+            ret += (v[ind]+&apos;0&apos;);
+            k -= ind * fac(n-1);
+            for(int i = ind+1; i &lt; n; i ++)
+                v[i-1] = v[i];
+            v.pop_back();
+            n --;
+        }
+        return ret;
+    }
+    int fac(int n) {//9! will not overflow
+        int ret = 1;
+        while(n) {
+            ret *= n;
+            n --;
+        }
+        return ret;
+    }
+};
+</code></pre><h2 id="67-Add-Binary"><a href="#67-Add-Binary" class="headerlink" title="67. Add Binary"></a>67. Add Binary</h2><p>Given two binary strings, return their sum (also a binary string). </p>
+<p>For example,</p>
+<pre><code>a = &quot;11&quot;
+b = &quot;1&quot;
+Return &quot;100&quot;. 
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    string addBinary(string a, string b) {
+        int n = a.length();
+        int m = b.length();
+        if( n == 0 &amp;&amp; m==0 ) return &quot;0&quot;;
+        if(n == 0 &amp;&amp; m!=0) return b;
+        if(m == 0 &amp;&amp; n!=0) return a;
+        int i = n-1, j = m-1;
+        int ca = 0;
+        string res = &quot;&quot;;
+        while(i&gt;=0 || j&gt;=0) {
+            int add1 = i&gt;=0 ? (a[i]-&apos;0&apos;) : 0;
+            int add2 = j&gt;=0 ? (b[j]-&apos;0&apos;) : 0;
+            int c = add1 + add2 + ca;
+            res += (c%2)+&apos;0&apos;;
+            ca = c/2;
+            i--;
+            j--;
+        }
+        if( ca == 1) res += &apos;1&apos;;
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
+</code></pre><h2 id="70-Climbing-Stairs"><a href="#70-Climbing-Stairs" class="headerlink" title="70. Climbing Stairs"></a>70. Climbing Stairs</h2><p>You are climbing a stair case. It takes n steps to reach to the top.</p>
+<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top? </p>
+<p>用递归会超时。</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    int climbStairs(int n) {
+        if (n &lt;= 0) return 1;
+        if( n == 1 || n == 2) return n;
+        long a[n+1] = {0};
+        a[1] = 1;
+        a[2] = 2;
+        for(int i = 3; i&lt;=n; i++) {
+            a[i] = a[i-1] + a[i-2];
+        }        
+        return a[n];
+    }
+};
+</code></pre><h2 id="74-Search-a-2D-Matrix"><a href="#74-Search-a-2D-Matrix" class="headerlink" title="74. Search a 2D Matrix"></a>74. Search a 2D Matrix</h2><p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<p>Integers in each row are sorted from left to right.<br>The first integer of each row is greater than the last integer of the previous row.</p>
+<p>For example,<br>Consider the following matrix: </p>
+<pre><code>[
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+</code></pre><p>Given target = 3, return true.</p>
+<p>解答：</p>
+<pre><code>class Solution {
+public:
+    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; a, int target) {
+        int m = a.size();
+        if( m == 0 ) return false;
+        int n = a[0].size();
+        int i = 0;
+        int j = n-1;
+        while( i&lt;m &amp;&amp; j&gt;=0 ) {
+            if(a[i][j]&lt;target) i++;
+            else if(a[i][j]&gt;target) j--;
+            else if(a[i][j] == target) return true;
+        }
+        return false;
+    }
+};
+</code></pre>
       
     </div>
 
@@ -292,6 +409,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag">#leetcode</a>
+          
+        </div>
       
 
       
@@ -415,7 +538,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#60-Permutation-Sequence"><span class="nav-number">1.1.</span> <span class="nav-text">60. Permutation Sequence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#67-Add-Binary"><span class="nav-number">1.2.</span> <span class="nav-text">67. Add Binary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#70-Climbing-Stairs"><span class="nav-number">1.3.</span> <span class="nav-text">70. Climbing Stairs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#74-Search-a-2D-Matrix"><span class="nav-number">1.4.</span> <span class="nav-text">74. Search a 2D Matrix</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
