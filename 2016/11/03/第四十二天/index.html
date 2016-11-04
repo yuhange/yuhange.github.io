@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第四十二天">
 <meta property="og:url" content="http://yoursite.com/2016/11/03/第四十二天/index.html">
 <meta property="og:site_name" content="Future Seeking">
-<meta property="og:updated_time" content="2016-11-03T10:36:48.585Z">
+<meta property="og:description" content="leetcode">
+<meta property="og:updated_time" content="2016-11-04T12:54:28.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第四十二天">
+<meta name="twitter:description" content="leetcode">
 
 
 
@@ -171,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -181,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -244,7 +247,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-11-03T18:36:48+08:00" content="2016-11-03">
               2016-11-03
             </time>
@@ -273,7 +276,181 @@
       
 
       
-        
+        <h1 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h1><a id="more"></a>
+<h2 id="86-Partition-List"><a href="#86-Partition-List" class="headerlink" title="86. Partition List"></a>86. Partition List</h2><p>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
+<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
+<p>For example,<br>Given <code>1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2</code> and x = 3,</p>
+<p>return <code>1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5</code>.</p>
+<p>解答：</p>
+<pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        //重新起两个链表，小于x的挂在p后面，大于x的挂在q后面，最后合并两个链表。
+        ListNode* p = new ListNode(0);
+        ListNode* pHead = p;
+        ListNode* q = new ListNode(0);
+        ListNode* qHead = q;
+        ListNode* cur = head;
+        while( head ) {
+            if( head-&gt;val &lt; x ) {
+                p-&gt;next = head;
+                p = p-&gt;next;
+            }else {
+                q-&gt;next = head;
+                q = q-&gt;next;
+            }
+            head = head-&gt;next;
+        }
+        p-&gt;next = qHead-&gt;next;
+        q-&gt;next = NULL;
+        return pHead-&gt;next;
+    }
+};
+</code></pre><h2 id="83-Remove-Duplicates-from-Sorted-List"><a href="#83-Remove-Duplicates-from-Sorted-List" class="headerlink" title="83. Remove Duplicates from Sorted List"></a>83. Remove Duplicates from Sorted List</h2><p>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
+<p>For example,</p>
+<pre><code>Given 1-&gt;1-&gt;2, return 1-&gt;2.
+Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.
+</code></pre><p>解答：</p>
+<pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if( !head || !head-&gt;next) return head;
+        ListNode* p = head;
+        ListNode* q = head-&gt;next;
+        while( q ) {
+            if( p-&gt;val == q-&gt;val ) {
+                p-&gt;next = q-&gt;next;
+            }else p = q;
+            q = q-&gt;next;
+        }
+        return head;
+    }
+};
+</code></pre><h2 id="92-Reverse-Linked-List-II"><a href="#92-Reverse-Linked-List-II" class="headerlink" title="92. Reverse Linked List II"></a>92. Reverse Linked List II</h2><p>Reverse a linked list from position m to n. Do it in-place and in one-pass.</p>
+<p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2 and n = 4,</p>
+<p>return 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL.</p>
+<p><em>Note:</em><br>Given m, n satisfy the following condition:<br><code>1 ≤ m ≤ n ≤ length</code> of list.</p>
+<p>解答：</p>
+<pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        if(m&gt;=n) return head;
+        if(!head || !head-&gt;next) return head;
+        ListNode* cur = head;
+        ListNode* next = NULL;
+        ListNode* pre = NULL;
+        ListNode* preStart = NULL;
+        ListNode* start = NULL;
+        int interval = n-m+1;
+        while( --m ) {//m为1时，不会执行，cur仍为head. preStart仍为NULL.
+            preStart = cur;
+            cur = cur-&gt;next;
+        }
+        start = cur;
+        while( cur &amp;&amp; interval-- ) {
+            next = cur-&gt;next;
+            cur-&gt;next = pre;
+            pre = cur;
+            cur = next;
+        }
+        start-&gt;next = next;
+        if(preStart==NULL) return pre;
+        else preStart-&gt;next = pre;
+        return head;
+    }
+};
+</code></pre><h2 id="77-Combinations"><a href="#77-Combinations" class="headerlink" title="77. Combinations"></a>77. Combinations</h2><p>Given two integers n and k, return all possible combinations of k numbers out of 1 … n.</p>
+<p>For example,<br>If n = 4 and k = 2, a solution is:</p>
+<pre><code>[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    vector&lt;vector&lt;int&gt;&gt; combine(int n, int k) {
+        vector&lt;int&gt; v;
+        helper(1, n, k, v);
+        return res;
+    }
+    void helper(int idx, int n, int k, vector&lt;int&gt;&amp; v) {
+        if(k == 0) {
+            res.push_back(v);
+            return;
+        }
+        for(int i = idx; i&lt;=n; i++){
+            v.push_back(i);
+            helper(i+1, n, k-1, v);
+            v.pop_back();
+        }
+    }
+};
+</code></pre><h2 id="78-Subsets"><a href="#78-Subsets" class="headerlink" title="78. Subsets"></a>78. Subsets</h2><p>Given a set of distinct integers, nums, return all possible subsets.</p>
+<p>Note: The solution set must not contain duplicate subsets.</p>
+<p>For example,<br>If nums = [1,2,3], a solution is:</p>
+<pre><code>[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+</code></pre><p>解答：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; res;
+    vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) {
+        vector&lt;int&gt; v;
+        for(int i = 0; i&lt;=nums.size(); i++) {
+            helper(0, nums, 0, i, v);
+        }
+        return res;
+    }
+    void helper(int idx, vector&lt;int&gt;&amp; nums, int k, int curSize, vector&lt;int&gt;&amp; v) {
+        if(k == curSize) {
+            res.push_back(v);
+            return;
+        }
+        for(int i = idx; i&lt;nums.size(); i++){
+            v.push_back(nums[i]);
+            helper(i+1, nums, k+1, curSize, v);
+            v.pop_back();
+        }
+    }
+};
+</code></pre>
       
     </div>
 
@@ -292,6 +469,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag">#leetcode</a>
+          
+        </div>
       
 
       
@@ -357,10 +540,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table Des Matières
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Ensemble
+            Übersicht
           </li>
         </ul>
       
@@ -377,7 +560,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">56</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -387,7 +570,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -415,7 +598,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#86-Partition-List"><span class="nav-number">1.1.</span> <span class="nav-text">86. Partition List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#83-Remove-Duplicates-from-Sorted-List"><span class="nav-number">1.2.</span> <span class="nav-text">83. Remove Duplicates from Sorted List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#92-Reverse-Linked-List-II"><span class="nav-number">1.3.</span> <span class="nav-text">92. Reverse Linked List II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#77-Combinations"><span class="nav-number">1.4.</span> <span class="nav-text">77. Combinations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#78-Subsets"><span class="nav-number">1.5.</span> <span class="nav-text">78. Subsets</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -442,11 +625,11 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
